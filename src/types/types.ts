@@ -32,18 +32,3 @@ export interface MyFormTouched {
   country?: boolean;
   additionalInfo?: boolean;
 }
-
-export interface VisaPaymentFormValues {
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-  nameOnCard: string;
-  termsAndConditions: boolean;
-}
-
-export interface VisaPaymentFormTouched {
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-  nameOnCard: string;
-}

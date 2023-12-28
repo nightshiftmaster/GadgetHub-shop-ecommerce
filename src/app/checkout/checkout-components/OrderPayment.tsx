@@ -4,14 +4,10 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
-import { ErrorMessage, Field, Form } from "formik";
-import { VisaPaymentFormValues, VisaPaymentFormTouched } from "@/types/types";
-import { loadStripe } from "@stripe/stripe-js";
 import Terms from "./Terms";
-import getStripe from "@/utils/get-stripejs";
-import PayComponent from "../PayComponent";
+import PayComponent from "../../../components/PayComponent";
 
-const Step2 = () => {
+const OrderPayment = ({ props }: { props: any }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const [termsChecked, setTermsChecked] = useState(false);
   const productsSlice: InitialState = useSelector(
@@ -61,7 +57,7 @@ const Step2 = () => {
               })}
             </div>
             {/* totals */}
-            <div className="flex flex-col gap-7 w-full justify-center items-center">
+            <div className="flex flex-col gap-7 w-full h-full justify-center items-center">
               <div className="flex justify-between md:w-[70%] w-full border-b-2 py-5">
                 <h1 className="font-semibold">Subtotal</h1>
                 <h1 className="text-blue-500">${productsSlice.total}</h1>
@@ -89,7 +85,7 @@ const Step2 = () => {
               <div className="flex gap-3">
                 <label>
                   {/* {props.values.termsAndConditions} */}
-                  <Field
+                  <input
                     onClick={() => setTermsChecked(!termsChecked)}
                     type="checkbox"
                     checked={termsChecked}
@@ -108,26 +104,7 @@ const Step2 = () => {
               {termsChecked && (
                 <div className="flex flex-col w-full">
                   <div className="flex gap-8 flex-col w-full">
-                    <h1 className="text-3xl font-semibold">Invoice</h1>
-                    <PayComponent />
-                    {/* <div className="flex flex-row justify-between">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        onClick={() => prevStep()}
-                        className="uppercase md:p-3 text-xs md:text-base p-2 md:w-[40%] w-1/3 text-white bg-fuchsia-400"
-                      >
-                        Previous
-                      </button>
-
-                     
-                    </div> */}
-                    <button
-                      type="submit"
-                      className="uppercase md:p-3 p-2 text-xs md:text-base text-white bg-red-400 md:w-[40%] w-1/3"
-                    >
-                      pay order
-                    </button>
+                    <PayComponent props={{ ...props }} />
                   </div>
                 </div>
               )}
@@ -139,4 +116,4 @@ const Step2 = () => {
   );
 };
 
-export default Step2;
+export default OrderPayment;

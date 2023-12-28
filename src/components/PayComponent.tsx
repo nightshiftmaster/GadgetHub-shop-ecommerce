@@ -7,7 +7,7 @@ import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/CheckoutForm";
 
-const PayComponent = () => {
+const PayComponent = ({ props }: { props: any }) => {
   const [clientSecret, setClientSecret] = React.useState("");
   const productsSlice: InitialState = useSelector(
     (state: RootState) => state.productsReducer
@@ -44,7 +44,7 @@ const PayComponent = () => {
     <div>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm props={props} />
         </Elements>
       )}
     </div>

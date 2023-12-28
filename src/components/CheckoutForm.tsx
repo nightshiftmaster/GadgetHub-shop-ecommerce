@@ -1,15 +1,18 @@
 "use client";
-import { Form } from "formik";
+import { Oval } from "react-loader-spinner";
 import {
   useStripe,
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ props }: { props: any }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const userSlice = useSelector((state: RootState) => state.userReducer);
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -62,14 +65,10 @@ const CheckoutForm = () => {
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: "http://localhost:3000/success",
+        receipt_email: userSlice.emailAdress,
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message || "");
     } else {
@@ -80,26 +79,55 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form
+      id="payment-form"
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-7 w-full justify-center items-center"
+    >
       <PaymentElement
         id="payment-element"
         options={{
           layout: "tabs",
         }}
+        className="w-[50vh]"
       />
-      <button
-        disabled={isLoading || !stripe || !elements}
-        id="submit"
-        className="uppercase md:p-3 p-2 text-xs md:text-base text-white bg-red-400 md:w-[40%] w-1/3"
-      >
-        <span id="button-text">
-          {isLoading ? (
-            <div className="spinner" id="spinner"></div>
-          ) : (
-            "Confirm order"
-          )}
-        </span>
-      </button>
+
+      <div className="flex  w-full justify-between items-center">
+        <button
+          type="submit"
+          // disabled={props.isSubmitting}
+          onClick={() => props.prevStep()}
+          className="uppercase md:p-3 w-[40%] text-xs md:text-base p-2  text-white bg-fuchsia-400"
+        >
+          Previous
+        </button>
+        <button
+          disabled={isLoading || !stripe || !elements}
+          id="submit"
+          className="uppercase md:p-3 p-2 w-[40%] text-xs md:text-base  text-white bg-red-400 "
+        >
+          <span id="button-text">
+            {isLoading ? (
+              <div className="flex gap-2 justify-center items-center">
+                <Oval
+                  visible={true}
+                  height="20"
+                  width="20"
+                  color="#f3f6f4"
+                  strokeWidth="8"
+                  secondaryColor="#c0c0c0"
+                  ariaLabel="oval-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                />
+                Please wait...
+              </div>
+            ) : (
+              "Confirm order"
+            )}
+          </span>
+        </button>
+      </div>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
