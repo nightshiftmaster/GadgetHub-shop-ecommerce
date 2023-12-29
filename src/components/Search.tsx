@@ -76,7 +76,7 @@ const FormInput = () => {
   };
 
   return (
-    <div className="flex w-screen h-20 -mt-10 mb-20 justify-center items-center text-sm md:text-lg shadow-lg">
+    <div className="flex w-screen h-20 -mt-10 mb-20 justify-center items-center text-sm md:text-lg md:shadow-lg">
       {/* <Modes /> */}
       <form
         action=""

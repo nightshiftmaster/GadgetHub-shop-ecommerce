@@ -20,7 +20,7 @@ const Cart = () => {
   const products = productsSlice.cart;
 
   return (
-    <div className="h-full flex justify-center items-center ">
+    <div className="h-screen flex justify-center items-center ">
       {products?.length === 0 ? (
         <div className="flex h-screen flex-col justify-center items-center gap-5">
           <MdOutlineRemoveShoppingCart size={120} />
@@ -28,14 +28,14 @@ const Cart = () => {
         </div>
       ) : (
         <div className="md:w-[110vh] w-[50vh] h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg">
-          <div className="flex flex-col mb-5 md:w-1/2 w-full h-full gap-10 justify-center items-center">
-            <div className="flex justify-around xl:gap-20 md:text-lg text-sm gap-40 md:w-full w-1/2  p-7 border-b-2 border-gray-200 font-bold">
+          <div className="flex flex-col mb-5  md:w-1/2 w-full h-full gap-2 md:gap-10 justify-center items-center">
+            <div className="flex justify-around w-full  xl:gap-20 md:text-lg text-sm gap-40 md:w-full  p-7 border-b-2 border-gray-200 font-bold">
               <h1>Product</h1>
               <h1>Price</h1>
             </div>
 
-            <div className="w-full md:h-[50vh] h-[40vh] flex justify-center items-start overflow-scroll">
-              <div className="flex md:gap-16 gap-7 flex-col mt-20 justify-center">
+            <div className="w-full md:h-[50vh]  flex justify-center items-center overflow-scroll">
+              <div className="flex md:gap-16 gap-7 flex-col md:mt-1 mt-10 justify-center">
                 {products?.map((item) => {
                   return (
                     <div
@@ -95,7 +95,7 @@ const Cart = () => {
                 <h1 className="font-bold">Total(incl.vat)</h1>
                 <h1>${productsSlice?.total}</h1>
               </div>
-              <div className="flex flex-col gap-5 text-center justify-center items-center mt-5">
+              <div className="flex flex-col gap-6 text-center justify-center items-center mt-5">
                 <Link href="/checkout">
                   <button className="text-white  whitespace-nowrap p-3 text-xs lg:p-3 lg:px-10 text-center lg:text-base  rounded-md bg-fuchsia-400   hover:scale-110 transition-all duration-500">
                     PROCEED TO CHECKOUT
@@ -104,7 +104,7 @@ const Cart = () => {
 
                 <Link
                   href="/products"
-                  className="text-gray-500  md:text-sm text-xs"
+                  className="text-gray-500  md:text-sm lg:text-base text-xs"
                 >{`<< Back to Shopping`}</Link>
               </div>
             </div>

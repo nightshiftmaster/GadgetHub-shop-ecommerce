@@ -18,12 +18,14 @@ const Success = () => {
   }, []);
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <div className="w-1/2 h-1/2 text-lg font-semibold flex justify-center flex-col gap-10 items-center bg-slate-200 rounded-2xl">
+    <div className="h-screen w-screen flex justify-center items-center bg-pink-50">
+      <div className="w-1/2 h-1/2 text-lg font-semibold flex justify-center flex-col gap-10  shadow-lg items-center bg-slate-100 rounded-2xl">
         <p>
           <BsBagCheckFill size={150} color="green" />
         </p>
-        <h2 className="text-3xl font-bold">Thank you for your order !</h2>
+        <h2 className="text-3xl font-bold text-blue-500">
+          Thank you for your order !
+        </h2>
         <p className="">Check your email inbox for the receipt.</p>
         <p>
           If you have any questions, please email {"     "}
@@ -33,7 +35,7 @@ const Success = () => {
         </p>
         <Link href="/">
           <button
-            className="uppercase w-[500px] p-5 text-white text-xl bg-red-500 rounded-3xl"
+            className="uppercase w-[500px] p-5 text-white text-xl bg-fuchsia-400 rounded-3xl"
             type="button"
           >
             Continue shopping
