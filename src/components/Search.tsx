@@ -66,7 +66,11 @@ const FormInput = () => {
       >
         {searchItems?.map((item) => {
           return (
-            <Link href={`/products/${item.id}`} onClick={() => setValue("")}>
+            <Link
+              href={`/products/${item.id}`}
+              key={item.id}
+              onClick={() => setValue("")}
+            >
               <li>{item.title}</li>
             </Link>
           );
