@@ -52,8 +52,8 @@ const Products = () => {
   }, [category]);
 
   return (
-    <div className="w-full h-full flex justify-center items-center ">
-      <div className="flex flex-col gap-16 justify-center items-center w-[1500px]">
+    <div className="w-full h-full flex justify-center items-center  ">
+      <div className="flex flex-col gap-16 justify-center items-center w-[1500px] ">
         <div className="flex flex-col justify-center items-center gap-6">
           <h2 className="">Browse By Category</h2>
           <select

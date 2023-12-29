@@ -20,21 +20,21 @@ const Cart = () => {
   const products = productsSlice.cart;
 
   return (
-    <div className="h-screen flex justify-center items-center ">
+    <div className="h-screen flex justify-center items-center bg-slate-50 ">
       {products?.length === 0 ? (
         <div className="flex h-screen flex-col justify-center items-center gap-5">
           <MdOutlineRemoveShoppingCart size={120} />
           <h1 className="text-4xl">CART IS EMPTY</h1>
         </div>
       ) : (
-        <div className="md:w-[110vh] w-[50vh] h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg">
+        <div className="md:w-[110vh] w-[50vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg">
           <div className="flex flex-col mb-5  md:w-1/2 w-full h-full gap-2 md:gap-10 justify-center items-center">
             <div className="flex justify-around w-full  xl:gap-20 md:text-lg text-sm gap-40 md:w-full  p-7 border-b-2 border-gray-200 font-bold">
               <h1>Product</h1>
               <h1>Price</h1>
             </div>
 
-            <div className="w-full md:h-[50vh]  flex justify-center items-center overflow-scroll">
+            <div className="w-full md:h-[50vh]  flex justify-center items-start overflow-scroll">
               <div className="flex md:gap-16 gap-7 flex-col md:mt-1 mt-10 justify-center">
                 {products?.map((item) => {
                   return (

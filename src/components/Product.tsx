@@ -18,7 +18,7 @@ const Product = (props: SingleProductType) => {
   const { title, thumbnail, price } = props;
   return (
     <div
-      className={`relative ${styles.enter}  flex flex-col  justify-start  items-center p-1 border  group`}
+      className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
     >
       <div className="flex flex-col h-[235px] w-[160px] gap-3 justify-start items-center   md:gap-1  p-2 ">
         {/* <div className="flex h-1/2"> */}

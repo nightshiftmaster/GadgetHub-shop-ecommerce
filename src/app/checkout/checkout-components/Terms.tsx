@@ -2,7 +2,7 @@ import React from "react";
 
 const Terms = () => {
   return (
-    <div className="flex flex-col gap-6 p-5 ring-slate-200 font-light ring-1 overflow-scroll h-[30vh] rounded-md">
+    <div className="flex flex-col gap-6 p-2 text-center ring-slate-200 font-light ring-1 md:text-base text-xs overflow-scroll h-[30vh] rounded-md">
       <h1 className="text-4xl font-semibold">
         Return, Refund &amp; Warranty Policies
       </h1>
