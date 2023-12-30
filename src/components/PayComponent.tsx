@@ -33,7 +33,7 @@ const PayComponent = ({ props }: { props: any }) => {
       }
     };
     makeReqest();
-  }, []);
+  }, [products]);
 
   const options: StripeElementsOptions = {
     clientSecret,

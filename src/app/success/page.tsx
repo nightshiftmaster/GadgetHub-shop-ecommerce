@@ -32,7 +32,7 @@ const Success = () => {
     sendMail();
     dispatch(removeAllProducts());
     // runFireWorks();
-  }, []);
+  }, [dispatch, orderData, userData]);
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-pink-50">
