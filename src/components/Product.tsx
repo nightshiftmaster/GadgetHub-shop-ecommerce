@@ -16,9 +16,7 @@ var _ = require("lodash");
 
 const Product = (props: SingleProductType) => {
   const dispatch = useDispatch<AppDispatch>();
-  if (!BASE_API_URL) {
-    return null;
-  }
+
   const { title, thumbnail, price } = props;
   return (
     <div

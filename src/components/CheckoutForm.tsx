@@ -51,9 +51,6 @@ const CheckoutForm = ({ props }: { props: any }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!BASE_API_URL) {
-      return null;
-    }
 
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded.

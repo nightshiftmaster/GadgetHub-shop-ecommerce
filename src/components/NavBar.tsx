@@ -22,9 +22,6 @@ const NavBar = () => {
   const router = useRouter();
 
   async function logOut() {
-    if (!BASE_API_URL) {
-      return null;
-    }
     await signOut({ callbackUrl: `${BASE_API_URL}/login` });
     dispatch(removeAllProducts());
     dispatch(removeUserData());
