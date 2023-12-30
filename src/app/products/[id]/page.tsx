@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/features/productsSlice";
 import { toast } from "react-toastify";
+import { BASE_API_URL } from "@/utils/constants";
 
 const getData = async (id: number) => {
   try {
@@ -53,7 +54,7 @@ const Product = async ({ params }: { params: { id: number } }) => {
             <Button text="Add To Cart" />
           </div>
           <Link
-            href="/products"
+            href={`${BASE_API_URL}/products`}
             className="text-xs"
           >{`<< Back to Shopping`}</Link>
         </div>

@@ -35,7 +35,6 @@ const FormInput = () => {
   useEffect(() => {
     const fetch = async () => {
       const data = await getData(value);
-      console.log(data);
       return data;
     };
     fetch().then((res) => setSearchItems(res));
@@ -60,9 +59,6 @@ const FormInput = () => {
     if (value.length < 1 || searchItems.length === 0) {
       setOpen(false);
       return;
-    }
-    if (!BASE_API_URL) {
-      return null;
     }
     setOpen(true);
     return (
