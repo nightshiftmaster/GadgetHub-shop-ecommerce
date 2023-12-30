@@ -9,6 +9,7 @@ import Link from "next/link";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { removeProduct } from "@/redux/features/productsSlice";
 import { useDispatch } from "react-redux";
+import { BASE_API_URL } from "@/utils/constants";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const Cart = () => {
                 </Link>
 
                 <Link
-                  href="/products"
+                  href={`${BASE_API_URL}/products`}
                   className="text-gray-500  md:text-sm lg:text-base text-xs"
                 >{`<< Back to Shopping`}</Link>
               </div>

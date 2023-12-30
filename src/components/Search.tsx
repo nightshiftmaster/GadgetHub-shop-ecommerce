@@ -4,6 +4,7 @@ import Modes from "./Modes";
 import { useRef, useEffect, useState } from "react";
 import { ProductsType } from "@/types/types";
 import Link from "next/link";
+import { BASE_API_URL } from "@/utils/constants";
 
 type ItemType = {
   item: string;
@@ -57,6 +58,9 @@ const FormInput = () => {
       setOpen(false);
       return;
     }
+    if (!BASE_API_URL) {
+      return null;
+    }
     setOpen(true);
     return (
       <ul
@@ -67,7 +71,7 @@ const FormInput = () => {
         {searchItems?.map((item) => {
           return (
             <Link
-              href={`/products/${item.id}`}
+              href={`${BASE_API_URL}/products/${item.id}`}
               key={item.id}
               onClick={() => setValue("")}
             >

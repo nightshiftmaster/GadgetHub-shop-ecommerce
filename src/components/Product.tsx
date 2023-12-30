@@ -9,6 +9,7 @@ import { addProduct, InitialState } from "@/redux/features/productsSlice";
 import { AppDispatch } from "@/redux/store";
 import styles from "./page.module.css";
 import { toast } from "react-toastify";
+import { BASE_API_URL } from "@/utils/constants";
 
 //handle delete
 var _ = require("lodash");
@@ -16,6 +17,9 @@ var _ = require("lodash");
 const Product = (props: SingleProductType) => {
   const dispatch = useDispatch<AppDispatch>();
   const { title, thumbnail, price } = props;
+  if (!BASE_API_URL) {
+    return null;
+  }
   return (
     <div
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
@@ -23,7 +27,10 @@ const Product = (props: SingleProductType) => {
       <div className="flex flex-col h-[235px] w-[160px] gap-3 justify-start items-center   md:gap-1  p-2 ">
         {/* <div className="flex h-1/2"> */}
         <div className="h-full w-full hover:opacity-70 flex relative bg-red-300 rounded-md">
-          <Link href={`/products/${props.id}`} className="flex w-[100%] h-1/2">
+          <Link
+            href={`${BASE_API_URL}/products/${props.id}`}
+            className="flex w-[100%] h-1/2"
+          >
             <Image
               src={props.thumbnail}
               alt=""
