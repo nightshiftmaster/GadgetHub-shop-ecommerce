@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
-import { runFireWorks } from "../../utils/confetti";
+// import { runFireWorks } from "../../utils/confetti";
 import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
 
@@ -31,7 +31,7 @@ const Success = () => {
     };
     sendMail();
     dispatch(removeAllProducts());
-    runFireWorks();
+    // runFireWorks();
   }, []);
 
   return (
