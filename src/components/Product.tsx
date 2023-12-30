@@ -15,11 +15,11 @@ import { BASE_API_URL } from "@/utils/constants";
 var _ = require("lodash");
 
 const Product = (props: SingleProductType) => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const dispatch = useDispatch<AppDispatch>();
   const { title, thumbnail, price } = props;
-  // if (!BASE_API_URL) {
-  //   return null;
-  // }
   return (
     <div
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
