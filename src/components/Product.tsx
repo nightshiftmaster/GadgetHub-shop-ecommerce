@@ -15,10 +15,10 @@ import { BASE_API_URL } from "@/utils/constants";
 var _ = require("lodash");
 
 const Product = (props: SingleProductType) => {
+  const dispatch = useDispatch<AppDispatch>();
   if (!BASE_API_URL) {
     return null;
   }
-  const dispatch = useDispatch<AppDispatch>();
   const { title, thumbnail, price } = props;
   return (
     <div
