@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/features/productsSlice";
 import { toast } from "react-toastify";
 import { BASE_API_URL } from "@/utils/constants";
+var _ = require("lodash");
 
 const getData = async (id: number) => {
   try {
@@ -25,6 +26,7 @@ const getData = async (id: number) => {
 const Product = async ({ params }: { params: { id: number } }) => {
   const dispatch = useDispatch();
   const product = await getData(params.id);
+  const { title, thumbnail, price } = product;
 
   return (
     <div className="bg-pink-100 flex md:flex-row justify-center items-center h-screen w-screen">
@@ -47,7 +49,8 @@ const Product = async ({ params }: { params: { id: number } }) => {
           </h2>
           <div
             onClick={() => {
-              dispatch(addProduct(product));
+              const id = _.uniqueId();
+              dispatch(addProduct({ id, title, thumbnail, price }));
               toast.success("The product added to the cart !");
             }}
           >

@@ -40,16 +40,16 @@ const Product = (props: SingleProductType) => {
         {/* price + name */}
         <div className="flex flex-col justify-center  items-center md:gap-3 gap-3 p-1 text-center md:h-1/2 h-1/3 group w-full flex-1 ">
           <hr className="w-[10vh]  h-px bg-gray-300 border-0 mt-1  "></hr>
-          <h1 className="flex justify-center text-ellipsis group-hover:invisible overflow-hidden w-2/3 items-start lg:text-lg text-xs font-medium basis-8 shrink-0 ">
+          <h1 className="flex justify-center text-ellipsis md:group-hover:invisible overflow-hidden w-2/3 items-start lg:text-lg text-xs font-medium basis-8 shrink-0 ">
             {props.title}
           </h1>
-          <h2 className="md:text-base flex  justify-center group-hover:invisible text-blue-500 items-center font-semibold text-xs basis-5 shrink ">
+          <h2 className="md:text-base flex  justify-center md:group-hover:invisible text-blue-500 items-center font-semibold text-xs basis-5 shrink ">
             ${props.price}
           </h2>
         </div>
       </div>
       <div
-        className={`hidden absolute ${styles.entrance} md:bottom-8 bottom-4  group-hover:block`}
+        className={`hidden absolute ${styles.entrance} md:bottom-8 bottom-4  md:group-hover:block`}
         onClick={() => {
           const id = _.uniqueId();
           dispatch(addProduct({ id, title, thumbnail, price }));
