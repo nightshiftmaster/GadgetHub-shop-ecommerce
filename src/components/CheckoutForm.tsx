@@ -8,6 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { BASE_API_URL } from "@/utils/constants";
 
 const CheckoutForm = ({ props }: { props: any }) => {
   const stripe = useStripe();
@@ -50,7 +51,9 @@ const CheckoutForm = ({ props }: { props: any }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitted");
+    if (!BASE_API_URL) {
+      return null;
+    }
 
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded.
@@ -59,12 +62,12 @@ const CheckoutForm = ({ props }: { props: any }) => {
     }
 
     setIsLoading(true);
-
+    4;
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success",
+        return_url: `${BASE_API_URL}/success`,
         receipt_email: userSlice.emailAdress,
       },
     });

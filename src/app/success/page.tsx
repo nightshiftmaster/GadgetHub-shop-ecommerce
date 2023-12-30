@@ -16,9 +16,6 @@ const Success = () => {
   const userData = useSelector((state: RootState) => state.userReducer);
   const orderData = useSelector((state: RootState) => state.productsReducer);
 
-  console.log(userData);
-  console.log(orderData);
-
   useEffect(() => {
     const sendMail = async () => {
       await fetch("api/email", {
@@ -32,7 +29,7 @@ const Success = () => {
     sendMail();
     dispatch(removeAllProducts());
     // runFireWorks();
-  }, [dispatch, orderData, userData]);
+  }, []);
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-pink-50">

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
 import { removeUserData } from "@/redux/features/userSlice";
+import { BASE_API_URL } from "@/utils/constants";
 
 const navs = [
   { name: "home", path: "/" },
@@ -21,14 +22,19 @@ const NavBar = () => {
   const router = useRouter();
 
   async function logOut() {
-    await signOut({ callbackUrl: "http://localhost:3000/login" });
+    if (!BASE_API_URL) {
+      return null;
+    }
+    await signOut({ callbackUrl: `${BASE_API_URL}/login` });
     dispatch(removeAllProducts());
     dispatch(removeUserData());
   }
 
   return (
     <div className="text-white sticky top-0 py-6 lg:px-[5vh] gap-7 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col sm:flex-row items-center justify-around mb-10 z-20 rounded-b-md">
-      <h1 className="lg:text-4xl text-2xl font-bold">GadgetHub</h1>
+      <Link href="/">
+        <h1 className="lg:text-4xl text-2xl font-bold">GadgetHub</h1>
+      </Link>
       <div className="flex md:gap-20 gap-5  justify-center items-center md:text-sm text-xs">
         {navs.slice(0, 2).map((item, i) => {
           return (

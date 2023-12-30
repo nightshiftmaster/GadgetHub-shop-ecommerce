@@ -21,7 +21,7 @@ const PayComponent = ({ props }: { props: any }) => {
   useEffect(() => {
     const makeReqest = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/create-intent", {
+        const res = await fetch("api/create-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(products),

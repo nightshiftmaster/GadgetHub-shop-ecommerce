@@ -10,7 +10,6 @@ import Stepper from "./checkout-components/Stepper";
 
 const Checkout = () => {
   const [step, setStep] = useState(0);
-  const dispatch = useDispatch();
 
   const nextStep = (): void => setStep(step + 1);
   const prevStep = (): void => setStep(step - 1);

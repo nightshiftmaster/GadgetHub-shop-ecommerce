@@ -11,8 +11,6 @@ import { removeProduct } from "@/redux/features/productsSlice";
 import { useDispatch } from "react-redux";
 
 const Cart = () => {
-  const [data, setData] = useState<InitialState>();
-
   const dispatch = useDispatch();
   const productsSlice: InitialState = useSelector(
     (state: RootState) => state.productsReducer
