@@ -19,9 +19,9 @@ const Cart = () => {
   const products = productsSlice.cart;
 
   return (
-    <div className="h-screen flex justify-center items-center bg-slate-50 ">
+    <div className="h-screen flex justify-center items-center bg-slate-50  ">
       {products?.length === 0 ? (
-        <div className="flex h-screen flex-col justify-center items-center gap-5">
+        <div className="flex h-full flex-col justify-center items-center gap-5">
           <MdOutlineRemoveShoppingCart size={120} />
           <h1 className="text-4xl">CART IS EMPTY</h1>
         </div>

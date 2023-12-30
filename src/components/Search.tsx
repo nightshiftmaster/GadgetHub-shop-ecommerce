@@ -35,14 +35,17 @@ const FormInput = () => {
   useEffect(() => {
     const fetch = async () => {
       const data = await getData(value);
+      console.log(data);
       return data;
     };
     fetch().then((res) => setSearchItems(res));
   }, [value]);
 
   //event with type - React.MouseEvent and generic - HTMLInputElement
-  const handleSubmit = (event: React.MouseEvent<HTMLInputElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.MouseEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const data = await getData(value);
+    return data;
     // setSearchItem({ item: value, id: 3 });
     // setValue("");
     // console.log("submitted");
@@ -84,14 +87,14 @@ const FormInput = () => {
   };
 
   return (
-    <div className="flex w-screen h-20 -mt-10 mb-20  justify-center items-center text-sm md:text-lg md:shadow-lg">
+    <div className="flex w-screen h-20 -mt-10 md:mb-20 mb-2  justify-center items-center text-sm md:text-lg md:shadow-lg">
       {/* <Modes /> */}
       <form
         action=""
         className="w-full md:w-1/2 flex justify-center m-16 relative"
       >
         <input
-          className="h-6  border-2 rounded-l-lg md:p-6  p-4 w-full"
+          className="h-6  border-2 rounded-lg md:p-6  p-4 w-full"
           type="text"
           name="name"
           value={value}
@@ -99,7 +102,7 @@ const FormInput = () => {
           placeholder="search product"
         />
         <input
-          className="text-white text-sm bg-fuchsia-400 px-4  rounded-r-lg"
+          className="text-white  flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"
           type="button"
           onClick={handleSubmit}
           value="search"
