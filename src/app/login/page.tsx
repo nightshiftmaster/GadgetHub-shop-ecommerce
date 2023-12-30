@@ -28,7 +28,7 @@ const LoginPage = () => {
 
   return (
     <div className="p-5 w-full flex items-center justify-center h-screen">
-      <div className="h-[60vh] shadow-2xl rounded-lg text-center flex items-center justify-center flex-col xl:w-[30%] w-[70%] ">
+      <div className="md:h-[60vh] shadow-2xl rounded-lg text-center flex items-center justify-center flex-col xl:w-[30%] w-[70%] ">
         {/* form */}
         <div className="p-12  md:text-base text-xs flex flex-col items-center justify-center gap-16 ">
           <h1 className="font-bold text-base  md:text-2xl ">
@@ -36,7 +36,7 @@ const LoginPage = () => {
           </h1>
 
           <button
-            className="flex gap-4 p-4 items-center justify-center ring-1 w-full ring-orange-100 rounded-md"
+            className="flex md:gap-4 gap-2 p-4 items-center justify-center ring-1 w-full ring-orange-100 rounded-md"
             onClick={() => signIn("google")}
           >
             <Image
@@ -51,7 +51,7 @@ const LoginPage = () => {
             </span>
           </button>
           <button
-            className="flex w-full items-center justify-center gap-4 p-4 ring-1 ring-orange-100 rounded-lg"
+            className="flex w-full items-center justify-center md:gap-4 gap-2 p-4 ring-1 ring-orange-100 rounded-lg"
             onClick={() => signIn("facebook")}
           >
             <Image
@@ -63,7 +63,7 @@ const LoginPage = () => {
             />
             <span className="whitespace-nowrap">Sign in with Facebook</span>
           </button>
-          <p className="text-sm">
+          <p className="md:text-base text-xs text-center">
             Have a problem{" "}
             <Link className="underline" href="/">
               Contact us
