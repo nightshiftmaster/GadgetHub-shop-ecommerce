@@ -38,7 +38,7 @@ export default function RootLayout({
               </Link>
               <NavBar />
               <FormInput />
-              <div className="min-h-screen ">{children}</div>
+              <div className="min-h-screen h-full">{children}</div>
               <Footer />
             </ThemeProvider>
           </AuthProvider>

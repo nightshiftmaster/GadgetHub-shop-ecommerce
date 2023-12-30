@@ -33,7 +33,11 @@ const Cart = () => {
               <h1>Price</h1>
             </div>
 
-            <div className="w-full md:h-[50vh]  flex justify-center items-start overflow-scroll">
+            <div
+              className={`w-full md:h-[50vh] h-[30vh] flex justify-center ${
+                products.length > 5 ? "items-start" : "items-center"
+              }  overflow-scroll`}
+            >
               <div className="flex md:gap-16 gap-7 flex-col md:mt-1 mt-10 justify-center">
                 {products?.map((item) => {
                   return (
@@ -79,7 +83,7 @@ const Cart = () => {
 
           {/* cart */}
           <div className="bg-orange-100 flex md:justify-around justify-center flex-col items-center md:w-1/2 w-full md:rounded-r-lg rounded-b-lg p-5">
-            <div className="flex  flex-col md:gap-14 gap-10 w-1/2 h-1/2 md:text-lg text-sm text-red-500 justify-center items-center">
+            <div className="flex  flex-col md:gap-14 gap-7 w-1/2 h-1/2 md:text-lg text-sm text-red-500 justify-center items-center">
               <h1 className="text-black text-center font-bold">CART TOTALS</h1>
               <hr className="w-full border-slate-300 border  "></hr>
               <div className="flex justify-between w-full  ">

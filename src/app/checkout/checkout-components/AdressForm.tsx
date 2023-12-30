@@ -60,10 +60,10 @@ const AdressForm = ({ props }: { props: any }) => {
       >
         {({ errors, touched, values, handleChange, setFieldValue }) => {
           return (
-            <div className="flex h-screen flex-col gap-7 w-1/2 items-center ">
-              <Form className="flex flex-col md:gap-20 gap-5 justify-center items-center md:w-[85vh] w-[40vh] md:text-base text-xs">
+            <div className="flex  flex-col gap-7 w-1/2 items-center ">
+              <Form className="flex flex-col  md:gap-20 gap-5 justify-center items-center md:w-[85vh] w-[50vh] md:text-base text-sm">
                 <>
-                  <div className="flex gap-5 justify-center items-center font-light   md:w-2/3 w-[90%] h-[10vh] ">
+                  <div className="flex gap-5 justify-center items-center font-light   md:w-2/3 w-[95%] h-[10vh] ">
                     <div className="flex flex-col gap-3 w-1/2">
                       <label htmlFor="firstName">
                         First Name <span className="text-red-500">*</span>
@@ -78,7 +78,7 @@ const AdressForm = ({ props }: { props: any }) => {
                         value={values.firstName}
                       />
                       {errors.firstName && touched.firstName ? (
-                        <div className="text-red-500 font-normal text-sm">
+                        <div className="text-red-500 font-normal md:text-base text-xs">
                           <span className="mr-2">↑</span>
                           {errors.firstName}
                         </div>
@@ -97,7 +97,7 @@ const AdressForm = ({ props }: { props: any }) => {
                         }`}
                       />
                       {errors.lastName && touched.lastName ? (
-                        <div className="text-red-500 font-normal text-sm">
+                        <div className="text-red-500 font-normal  md:text-base text-xs">
                           <span className="mr-2">↑</span>
                           {errors.lastName}
                         </div>
@@ -132,7 +132,7 @@ const AdressForm = ({ props }: { props: any }) => {
                           />
 
                           {errors[input] && touched[input] ? (
-                            <div className="text-red-500 font-normal text-sm">
+                            <div className="text-red-500 font-normal  md:text-base text-xs">
                               <span className="mr-2">↑</span>
                               {errors[input]}
                             </div>
@@ -140,14 +140,14 @@ const AdressForm = ({ props }: { props: any }) => {
                         </div>
                       );
                     })}
-                  <div className="flex w-full md:w-2/3 flex-col gap-4 font-light">
+                  <div className="flex w-full md:w-2/3  md:text-base text-sm flex-col gap-4 font-light">
                     <label htmlFor="country">
                       Country<span className="text-red-500">*</span>
                     </label>
                     <select
                       id="country"
                       name="country"
-                      className={`p-4 rounded-md ${
+                      className={`p-4 rounded-md  ${
                         errors.country && touched.country
                           ? "ring-1 ring-red-500"
                           : "ring-1"
@@ -482,7 +482,7 @@ const AdressForm = ({ props }: { props: any }) => {
                     </select>
 
                     {errors.country && touched.country ? (
-                      <div className="text-red-500 font-normal text-sm">
+                      <div className="text-red-500 font-normal  md:text-base text-sm">
                         <span className="mr-2">↑</span>
                         {errors.country}
                       </div>
@@ -505,7 +505,7 @@ const AdressForm = ({ props }: { props: any }) => {
                     </textarea>
 
                     {errors.additionalInfo && touched.additionalInfo ? (
-                      <div className="text-red-500 font-normal text-sm">
+                      <div className="text-red-500 font-normal">
                         ↑{errors.additionalInfo}
                       </div>
                     ) : null}

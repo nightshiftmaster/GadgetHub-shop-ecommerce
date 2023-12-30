@@ -33,19 +33,27 @@ const Success = () => {
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-pink-50">
-      <div className="w-[70%] h-[70%] p-20 text-lg font-semibold flex justify-center flex-col md:gap-20  gap-10 shadow-lg items-center bg-slate-100 rounded-2xl">
+      <div className="md:w-[60%] w-[90%] h-[80%] p-20 text-lg font-semibold flex justify-center flex-col md:gap-20  gap-10 shadow-lg items-center bg-slate-100 rounded-2xl">
         <p>
-          <BsBagCheckFill size={120} color="green" />
+          <BsBagCheckFill
+            size={120}
+            style={{
+              color: "#87CEFA",
+            }}
+          />
         </p>
-        <h2 className="md:text-3xl text-sm font-bold text-center text-blue-500">
+        <h2 className="md:text-3xl text-lg  font-bold text-center text-green-500">
           Thank you for your order !
         </h2>
-        <p className="md:text-base text-xs whitespace-nowrap">
+        <p className=" text-gray-700 font-medium text-base whitespace-nowrap">
           Check your email inbox for the receipt.
         </p>
-        <p className="md:text-base text-xs text-center">
+        <p className=" text-gray-700 text-base  font-medium  text-center">
           If you have any questions, please email {"     "}
-          <a className="text-red-500" href="mailto:nightshiftmaster@gmail.com">
+          <a
+            className="text-red-500 font-normal underline decoration-solid "
+            href="mailto:nightshiftmaster@gmail.com"
+          >
             nightshiftmaster@gmail.com
           </a>
         </p>
