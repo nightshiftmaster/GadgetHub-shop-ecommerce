@@ -6,7 +6,6 @@ import AuthProvider from "@/components/AuthProvider";
 import FormInput from "../components/Search";
 import ThemeProvider from "@/context/ThemeContext";
 import { ReduxProvider } from "@/redux/provider";
-import PersistProvider from "@/components/PersistProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
