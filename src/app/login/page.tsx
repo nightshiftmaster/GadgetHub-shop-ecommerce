@@ -30,7 +30,7 @@ const LoginPage = () => {
     <div className="p-5 w-full flex items-center justify-center h-screen">
       <div className="md:h-[60vh] shadow-2xl rounded-lg text-center flex items-center justify-center flex-col xl:w-[30%] w-[70%] ">
         {/* form */}
-        <div className="p-12  md:text-base text-xs flex flex-col items-center justify-center gap-16 ">
+        <div className="p-12  md:text-base text-xs flex flex-col items-center justify-center md:gap-16 gap-11 ">
           <h1 className="font-bold text-base  md:text-2xl ">
             Please login to purchase products
           </h1>
