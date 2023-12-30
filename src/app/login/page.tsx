@@ -15,16 +15,14 @@ const LoginPage = () => {
     (state: RootState) => state.productsReducer
   );
 
-  console.log(productsSlice.products.length);
-
   if (status === "loading") {
     return <p>Loading...</p>;
   }
 
-  if (status === "authenticated" && productsSlice.products.length !== 0) {
+  if (status === "authenticated" && productsSlice.cart.length !== 0) {
     router.push("/checkout");
   }
-  if (status === "authenticated" && productsSlice.products.length === 0) {
+  if (status === "authenticated" && productsSlice.cart.length === 0) {
     router.push("/");
   }
 
