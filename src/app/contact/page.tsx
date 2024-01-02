@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { FormEvent } from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { useRef } from "react";
@@ -19,9 +20,9 @@ const Contacts = () => {
     email: "",
     message: "",
   });
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -46,7 +47,7 @@ const Contacts = () => {
       } else {
         setError("Email sending failed. Please try again later.");
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };

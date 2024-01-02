@@ -61,7 +61,10 @@ const NavBar = () => {
         <div className="flex  gap-14 flex-col  h-full justify-center items-center">
           {navs.slice(0, 4).map((item, i) => {
             return (
-              <div className="flex shadow-lg p-3 gap-3 w-[70%] justify-start items-center rounded-lg bg-blue-300">
+              <div
+                className="flex shadow-lg p-3 gap-3 w-[70%] justify-start items-center rounded-lg bg-blue-300"
+                key={i}
+              >
                 {item.icon}
                 <Link
                   href={item.path}
