@@ -21,7 +21,7 @@ import FormInput from "./Search";
 const navs = [
   { name: "home", path: "/", icon: <IoHomeOutline size={20} /> },
   { name: "products", path: "/products", icon: <CiShop size={20} /> },
-  { name: "cart", path: "/cart", icon: <CiShoppingCart size={25} /> },
+  { name: "cart", path: "/cart", icon: <CiShoppingCart size={20} /> },
   { name: "contact", path: "/contact", icon: <CiMail size={20} /> },
 ];
 
@@ -53,23 +53,23 @@ const NavBar = () => {
       <div
         className={`sm:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
       >
-        <div className="flex justify-center items-center mt-6">
+        <div className="flex  p-4 justify-center items-center mt-6">
           <Link href="/">
-            <h1 className=" text-4xl font-bold">GadgetHub</h1>
+            <h1 className=" text-3xl font-bold">GadgetHub</h1>
           </Link>
         </div>
         <div className="flex  gap-14 flex-col  h-full justify-center items-center">
           {navs.slice(0, 4).map((item, i) => {
             return (
               <div
-                className="flex shadow-lg p-3 gap-3 w-[70%] justify-start items-center rounded-lg bg-blue-300"
+                className="flex border-spacing-4 shadow-lg p-3 gap-3 w-[70%] justify-start items-center rounded-lg bg-pink-300"
                 key={i}
               >
                 {item.icon}
                 <Link
                   href={item.path}
                   key={i}
-                  className="uppercase text-base"
+                  className="uppercase text-sm"
                   onClick={() => setOpen(false)}
                 >
                   {item.name}

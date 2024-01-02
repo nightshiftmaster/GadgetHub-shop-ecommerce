@@ -55,7 +55,7 @@ const Contacts = () => {
   return (
     <div className="h-screen w-full bg-pink-50" data-testid="contact">
       <div className="">
-        <h1 className="">Let's Keep in Touch</h1>
+        <h1 className="">Let&apos;s Keep in Touch</h1>
       </div>
       <h3 className="">{sucess ? sucess : null}</h3>
       <h3 className="">{errors ? errors : null}</h3>
