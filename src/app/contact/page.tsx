@@ -53,53 +53,55 @@ const Contacts = () => {
   };
 
   return (
-    <div className="h-screen w-full bg-pink-50" data-testid="contact">
+    <div
+      className="h-screen w-full gap-6 flex-col flex md:text-base text-sm justify-center items-center bg-pink-50"
+      data-testid="contact"
+    >
       <div className="">
-        <h1 className="">Let&apos;s Keep in Touch</h1>
+        <h1 className="font-bold md:text-3xl text-2xl">
+          Let&apos;s Keep in Touch
+        </h1>
       </div>
       <h3 className="">{sucess ? sucess : null}</h3>
       <h3 className="">{errors ? errors : null}</h3>
 
-      <div className="flex flex-col">
-        <div className="">
-          <Image className="" fill={true} src="" alt="contact image" />
-        </div>
-        <form
-          ref={formRef}
-          className=""
-          onSubmit={handleSubmit}
-          data-testid="form"
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        data-testid="form"
+        className="flex flex-col gap-10 md:w-1/2 w-2/3"
+      >
+        <input
+          type="text"
+          placeholder="name"
+          className=" ring-1 p-3 rounded-md"
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="email"
+          className=" ring-1 p-3 rounded-md"
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <textarea
+          className="p-3  ring-1 rounded-md"
+          name=""
+          id=""
+          cols={30}
+          rows={10}
+          placeholder="message"
+          onChange={(e) =>
+            setFormData({ ...formData, message: e.target.value })
+          }
+        />
+        <button
+          disabled={disable}
+          type="submit"
+          className="text-white uppercase whitespace-nowrap p-3 text-xs lg:p-3 lg:px-10 text-center lg:text-base  rounded-md bg-fuchsia-400   hover:scale-110 transition-all duration-500"
         >
-          <input
-            type="text"
-            placeholder="name"
-            className=""
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="email"
-            className=""
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
-          />
-          <textarea
-            className=""
-            name=""
-            id=""
-            cols={30}
-            rows={10}
-            placeholder="message"
-            onChange={(e) =>
-              setFormData({ ...formData, message: e.target.value })
-            }
-          />
-          <button disabled={disable} type="submit" className="">
-            Send Message
-          </button>
-        </form>
-      </div>
+          Send Message
+        </button>
+      </form>
     </div>
   );
 };

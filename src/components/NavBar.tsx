@@ -22,7 +22,9 @@ const navs = [
   { name: "home", path: "/", icon: <IoHomeOutline size={20} /> },
   { name: "products", path: "/products", icon: <CiShop size={20} /> },
   { name: "cart", path: "/cart", icon: <CiShoppingCart size={20} /> },
+
   { name: "contact", path: "/contact", icon: <CiMail size={20} /> },
+  { name: "login", path: "/login", icon: <VscAccount size={20} /> },
 ];
 
 const NavBar = () => {
@@ -53,16 +55,17 @@ const NavBar = () => {
       <div
         className={`sm:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
       >
-        <div className="flex  p-4 justify-center items-center mt-6">
+        <div className="flex flex-col  gap-5 p-4 justify-center items-center mt-6">
           <Link href="/">
-            <h1 className=" text-3xl font-bold">GadgetHub</h1>
+            <h1 className="text-3xl font-bold">GadgetHub</h1>
           </Link>
+          <hr className="w-full  h-px bg-gray-300 border-0 rounded "></hr>
         </div>
-        <div className="flex  gap-14 flex-col  h-full justify-center items-center">
-          {navs.slice(0, 4).map((item, i) => {
+        <div className="flex  gap-9 flex-col  h-full justify-center items-center">
+          {navs.map((item, i) => {
             return (
               <div
-                className="flex border-spacing-4 shadow-lg p-3 gap-3 w-[70%] justify-start items-center rounded-lg bg-pink-300"
+                className="flex  p-3 gap-3 w-[70%] justify-start items-center "
                 key={i}
               >
                 {item.icon}
@@ -84,7 +87,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <div className="text-white sticky  top-0 py-6 lg:px-[5vh] gap-7 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col sm:flex-row items-center justify-around mb-10 z-20 rounded-b-md">
+      <div className="text-white sticky top-0 py-6 lg:px-[5vh] md:gap-7 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col sm:flex-row items-center justify-around mb-10 z-20 rounded-b-md">
         <div className="flex md:gap-6 gap-32 md:w-fit w-full md:justify-center items-center justify-around">
           <Link href="/">
             <h1 className="lg:text-4xl text-2xl font-bold">GadgetHub</h1>
