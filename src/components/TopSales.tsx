@@ -1,23 +1,10 @@
 import React from "react";
 import Product from "@/components/Product";
 import { ProductsType } from "@/types/types";
-
-const getData = async () => {
-  try {
-    const response = await fetch("https://dummyjson.com/products");
-    if (response) {
-      const data = await response.json();
-      return data.products;
-    } else {
-      throw new Error("Failed to fetch");
-    }
-  } catch {
-    throw new Error("Something goes wrong");
-  }
-};
+import { fetchData } from "@/utils/fetchData";
 
 const TopSales = async () => {
-  const data: ProductsType = await getData();
+  const data: ProductsType = await fetchData();
 
   return (
     <div className="w-full flex justify-center items-center">

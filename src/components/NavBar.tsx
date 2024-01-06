@@ -55,31 +55,33 @@ const NavBar = () => {
       <div
         className={`sm:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
       >
-        <div className="flex flex-col  gap-5 p-4 justify-center items-center mt-6">
-          <Link href="/">
-            <h1 className="text-3xl font-bold">GadgetHub</h1>
-          </Link>
-          <hr className="w-full  h-px bg-gray-300 border-0 rounded "></hr>
-        </div>
-        <div className="flex  gap-9 flex-col  h-full justify-center items-center">
-          {navs.map((item, i) => {
-            return (
-              <div
-                className="flex  p-3 gap-3 w-[70%] justify-start items-center "
-                key={i}
-              >
-                {item.icon}
-                <Link
-                  href={item.path}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col  gap-8 p-4 justify-center items-center mt-6">
+            <Link href="/">
+              <h1 className="text-3xl font-bold">GadgetHub</h1>
+            </Link>
+            <hr className="w-full  h-px bg-gray-300 border-0 rounded "></hr>
+          </div>
+          <div className="flex  gap-7 flex-col  h-full justify-center items-center">
+            {navs.map((item, i) => {
+              return (
+                <div
+                  className="flex  p-3 gap-3 w-[70%] justify-start items-center "
                   key={i}
-                  className="uppercase text-sm"
-                  onClick={() => setOpen(false)}
                 >
-                  {item.name}
-                </Link>
-              </div>
-            );
-          })}
+                  {item.icon}
+                  <Link
+                    href={item.path}
+                    key={i}
+                    className="uppercase text-sm"
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

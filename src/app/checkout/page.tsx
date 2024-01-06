@@ -18,13 +18,11 @@ const Checkout = () => {
 
   const Page = steps[step];
 
-  console.log(step);
-
   return (
-    <div className="flex w-full h-fit justify-center">
-      <div className="flex flex-col gap-10 w-1/2 items-center ">
+    <div className="flex w-full h-full justify-center">
+      <div className="flex flex-col gap-10  items-center ">
         <Stepper step={step} />
-        <div className="flex md:w-full w-screen justify-center items-center">
+        <div className="flex md:w-full w-full justify-center items-center">
           <Page props={{ nextStep, prevStep }} />
         </div>
       </div>

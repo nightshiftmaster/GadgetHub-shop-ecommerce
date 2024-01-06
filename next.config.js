@@ -8,6 +8,7 @@ const nextConfig = {
       "idme-marketplace.s3.amazonaws.com",
       "www.gadstyle.com",
       "img.freepik.com",
+      "cdn.dummyjson.com",
     ],
   },
 };

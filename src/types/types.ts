@@ -1,10 +1,10 @@
 export type SingleProductType = {
-  userId: number;
-  id: number;
-  title: string;
-  thumbnail: string;
-  description: string;
-  category: string;
+  userId?: number;
+  id?: number;
+  title?: string;
+  thumbnail?: string | undefined;
+  description?: string;
+  category?: string;
   price?: number;
 };
 

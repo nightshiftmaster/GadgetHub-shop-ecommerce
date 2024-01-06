@@ -35,7 +35,7 @@ const Cart = () => {
 
             <div
               className={`w-full md:h-[50vh] h-[30vh] flex justify-center ${
-                products.length > 5 ? "items-start" : "items-center"
+                products.length > 3 ? "items-start" : "items-center"
               }  overflow-scroll`}
             >
               <div className="flex md:gap-16 gap-7 flex-col md:mt-1 mt-10 justify-center">

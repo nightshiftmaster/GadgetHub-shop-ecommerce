@@ -61,9 +61,9 @@ const AdressForm = ({ props }: { props: any }) => {
         {({ errors, touched, values, handleChange, setFieldValue }) => {
           return (
             <div className="flex  flex-col gap-7 w-1/2 items-center ">
-              <Form className="flex flex-col  md:gap-20 gap-5 justify-center items-center md:w-[85vh] w-[50vh] md:text-base text-sm">
+              <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-[50vh] md:text-base text-sm">
                 <>
-                  <div className="flex gap-5 justify-center items-center font-light   md:w-2/3 w-[95%] h-[10vh] ">
+                  <div className="flex gap-5 justify-center  font-light   md:w-2/3 w-[95%] h-[10vh] ">
                     <div className="flex flex-col gap-3 w-1/2">
                       <label htmlFor="firstName">
                         First Name <span className="text-red-500">*</span>
@@ -500,9 +500,8 @@ const AdressForm = ({ props }: { props: any }) => {
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                         setFieldValue("additionalInfo", e.target.value);
                       }}
-                    >
-                      {values.additionalInfo}
-                    </textarea>
+                      value={values.additionalInfo}
+                    ></textarea>
 
                     {errors.additionalInfo && touched.additionalInfo ? (
                       <div className="text-red-500 font-normal">

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Product from "@/components/Product";
 import { ProductsType } from "@/types/types";
+import { fetchData } from "@/utils/fetchData";
 
 const categories = [
   "all",
@@ -32,23 +33,7 @@ const Products = () => {
   const [data, setData] = useState<ProductsType>([]);
 
   useEffect(() => {
-    const getData = async (category: string) => {
-      const baseUrl = "https://dummyjson.com/products";
-      const searchParams = category === "all" ? "" : `/category/${category}`;
-      try {
-        const response = await fetch(`${baseUrl}${searchParams}`);
-
-        if (response) {
-          const data = await response.json();
-          return data.products;
-        } else {
-          throw new Error("Failed to fetch");
-        }
-      } catch {
-        throw new Error("Something goes wrong");
-      }
-    };
-    getData(category).then((res) => setData(res));
+    fetchData(category).then((res) => setData(res));
   }, [category]);
 
   return (
