@@ -28,12 +28,14 @@ const Product = (props: SingleProductType) => {
             href={`${BASE_API_URL}/products/${props.id}`}
             className="flex w-[100%] h-1/2"
           >
-            <Image
-              src={props.thumbnail}
-              alt=""
-              fill
-              className="object-cover hover:scale-105 transition-all duration-700 rounded-md"
-            />
+            {props.thumbnail && (
+              <Image
+                src={props.thumbnail}
+                alt="image"
+                fill
+                className="object-cover hover:scale-105 transition-all duration-700 rounded-md"
+              />
+            )}
           </Link>
         </div>
 
