@@ -20,7 +20,7 @@ const Checkout = () => {
 
   return (
     <div className="flex w-full h-full justify-center">
-      <div className="flex flex-col gap-10  items-center ">
+      <div className="flex flex-col gap-10 w-full justify-center items-center ">
         <Stepper step={step} />
         <div className="flex md:w-full w-full justify-center items-center">
           <Page props={{ nextStep, prevStep }} />
