@@ -35,12 +35,14 @@ const OrderPayment = ({ props }: { props: any }) => {
                     <div className="flex justify-between md:gap-10 gap-3 w-full ">
                       <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">
                         <div className="relative md:h-16 md:w-16 h-12 w-12">
-                          <Image
-                            src={item.thumbnail}
-                            fill
-                            className="rounded-full"
-                            alt=""
-                          />
+                          {item.thumbnail && (
+                            <Image
+                              src={item.thumbnail}
+                              fill
+                              className="rounded-full"
+                              alt=""
+                            />
+                          )}
                         </div>
                         <h1 className="">{item.title}</h1>
                       </div>
