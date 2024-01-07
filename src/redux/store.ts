@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import productsReducer from "./features/productsSlice";
 import userReducer from "./features/userSlice";
 import { persistReducer } from "redux-persist";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import storage from "redux-persist/lib/storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const persistConfig = {
   timeout: 500,
   key: "root",
-  storage: AsyncStorage,
+  // storage: AsyncStorage,
+  storage,
 };
 
 const rootReducer = combineReducers({ productsReducer, userReducer });

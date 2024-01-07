@@ -2,7 +2,6 @@ import Image from "next/image";
 import Featured from "@/components/Featured";
 import TopSales from "@/components/TopSales";
 import Banner from "@/components/Banner";
-import Link from "next/link";
 
 const Home = () => {
   return (

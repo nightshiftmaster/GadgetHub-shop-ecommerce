@@ -28,3 +28,19 @@ export const fetchProduct = async (id: number) => {
     throw new Error("Something goes wrong");
   }
 };
+
+export const fetchSearchedProduct = async (searchParams: string) => {
+  console.log(searchParams);
+  try {
+    const response = await fetch(
+      `https://dummyjson.com/products/search?q=${searchParams}`
+    );
+    if (response) {
+      return await response.json();
+    } else {
+      throw new Error("Failed to fetch");
+    }
+  } catch {
+    throw new Error("Something goes wrong");
+  }
+};

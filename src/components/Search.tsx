@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from "react";
 import { ProductsType } from "@/types/types";
 import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
+import { useRouter } from "next/navigation";
 
 type ItemType = {
   item: string;
@@ -28,6 +29,7 @@ const getData = async (query: string) => {
 };
 
 const FormInput = () => {
+  const router = useRouter();
   const [value, setValue] = useState("");
   const [isOpen, setOpen] = useState(false);
   const [searchItems, setSearchItems] = useState<ProductsType>([]);
@@ -41,14 +43,10 @@ const FormInput = () => {
   }, [value]);
 
   //event with type - React.MouseEvent and generic - HTMLInputElement
-  const handleSubmit = async (e: React.MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const data = await getData(value);
-    return data;
-    // setSearchItem({ item: value, id: 3 });
-    // setValue("");
-    // console.log("submitted");
-  };
+
+  // setSearchItem({ item: value, id: 3 });
+  // setValue("");
+  // console.log("submitted");
 
   //event with type - React.ChangeEvent and generic - HTMLInputElement
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,12 +95,16 @@ const FormInput = () => {
           onChange={handleChange}
           placeholder="search product"
         />
-        <input
-          className="text-white  flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"
-          type="button"
-          onClick={handleSubmit}
-          value="search"
-        />
+        <Link
+          onClick={() => setValue("")}
+          href={`/searchResults?search=${value}`}
+        >
+          <input
+            className="text-white  flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"
+            type="button"
+            value="search"
+          />
+        </Link>
         <AutoComplete />
       </form>
     </div>
