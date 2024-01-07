@@ -11,11 +11,10 @@ const SearchResult = () => {
   const searchParams = useSearchParams();
 
   const search = searchParams.get("search");
-  if (search) {
-    useEffect(() => {
-      fetchSearchedProduct(search).then((res) => setData(res.products));
-    }, [search]);
-  }
+
+  useEffect(() => {
+    search && fetchSearchedProduct(search).then((res) => setData(res.products));
+  }, [search]);
 
   return (
     <div className="w-full h-full flex justify-center items-center  ">
