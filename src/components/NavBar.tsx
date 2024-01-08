@@ -96,15 +96,15 @@ const NavBar = () => {
   };
 
   return (
-    <div>
-      <div className="text-white sticky top-0 py-6 lg:px-[5vh] md:gap-7 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col sm:flex-row items-center justify-around mb-10 z-20 rounded-b-md">
-        <div className="flex md:gap-6 gap-32 md:w-fit w-full md:justify-center items-center justify-around">
+    <div className="sticky top-0 z-20">
+      <div className="text-white  py-6 lg:px-[5vh] md:gap-7 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col sm:flex-row items-center justify-around mb-10  rounded-b-md">
+        <div className="flex md:gap-6 gap-36 md:w-fit w-full md:justify-center items-center justify-around">
           <Link href="/">
             <h1 className="lg:text-4xl text-2xl font-bold">GadgetHub</h1>
           </Link>
           <MobileMenuIcon />
         </div>
-        <div className="flex md:gap-20 gap-5  justify-center items-center md:text-sm text-xs">
+        <div className="flex md:gap-14 gap-5  justify-center items-center md:text-sm text-xs">
           {navs.slice(0, 2).map((item, i) => {
             return (
               <Link
@@ -116,6 +116,11 @@ const NavBar = () => {
               </Link>
             );
           })}
+          <div className="justify-center items-center hidden sm:flex ">
+            <Link href={navs[3].path} key={3} className="uppercase">
+              contact
+            </Link>
+          </div>
 
           <div className="flex justify-center items-center">
             <Link href="/cart" key={3} className="uppercase">
@@ -125,6 +130,7 @@ const NavBar = () => {
               <CartItem />
             </Link>
           </div>
+          <div className="flex justify-center items-center"></div>
           <div
             className="flex gap-3 justify-center items-center"
             onClick={() => {

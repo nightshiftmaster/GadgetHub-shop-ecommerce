@@ -7,6 +7,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
+import SuspenseProvider from "@/providers/SuspenseProvider";
 
 const LoginPage = () => {
   const { data, status } = useSession();
@@ -16,7 +17,7 @@ const LoginPage = () => {
   );
 
   if (status === "loading") {
-    return <p>Loading...</p>;
+    return <SuspenseProvider>...Please wait !</SuspenseProvider>;
   }
 
   if (status === "authenticated" && productsSlice.cart.length !== 0) {
@@ -65,7 +66,7 @@ const LoginPage = () => {
           </button>
           <p className="md:text-base text-xs text-center">
             Have a problem{" "}
-            <Link className="underline" href="/">
+            <Link className="underline" href="/contact">
               Contact us
             </Link>
           </p>
