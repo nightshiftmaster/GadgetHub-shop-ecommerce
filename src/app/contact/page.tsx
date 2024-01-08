@@ -59,7 +59,7 @@ const Contacts = () => {
     <div className="h-screen w-full gap-6 flex-col flex md:text-base text-sm justify-center items-center bg-pink-50 ">
       <div>
         <h1 className="font-bold text-gray-700 md:text-4xl text-2xl">
-          Let's Keep in Touch
+          Let&apos;s Keep in Touch
         </h1>
       </div>
       <h3 className="text-blue-500">{success ? success : null}</h3>
@@ -67,7 +67,7 @@ const Contacts = () => {
 
       <form
         onSubmit={formik.handleSubmit}
-        className="flex flex-col gap-10 md:w-1/2 w-2/3 "
+        className="flex flex-col md:gap-20 gap-10 md:w-1/2 w-2/3 "
       >
         <div className="flex flex-col gap-4">
           <input

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { BsBagCheckFill } from "react-icons/bs";
@@ -7,8 +7,8 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
-import { runFireWorks } from "../../utils/confetti";
 import { RootState } from "@/redux/store";
+import Confetti from "react-confetti";
 
 const Success = () => {
   const dispatch = useDispatch();
@@ -27,11 +27,11 @@ const Success = () => {
     };
     sendMail();
     dispatch(removeAllProducts());
-    runFireWorks();
   }, []);
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-pink-50">
+      <Confetti />
       <div className="md:w-[60%] w-[90%] h-[80%] p-20 text-lg font-semibold flex justify-center flex-col md:gap-20  gap-10 shadow-lg items-center bg-slate-100 rounded-2xl">
         <p>
           <BsBagCheckFill
