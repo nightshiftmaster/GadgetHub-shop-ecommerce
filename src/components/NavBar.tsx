@@ -19,12 +19,12 @@ import { CiMail } from "react-icons/ci";
 import FormInput from "./Search";
 
 const navs = [
-  { name: "home", path: "/", icon: <IoHomeOutline size={20} /> },
-  { name: "products", path: "/products", icon: <CiShop size={20} /> },
-  { name: "cart", path: "/cart", icon: <CiShoppingCart size={20} /> },
+  { name: "home", id: 1, path: "/", icon: <IoHomeOutline size={20} /> },
+  { name: "products", id: 2, path: "/products", icon: <CiShop size={20} /> },
+  { name: "cart", id: 3, path: "/cart", icon: <CiShoppingCart size={20} /> },
 
-  { name: "contact", path: "/contact", icon: <CiMail size={20} /> },
-  { name: "login", path: "/login", icon: <VscAccount size={20} /> },
+  { name: "contact", id: 4, path: "/contact", icon: <CiMail size={20} /> },
+  { name: "login", id: 5, path: "/login", icon: <VscAccount size={20} /> },
 ];
 
 const NavBar = () => {
@@ -55,32 +55,40 @@ const NavBar = () => {
       <div
         className={`sm:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
       >
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           <div className="flex flex-col  gap-8 p-4 justify-center items-center mt-6">
             <Link href="/">
-              <h1 className="text-3xl font-bold">GadgetHub</h1>
+              <h1 className="text-4xl font-bold">GadgetHub</h1>
             </Link>
             <hr className="w-full  h-px bg-gray-300 border-0 rounded "></hr>
           </div>
-          <div className="flex  gap-7 flex-col  h-full justify-center items-center">
-            {navs.map((item, i) => {
+          <div className="flex  gap-8 flex-col  h-full justify-center items-center">
+            {navs.slice(0, 4).map((item, i) => {
               return (
-                <div
-                  className="flex  p-3 gap-3 w-[70%] justify-start items-center "
+                <Link
+                  href={item.path}
+                  className="flex  p-3 gap-3 w-[70%] justify-start items-center uppercase text-base "
                   key={i}
+                  onClick={() => setOpen(false)}
                 >
                   {item.icon}
-                  <Link
-                    href={item.path}
-                    key={i}
-                    className="uppercase text-sm"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </div>
+                  {item.name}
+                </Link>
               );
             })}
+            <div
+              className="flex  p-3 gap-3 w-[70%] justify-start items-center "
+              key={navs[4].id}
+            >
+              {navs[4].icon}
+              <Link
+                href={navs[4].path}
+                className="uppercase text-base"
+                onClick={() => setOpen(false)}
+              >
+                {session.status === "authenticated" ? "Logout" : "Login"}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

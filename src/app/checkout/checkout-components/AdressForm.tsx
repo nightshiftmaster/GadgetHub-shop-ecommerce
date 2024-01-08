@@ -62,8 +62,8 @@ const AdressForm = ({ props }: { props: any }) => {
           return (
             <div className="flex  flex-col gap-7 w-1/2 items-center ">
               <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-[50vh] md:text-base text-sm">
-                <>
-                  <div className="flex gap-5 justify-center  font-light   md:w-2/3 w-[95%] h-[10vh] ">
+                <div className="flex flex-col gap-10">
+                  <div className="flex gap-5 justify-center  font-light   md:w-2/3 w-fit h-[10vh] ">
                     <div className="flex flex-col gap-3 w-1/2">
                       <label htmlFor="firstName">
                         First Name <span className="text-red-500">*</span>
@@ -523,7 +523,7 @@ const AdressForm = ({ props }: { props: any }) => {
                   >
                     Next
                   </button>
-                </>
+                </div>
               </Form>
             </div>
           );

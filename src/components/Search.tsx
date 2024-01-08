@@ -6,27 +6,7 @@ import { ProductsType } from "@/types/types";
 import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 import { useRouter } from "next/navigation";
-
-type ItemType = {
-  item: string;
-  id: number;
-};
-
-const getData = async (query: string) => {
-  try {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${query}`
-    );
-    if (response) {
-      const data = await response.json();
-      return data.products;
-    } else {
-      throw new Error("Failed to fetch");
-    }
-  } catch {
-    throw new Error("Something goes wrong");
-  }
-};
+import { fetchProductSearch } from "@/utils/fetchData";
 
 const FormInput = () => {
   const router = useRouter();
@@ -36,19 +16,12 @@ const FormInput = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await getData(value);
+      const data = await fetchProductSearch(value);
       return data;
     };
     fetch().then((res) => setSearchItems(res));
   }, [value]);
 
-  //event with type - React.MouseEvent and generic - HTMLInputElement
-
-  // setSearchItem({ item: value, id: 3 });
-  // setValue("");
-  // console.log("submitted");
-
-  //event with type - React.ChangeEvent and generic - HTMLInputElement
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -97,7 +70,7 @@ const FormInput = () => {
         />
         <Link
           onClick={() => setValue("")}
-          href={`/searchResults?search=${value}`}
+          href={`/searchResultPage?search=${value}`}
         >
           <input
             className="text-white  flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"

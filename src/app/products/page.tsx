@@ -31,9 +31,12 @@ const categories = [
 const Products = () => {
   const [category, setCategory] = useState("all");
   const [data, setData] = useState<ProductsType>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetchData(category).then((res) => setData(res));
+    fetchData(category)
+      .then((res) => setData(res))
+      .catch((e) => setError(e.message));
   }, [category]);
 
   return (
@@ -56,11 +59,17 @@ const Products = () => {
             ))}
           </select>
         </div>
-        <div className="flex flex-wrap text-sm flex-1 justify-center items-center">
-          {data?.map((item, i) => {
-            return <Product key={item.id} {...item} />;
-          })}
-        </div>
+        {error ? (
+          <div className="text-red-500 text-center text-xl mt-20">
+            Please check your network and try again !
+          </div>
+        ) : (
+          <div className="flex flex-wrap text-sm flex-1 justify-center items-center">
+            {data?.map((item, i) => {
+              return <Product key={item.id} {...item} />;
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

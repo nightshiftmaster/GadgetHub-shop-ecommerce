@@ -21,19 +21,21 @@ const Product = (props: SingleProductType) => {
     <div
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
     >
-      <div className="flex flex-col h-[235px] w-[160px] gap-3 justify-start items-center   md:gap-1  p-2 ">
+      <div className="flex flex-col h-[235px] w-[160px] gap-3 justify-start items-center  md:gap-1  p-2 ">
         {/* <div className="flex h-1/2"> */}
         <div className="h-full w-full hover:opacity-70 flex relative bg-red-300 rounded-md">
           <Link
             href={`${BASE_API_URL}/products/${props.id}`}
-            className="flex w-[100%] h-1/2"
+            className="flex w-[100%] h-full relative"
           >
             {props.thumbnail && (
               <Image
+                priority
                 src={props.thumbnail}
                 alt="image"
                 fill
                 className="object-cover hover:scale-105 transition-all duration-700 rounded-md"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
           </Link>

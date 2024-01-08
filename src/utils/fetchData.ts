@@ -29,14 +29,15 @@ export const fetchProduct = async (id: number) => {
   }
 };
 
-export const fetchSearchedProduct = async (searchParams: string) => {
-  console.log(searchParams);
+export const fetchProductSearch = async (query: string) => {
+  console.log(query);
   try {
     const response = await fetch(
-      `https://dummyjson.com/products/search?q=${searchParams}`
+      `https://dummyjson.com/products/search?q=${query}`
     );
     if (response) {
-      return await response.json();
+      const data = await response.json();
+      return data.products;
     } else {
       throw new Error("Failed to fetch");
     }

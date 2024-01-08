@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "../components/NavBar";
-import AuthProvider from "@/components/AuthProvider";
 import FormInput from "../components/Search";
-import ThemeProvider from "@/context/ThemeContext";
 import { ReduxProvider } from "@/redux/provider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import Loader from "@/components/Spinner";
+import AuthProvider from "@/providers/AuthProvider";
+import ThemeProvider from "@/providers/ThemeContext";
+import SuspenseProvider from "@/providers/SuspenseProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

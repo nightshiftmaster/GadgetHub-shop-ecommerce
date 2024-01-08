@@ -1,6 +1,6 @@
 "use client";
 
-import { ThemeContext } from "@/context/ThemeContext";
+import { ThemeContext } from "@/providers/ThemeContext";
 import React, { useContext } from "react";
 
 const Modes = () => {

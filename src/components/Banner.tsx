@@ -33,9 +33,10 @@ const Banner = () => {
             >
               {data.map((img, index) => {
                 return (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={index} className="relative">
                     <Image
                       fill
+                      priority
                       src={img}
                       alt="home picture"
                       className="md:object-cover object-fit rounded-lg"
