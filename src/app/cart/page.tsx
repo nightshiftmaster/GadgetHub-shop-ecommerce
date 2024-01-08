@@ -34,15 +34,15 @@ const Cart = () => {
             </div>
 
             <div
-              className={`w-full md:h-[50vh] h-[30vh] flex justify-center ${
+              className={` md:h-[50vh] w-full h-[30vh] flex justify-center ${
                 products.length > 3 ? "items-start" : "items-center"
               }  overflow-scroll`}
             >
-              <div className="flex md:gap-16 gap-7 flex-col md:mt-1 mt-10 justify-center">
+              <div className="flex md:gap-16 gap-7 w-full flex-col md:mt-1 mt-10 items-center justify-center">
                 {products?.map((item) => {
                   return (
                     <div
-                      className="flex justify-between gap-32 md:gap-40 border-b-2 "
+                      className="flex   justify-between gap-32 md:gap-40 border-b-2 "
                       key={item.id}
                     >
                       <div className="flex justify-between items-center md:gap-10 w-[15vh] md:w-[20vh] gap-5 ">
