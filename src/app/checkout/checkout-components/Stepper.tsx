@@ -2,7 +2,7 @@ import React from "react";
 
 const Stepper = ({ step }: { step: number }) => {
   return (
-    <div className="bg-gray-50 md:w-[80vh] w-[40vh] font-light uppercase flex justify-around items-center basis-[70px] rounded-b-md shadow-md  border-b-2 border md:text-base text-xs">
+    <div className="bg-gray-50 md:w-[80vh] w-[90%] font-light uppercase flex justify-around items-center basis-[70px] rounded-b-md shadow-md  border-b-2 border md:text-base text-xs">
       <div className="h-full relative w-1/2 flex justify-center items-center border-t-neutral-900 border-t-2">
         {/* rounnd with number */}
         <div
