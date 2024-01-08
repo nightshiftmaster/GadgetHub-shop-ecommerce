@@ -9,7 +9,7 @@ const TopSales = async () => {
 
     return (
       <div className="w-full flex justify-center items-center">
-        <div className="text-center flex flex-col w-[1350px] bg-lime-100 md:text-start">
+        <div className="text-center flex flex-col w-[1350px] bg-lime-50 md:text-start">
           <div className="flex items-center justify-center md:w-[50vh]">
             <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-bold relative">
               Top Sales

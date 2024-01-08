@@ -7,8 +7,9 @@ import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 import { useRouter } from "next/navigation";
 import { fetchProductSearch } from "@/utils/fetchData";
+import { IoSearchOutline } from "react-icons/io5";
 
-const FormInput = () => {
+const SearchBar = () => {
   const router = useRouter();
   const [value, setValue] = useState("");
   const [isOpen, setOpen] = useState(false);
@@ -27,7 +28,7 @@ const FormInput = () => {
   };
 
   const AutoComplete = (): React.ReactNode => {
-    if (value.length < 1 || searchItems.length === 0) {
+    if (!value || searchItems.length === 0) {
       setOpen(false);
       return;
     }
@@ -54,34 +55,36 @@ const FormInput = () => {
   };
 
   return (
-    <div className="flex w-screen h-20 -mt-10 md:mb-20 mb-2  justify-center items-center text-sm md:text-lg md:shadow-lg">
+    <div className="flex xl:w-1/2 w-full text-black justify-center items-center font-light text-sm md:text-base ">
       {/* <Modes /> */}
       <form
         action=""
-        className="w-full md:w-1/2 flex justify-center m-16 relative"
+        className="md:w-full w-[90%]  flex justify-center  relative "
       >
         <input
-          className="h-6  border-2 rounded-lg md:p-6  p-5 sm:w-full w-[50vh]"
+          className="h-5  border-1 rounded-lg lg:p-6  sm:p-5 p-4 w-full focus: outline-none "
           type="text"
           name="name"
           value={value}
           onChange={handleChange}
           placeholder="search product"
         />
-        <Link
-          onClick={() => setValue("")}
-          href={`/searchResultPage?search=${value}`}
+
+        <button
+          disabled={!value}
+          onClick={() => {
+            router.push(`/searchResultPage?search=${value}`);
+            setValue("");
+          }}
+          className="flex items-center text-slate-400 justify-center absolute h-full  text-center right-0 md:text-base text-sm border-l-2  px-4 rounded-r-lg"
+          type="button"
         >
-          <input
-            className="text-white flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"
-            type="button"
-            value="search"
-          />
-        </Link>
+          <span className="text-4xl">&#x2315;</span>
+        </button>
         <AutoComplete />
       </form>
     </div>
   );
 };
 
-export default FormInput;
+export default SearchBar;

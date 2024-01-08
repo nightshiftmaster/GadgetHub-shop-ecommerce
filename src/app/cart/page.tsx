@@ -47,7 +47,7 @@ const Cart = () => {
                     >
                       <div className="flex justify-between items-center md:gap-10 w-[15vh] md:w-[20vh] gap-5 ">
                         <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">
-                          <div className="relative xl:h-20 xl:w-20 md:h-16 md:w-16 h-12 w-12">
+                          <div className="relative xl:h-20 xl:w-20 md:h-16 md:w-16 h-10 w-10">
                             {item.thumbnail && (
                               <Image
                                 src={item.thumbnail}

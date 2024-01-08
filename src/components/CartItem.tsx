@@ -11,8 +11,8 @@ const CartItem = () => {
   );
 
   return (
-    <div className="flex">
-      <CiShoppingCart size={30} />
+    <div className="flex justify-center items-center">
+      <CiShoppingCart size={25} />
 
       {productsSlice.quantity === 0 || (
         <div className="bg-yellow-600 w-5 h-5 flex rounded-full justify-center items-center text-xs">

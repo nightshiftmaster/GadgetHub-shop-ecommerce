@@ -16,7 +16,7 @@ const Featured = async () => {
             </h1>
             <hr className="w-full md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
           </div>
-          <div className="flex border  overflow-scroll border-gray-200 justify-center items-center ">
+          <div className="flex border  overflow-scroll border-gray-200 justify-center gap-3 items-center ">
             {data?.slice(0, 30).map((item) => {
               return <Product key={item.id} {...item} />;
             })}
