@@ -7,7 +7,6 @@ import Select from "react-select";
 import { array, object } from "yup";
 
 const options = [
-  "all",
   "smartphones",
   "laptops",
   "fragrances",
@@ -35,7 +34,7 @@ const options = [
 }, []);
 
 const Products = () => {
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("");
   const [data, setData] = useState<ProductsType>([]);
   const [error, setError] = useState("");
 
@@ -53,13 +52,13 @@ const Products = () => {
             <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-bold relative">
               New Arrivals
             </h1>
-            <hr className="w-full h-px md:inline hidden  bg-gray-300 border-0 rounded "></hr>
+            <hr className="w-full h-px lg:inline hidden  bg-gray-300 border-0 rounded "></hr>
           </div>
-          <div className="flex md:flex-row flex-col justify-center items-center gap-5">
+          <div className="flex md:flex-row flex-col justify-center items-center whitespace-nowrap gap-5 md:w-1/3 w-full">
             <h2 className="md:text-base text-sm">Browse By Category</h2>
             <Select
               options={options}
-              className=" capitalize md:text-base text-sm"
+              className="capitalize md:text-base text-sm  w-1/2"
               onChange={(e) => {
                 e && setCategory(e.value);
               }}
