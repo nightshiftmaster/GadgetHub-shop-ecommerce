@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 import { useState } from "react";
 
@@ -67,7 +68,7 @@ const Contacts = () => {
 
       <form
         onSubmit={formik.handleSubmit}
-        className="flex flex-col md:gap-20 gap-10 md:w-1/2 w-2/3 "
+        className="flex flex-col md:gap-20 gap-10 md:w-1/2 w-2/3 justify-center "
       >
         <div className="flex flex-col gap-4">
           <input
@@ -125,6 +126,10 @@ const Contacts = () => {
           Send Message
         </button>
       </form>
+      <Link
+        href={`${BASE_API_URL}/products`}
+        className="text-gray-500  md:text-sm lg:text-base text-xs"
+      >{`<< Back to Shopping`}</Link>
     </div>
   );
 };

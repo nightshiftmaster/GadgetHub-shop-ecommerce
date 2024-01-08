@@ -62,7 +62,7 @@ const SearchBar = () => {
         className="md:w-full w-[90%]  flex justify-center  relative "
       >
         <input
-          className="h-5  border-1 rounded-lg lg:p-6  sm:p-5 p-4 w-full focus: outline-none "
+          className="h-5  border-1 rounded-lg lg:p-6  p-5 w-full focus: outline-none "
           type="text"
           name="name"
           value={value}
@@ -79,7 +79,7 @@ const SearchBar = () => {
           className="flex items-center text-slate-400 justify-center absolute h-full  text-center right-0 md:text-base text-sm border-l-2  px-4 rounded-r-lg"
           type="button"
         >
-          <span className="text-4xl">&#x2315;</span>
+          <span className="text-3xl">&#x2315;</span>
         </button>
         <AutoComplete />
       </form>

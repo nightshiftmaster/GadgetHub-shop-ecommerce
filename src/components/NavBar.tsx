@@ -109,8 +109,8 @@ const NavBar = () => {
             <Link href="/cart">
               <CartItem />
             </Link>
-            <Link href="/login">
-              <VscAccount size={20} />
+            <Link href="/products">
+              <CiShop size={25} />
             </Link>
           </div>
 

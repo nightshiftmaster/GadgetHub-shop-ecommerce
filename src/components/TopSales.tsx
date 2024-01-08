@@ -16,7 +16,7 @@ const TopSales = async () => {
             </h1>
             <hr className="w-full h-px md:inline hidden  bg-gray-300 border-0 rounded "></hr>
           </div>
-          <div className="flex flex-wrap text-sm flex-1  justify-center items-center">
+          <div className="flex flex-wrap text-sm flex-1 gap-2  justify-center items-center">
             {data?.slice(0, 20).map((item) => {
               return <Product key={item.id} {...item} />;
             })}
