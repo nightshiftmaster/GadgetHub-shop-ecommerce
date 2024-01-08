@@ -61,7 +61,7 @@ const FormInput = () => {
         className="w-full md:w-1/2 flex justify-center m-16 relative"
       >
         <input
-          className="h-6  border-2 rounded-lg md:p-6  p-4 w-full"
+          className="h-6  border-2 rounded-lg md:p-6  p-5 sm:w-full w-[50vh]"
           type="text"
           name="name"
           value={value}
@@ -73,7 +73,7 @@ const FormInput = () => {
           href={`/searchResultPage?search=${value}`}
         >
           <input
-            className="text-white  flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"
+            className="text-white flex justify-center absolute h-full  text-center right-0 md:text-base text-sm bg-gradient-to-r from-purple-400 to-fuchsia-400  px-4  rounded-r-lg"
             type="button"
             value="search"
           />

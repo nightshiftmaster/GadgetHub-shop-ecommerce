@@ -30,7 +30,6 @@ export const fetchProduct = async (id: number) => {
 };
 
 export const fetchProductSearch = async (query: string) => {
-  console.log(query);
   try {
     const response = await fetch(
       `https://dummyjson.com/products/search?q=${query}`
