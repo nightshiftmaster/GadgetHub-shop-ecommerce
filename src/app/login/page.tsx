@@ -30,7 +30,7 @@ const LoginPage = () => {
 
   return (
     <div className="p-5 w-full flex items-center justify-center h-[80vh]">
-      <div className="md:h-[60vh] h-full rounded-lg text-center flex items-center justify-center flex-col xl:w-[80%] w-full ">
+      <div className="md:h-[60vh] h-full shadow-xl rounded-lg text-center flex items-center justify-center flex-col xl:w-[60vh] w-full ">
         {/* form */}
         <div className="p-12  md:text-base text-xs flex flex-col items-center justify-center md:gap-16 gap-11 ">
           <h1 className="font-bold text-lg md:text-2xl ">
@@ -65,7 +65,6 @@ const LoginPage = () => {
             />
             <span className="whitespace-nowrap">Sign in with Facebook</span>
           </button>
-
           <p className="md:text-base text-xs text-center">
             Have a problem{" "}
             <Link className="underline" href="/contact">

@@ -79,7 +79,7 @@ const SearchBar = () => {
           className="flex items-center text-slate-400 justify-center absolute h-full  text-center right-0 md:text-base text-sm border-l-2  px-4 rounded-r-lg"
           type="button"
         >
-          <span className="text-3xl">&#x2315;</span>
+          <span className="text-3xl/7 self-center ">&#x2315;</span>
         </button>
         <AutoComplete />
       </form>
