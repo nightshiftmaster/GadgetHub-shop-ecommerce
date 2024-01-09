@@ -18,7 +18,7 @@ const OrderPayment = ({ props }: { props: any }) => {
     <div className="w-[90%]  flex justify-center md:shadow-lg  items-center  rounded-xl md:p-10 p-4">
       <div className="md:w-[90%] w-full md:text-lg text-xs justify-center items-center h-fit flex flex-col ">
         <div className="flex flex-col  mb-5 w-full h-full gap-10 justify-center items-center">
-          <div className="flex justify-between  w-[75%] p-7 border-b-2 border-gray-200 font-bold">
+          <div className="flex justify-between  w-full md:w-[73%] p-7 border-b-2 border-gray-200 font-bold">
             <h1>Product</h1>
             <h1>Total</h1>
           </div>
@@ -34,7 +34,7 @@ const OrderPayment = ({ props }: { props: any }) => {
                   >
                     <div className="flex justify-between md:gap-10 gap-3 w-full ">
                       <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">
-                        <div className="relative md:h-16 md:w-16 h-12 w-12">
+                        <div className="relative md:h-16 md:w-16 h-10 w-10">
                           {item.thumbnail && (
                             <Image
                               src={item.thumbnail}
@@ -88,7 +88,7 @@ const OrderPayment = ({ props }: { props: any }) => {
                 <label>
                   {/* {props.values.termsAndConditions} */}
                   <input
-                    onClick={() => setTermsChecked(!termsChecked)}
+                    onChange={() => setTermsChecked(!termsChecked)}
                     type="checkbox"
                     checked={termsChecked}
                     name="termsAndConditions"

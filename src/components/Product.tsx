@@ -59,7 +59,7 @@ const Product = (props: SingleProductType) => {
                 toast.success("The product added to the cart !");
               }}
             >
-              <LiaCartPlusSolid color="#FF00FF" size="25px" />
+              <LiaCartPlusSolid color="#DAA06D" size="25px" />
             </div>
             <h2 className="md:text-base flex  justify-center md:group-hover:invisible text-blue-500 items-center font-semibold text-xs basis-5 shrink ">
               ${props.price}

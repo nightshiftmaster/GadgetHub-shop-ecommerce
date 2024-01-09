@@ -82,13 +82,17 @@ const NavBar = () => {
               key={navs[4].id}
             >
               {navs[4].icon}
-              <Link
-                href={navs[4].path}
+              <input
+                type="button"
                 className="uppercase text-base"
-                onClick={() => setOpen(false)}
-              >
-                {session.status === "authenticated" ? "Logout" : "Login"}
-              </Link>
+                onClick={() => {
+                  setOpen(false);
+                  session.status === "authenticated"
+                    ? logOut()
+                    : router.push("/login");
+                }}
+                value={session.status === "authenticated" ? "Logout" : "Login"}
+              />
             </div>
           </div>
         </div>
