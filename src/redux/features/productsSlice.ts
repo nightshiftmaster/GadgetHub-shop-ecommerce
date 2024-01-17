@@ -25,11 +25,11 @@ const productsSlice = createSlice({
     },
     removeProduct: (state, action) => {
       const product = state.cart.find(
-        (product) => product.id === action.payload
+        (product) => product._id === action.payload
       );
       state.total -= product?.price || 0;
       const newProducts = state.cart.filter(
-        (product) => product.id !== action.payload
+        (product) => product._id !== action.payload
       );
       state.cart = newProducts;
       state.quantity -= 1;
