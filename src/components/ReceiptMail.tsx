@@ -158,7 +158,7 @@ export const AppleReceiptEmail = ({
           </Section>
           {order.cart.map((item) => {
             return (
-              <Section key={item.id}>
+              <Section key={item._id}>
                 <Column style={{ width: "64px" }}>
                   <Img
                     src={item.thumbnail}
