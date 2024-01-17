@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
-import Modes from "./Modes";
 import { useRef, useEffect, useState } from "react";
 import { ProductsType } from "@/types/types";
 import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 import { useRouter } from "next/navigation";
 import { fetchProductSearch } from "@/utils/fetchData";
-import { IoSearchOutline } from "react-icons/io5";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -42,8 +40,8 @@ const SearchBar = () => {
         {searchItems?.map((item) => {
           return (
             <Link
-              href={`${BASE_API_URL}/products/${item.id}`}
-              key={item.id}
+              href={`${BASE_API_URL}/products/${item._id}`}
+              key={item._id}
               onClick={() => setValue("")}
             >
               <li>{item.title}</li>
