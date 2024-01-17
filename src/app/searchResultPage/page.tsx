@@ -28,7 +28,7 @@ const SearchResult = () => {
             </div>
             <div className="flex flex-wrap text-sm flex-1 justify-center items-center">
               {data?.map((item: SingleProductType) => {
-                return <Product key={item.id} {...item} />;
+                return <Product key={item._id} {...item} />;
               })}
             </div>
           </div>

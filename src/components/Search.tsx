@@ -62,7 +62,7 @@ const SearchBar = () => {
         className="md:w-full w-[90%]  flex justify-center  relative "
       >
         <input
-          className="h-5  border-1 rounded-lg lg:p-6  p-5 w-full focus: outline-none "
+          className="h-5 text-sm  border-1 rounded-lg lg:p-6  p-5 w-full focus: outline-none "
           type="text"
           name="name"
           value={value}

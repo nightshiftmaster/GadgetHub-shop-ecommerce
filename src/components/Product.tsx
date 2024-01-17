@@ -22,10 +22,10 @@ const Product = (props: SingleProductType) => {
     <div
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
     >
-      <div className="flex flex-col h-[235px] w-[160px] gap-3 justify-start items-center  md:gap-1  p-2 ">
+      <div className="flex flex-col h-[220px] w-[150px] gap-3 justify-start items-center  md:gap-1  p-2 ">
         {/* <div className="flex h-1/2"> */}
         <Link
-          href={`${BASE_API_URL}/products/${props.id}`}
+          href={`${BASE_API_URL}/products/${props._id}`}
           className="flex w-[100%] h-full relative"
         >
           <div className="h-full w-full hover:opacity-70 flex relative bg-red-300 rounded-md">
@@ -35,7 +35,7 @@ const Product = (props: SingleProductType) => {
                 src={props.thumbnail}
                 alt="image"
                 fill
-                className="object-cover hover:scale-105 transition-all duration-700 rounded-md"
+                className="object-cover hover:scale-105 transition-all duration-700 "
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
@@ -43,10 +43,10 @@ const Product = (props: SingleProductType) => {
         </Link>
 
         {/* price + name */}
-        <div className="flex flex-col justify-center  items-center md:gap-3 gap-3 p-1 text-center md:h-1/2 h-1/3 group w-full flex-1 ">
+        <div className="flex flex-col justify-center  items-center md:gap-2 gap-3 p-1 text-center md:h-1/3 h-1/3 group w-full flex-1 ">
           <hr className="w-[10vh]  h-px bg-gray-300 border-0 mt-1  "></hr>
-          <h1 className="flex justify-center text-ellipsis md:group-hover:invisible overflow-hidden w-2/3 items-start lg:text-lg text-xs font-medium basis-8 shrink-0 ">
-            <Link href={`${BASE_API_URL}/products/${props.id}`}>
+          <h1 className="flex justify-center text-ellipsis md:group-hover:invisible overflow-hidden w-2/3 items-start lg:text-xs text-xs font-semibold text-gray-800 basis-8 shrink-0 ">
+            <Link href={`${BASE_API_URL}/products/${props._id}`}>
               {props.title}
             </Link>
           </h1>
@@ -61,7 +61,7 @@ const Product = (props: SingleProductType) => {
             >
               <LiaCartPlusSolid color="#DAA06D" size="25px" />
             </div>
-            <h2 className="md:text-base flex  justify-center md:group-hover:invisible text-blue-500 items-center font-semibold text-xs basis-5 shrink ">
+            <h2 className="md:text-sm flex  justify-center md:group-hover:invisible text-blue-400 items-center font-semibold text-xs basis-5 shrink ">
               ${props.price}
             </h2>
           </div>
@@ -69,7 +69,7 @@ const Product = (props: SingleProductType) => {
       </div>
 
       <div
-        className={`hidden absolute ${styles.entrance} md:bottom-8 bottom-4  md:group-hover:block`}
+        className={`hidden absolute ${styles.entrance} md:bottom-7 bottom-4  md:group-hover:block`}
         onClick={() => {
           const id = _.uniqueId();
           dispatch(addProduct({ id, title, thumbnail, price }));

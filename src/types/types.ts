@@ -1,11 +1,16 @@
 export type SingleProductType = {
-  userId?: number;
-  id?: number;
-  title?: string;
-  thumbnail?: string | undefined;
-  description?: string;
-  category?: string;
-  price?: number;
+  _id: number;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+  images: [string];
+  generalCategory: string;
 };
 
 export type ProductsType = SingleProductType[];

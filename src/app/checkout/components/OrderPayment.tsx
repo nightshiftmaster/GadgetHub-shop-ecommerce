@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
 import Terms from "./Terms";
-import PayComponent from "../../../components/PayComponent";
+import PayComponent from "./PayComponent";
 
 const OrderPayment = ({ props }: { props: any }) => {
   const [isOpen, setOpen] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const OrderPayment = ({ props }: { props: any }) => {
                 return (
                   <div
                     className="flex justify-start p-2 items-center md:w-[70%] w-full border-b-2 "
-                    key={item.id}
+                    key={item._id}
                   >
                     <div className="flex justify-between md:gap-10 gap-3 w-full ">
                       <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">

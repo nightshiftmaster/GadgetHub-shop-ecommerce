@@ -5,7 +5,7 @@ import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "@/components/CheckoutForm";
+import CheckoutForm from "@/app/checkout/components/CheckoutForm";
 
 const PayComponent = ({ props }: { props: any }) => {
   const [clientSecret, setClientSecret] = React.useState("");

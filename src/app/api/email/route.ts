@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { EmailTemplate } from '../../components/EmailTemplate';
 import { Resend } from "resend";
-import { AppleReceiptEmail } from "@/components/emails/ReceiptMail";
+import { AppleReceiptEmail } from "@/components/ReceiptMail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

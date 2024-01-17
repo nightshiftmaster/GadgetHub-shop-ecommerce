@@ -9,6 +9,7 @@ const nextConfig = {
       "www.gadstyle.com",
       "img.freepik.com",
       "cdn.dummyjson.com",
+      "i.ytimg.com",
     ],
   },
 };

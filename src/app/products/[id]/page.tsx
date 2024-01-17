@@ -10,27 +10,24 @@ import { toast } from "react-toastify";
 import { BASE_API_URL } from "@/utils/constants";
 import { SingleProductType } from "@/types/types";
 var _ = require("lodash");
-import { fetchProduct } from "@/utils/fetchData";
 
-// const getData = async (id: number) => {
-//   try {
-//     const response = await fetch(`https://dummyjson.com/products/${id}`);
-//     if (response) {
-//       return await response.json();
-//     } else {
-//       throw new Error("Failed to fetch");
-//     }
-//   } catch {
-//     throw new Error("Something goes wrong");
-//   }
-// };
+const getProductData = async (id: string) => {
+  const res = await fetch(`${BASE_API_URL}/api/products/${id}`, {
+    cache: "no-store",
+  });
 
-const Product = ({ params }: { params: { id: number } }) => {
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
+
+const Product = ({ params }: { params: { id: string } }) => {
   const [product, setProduct] = useState<SingleProductType>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchProduct(params.id).then((res) => setProduct(res));
+    getProductData(params.id).then((res) => setProduct(res));
   }, []);
 
   return (
@@ -50,7 +47,7 @@ const Product = ({ params }: { params: { id: number } }) => {
         </div>
         <div className="flex w-1/3 flex-col md:gap-8 gap-5 text-center md:text-lg text-sm">
           <h1 className="md:text-4xl text-base font-bold">{product?.title}</h1>
-          <p className="md:text-lg text-xs">{product?.description}</p>
+          <p className="md:text-base text-xs">{product?.description}</p>
           <h2 className="md:text-2xl text-blue-500 text-base">
             ${product?.price}
           </h2>

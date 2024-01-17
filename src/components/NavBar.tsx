@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { VscAccount } from "react-icons/vsc";
-import CartItem from "./CartItem";
+import CartItem from "../app/cart/components/CartItem";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
@@ -102,12 +102,10 @@ const NavBar = () => {
 
   return (
     <div className="sticky top-0 z-20">
-      <div className="text-white py-6 sm:px-[5vh] md:gap-7 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col xl:flex-row items-center justify-between mb-10  ">
+      <div className="text-white py-4 sm:px-[5vh] md:gap-5 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col xl:flex-row items-center justify-between mb-5  ">
         <div className="flex md:gap-6   md:w-fit w-full md:justify-center items-center justify-around">
           <Link href="/">
-            <h1 className="lg:text-5xl md:text-4xl  text-2xl font-bold">
-              GadgetHub
-            </h1>
+            <h1 className="md:text-4xl  text-2xl font-bold">GadgetHub</h1>
           </Link>
           <div className="flex md:hidden justify-center items-center gap-4">
             <Link href="/cart">
@@ -122,7 +120,7 @@ const NavBar = () => {
         </div>
         <div className="flex flex-col-reverse xl:flex-row justify-around items-center  w-full xl:gap-10 gap-5">
           <SearchBar />
-          <div className="md:gap-10 gap-5 justify-center hidden md:flex items-center md:text-sm text-xs">
+          <div className="md:gap-10 gap-5 justify-center hidden md:flex items-center md:text-xs text-xs">
             {navs.slice(0, 2).map((item, i) => {
               return (
                 <Link href={item.path} key={i} className="uppercase ">
@@ -146,7 +144,7 @@ const NavBar = () => {
             </div>
             <div className="flex justify-center items-center"></div>
             <div
-              className="flex gap-3 justify-center items-center"
+              className="flex gap-2 justify-center items-center"
               onClick={() => {
                 session.status === "authenticated"
                   ? logOut()
@@ -168,7 +166,7 @@ const NavBar = () => {
                     )}
                   </div>
                 ) : (
-                  <VscAccount size={25} />
+                  <VscAccount size={20} />
                 )}
               </Link>
             </div>

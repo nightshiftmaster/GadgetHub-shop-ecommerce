@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import AdressForm from "@/app/checkout/checkout-components/AdressForm";
-import OrderPayment from "@/app/checkout/checkout-components/OrderPayment";
+import AdressForm from "@/app/checkout/components/AdressForm";
+import OrderPayment from "@/app/checkout/components/OrderPayment";
 import { useState } from "react";
 import { addUserAdressData } from "@/redux/features/userSlice";
 import { useDispatch } from "react-redux";
-import Stepper from "./checkout-components/Stepper";
+import Stepper from "./components/Stepper";
 
 const Checkout = () => {
   const [step, setStep] = useState(0);

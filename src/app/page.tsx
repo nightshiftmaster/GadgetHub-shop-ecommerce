@@ -1,15 +1,34 @@
 "use client";
-import Featured from "@/components/Featured";
-import TopSales from "@/components/TopSales";
-import Banner from "@/components/Banner";
+import Featured from "@/components/layers/Featured";
+import TopSales from "@/components/layers/TopSales";
+import Banner from "@/components/layers/Banner";
+import NewArrivals from "@/components/layers/NewArivals";
+import ShopByCategory from "@/components/layers/ShopByCategory";
+import { BASE_API_URL } from "@/utils/constants";
+import { ProductsType } from "@/types/types";
+import dataBase from "@/utils/dataBase";
 
-const Home = () => {
+const getData = async () => {
+  const res = await fetch(`${BASE_API_URL}/api/products`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
+
+const Home = async () => {
+  const data: ProductsType = await getData();
   return (
     <div className="h-full w-full overflow-auto flex flex-col justify-center items-center">
       <div className="z-0 h-full w-full flex flex-col gap-3 border-l-2 border-r-2 border-gray-100 ">
         <Banner />
-        <Featured />
-        <TopSales />
+        <ShopByCategory />
+        <Featured data={data} />
+        <TopSales data={data} />
+        <NewArrivals data={data} />
       </div>
     </div>
   );

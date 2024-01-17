@@ -1,84 +1,218 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Product from "@/components/Product";
-import { ProductsType } from "@/types/types";
-import { fetchData } from "@/utils/fetchData";
-import Select from "react-select";
-import { array, object } from "yup";
+import { ProductsType, SingleProductType } from "@/types/types";
+import { useSearchParams } from "next/navigation";
+import { BASE_API_URL } from "@/utils/constants";
+import Link from "next/link";
+import Pagination from "@/app/products/components/Pagination";
+import FilterByPrice from "./components/FilterByPrice";
+import SortProducts from "./components/SortProducts";
+import FilterByCategory from "./components/FilterByCategory";
 
-const options = [
-  "smartphones",
-  "laptops",
-  "fragrances",
-  "skincare",
-  "groceries",
-  "home-decoration",
-  "furniture",
-  "tops",
-  "womens-dresses",
-  "womens-shoes",
-  "mens-shirts",
-  "mens-shoes",
-  "mens-watches",
-  "womens-watches",
-  "womens-bags",
-  "womens-jewellery",
-  "sunglasses",
-  "automotive",
-  "motorcycle",
-  "lighting",
-].reduce((acc: Array<{ value: string; label: string }>, item: string) => {
-  const option = { value: item, label: item };
-  acc.push(option);
-  return acc;
-}, []);
+const sortBy = {
+  all: (item: SingleProductType) => item,
+  topSales: (item: SingleProductType) => item.rating > 4.5,
+  newArrivals: (item: SingleProductType) => item.stock > 100,
+  smartphones: (item: SingleProductType) => item.category === "smartphones",
+  laptops: (item: SingleProductType) => item.category === "laptops",
+  sunglasses: (item: SingleProductType) => item.category === "sunglasses",
+  watches: (item: SingleProductType) =>
+    item.category === "mens-watches" || item.category === "womens-watches",
+  cosmetics: (item: SingleProductType) =>
+    item.category === "fragrances" || item.category === "skincare",
+  mensWear: (item: SingleProductType) => item.category.startsWith("mens"),
+  womensWear: (item: SingleProductType) => item.category.startsWith("womens"),
+};
+
+//   allForHome: (item: SingleProductType) =>
+//     item.category === "lighting" ||
+//     item.category === "furniture" ||
+//     item.category === "home-decoration",
+// };
+
+const getData = async () => {
+  const res = await fetch(`${BASE_API_URL}/api/products`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
+
+const getDataByCategory = async (category: any) => {
+  const res = await fetch(`${BASE_API_URL}/api/products/category/${category}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
+
+const getDataByGeneralCategory = async (generalCategory: any) => {
+  const res = await fetch(
+    `${BASE_API_URL}/api/products/generalCategory/${generalCategory}`,
+    {
+      cache: "no-store",
+    }
+  );
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
 
 const Products = () => {
-  const [category, setCategory] = useState("");
-  const [data, setData] = useState<ProductsType>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState("");
+  const [data, setData] = useState<ProductsType>();
+  const [filter, setFilter] = useState("");
+  const [currProducts, setCurrProducts] = useState<ProductsType>();
+  const [filteredPrice, setFilteredPrice] = useState([]);
+  const [category, setCategory] = useState<string | null>(null);
+  const postsPerPage = 20;
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const pagesCount: number | undefined =
+    currProducts && Math.ceil(currProducts?.length / postsPerPage);
+
+  const searchParams = useSearchParams();
+  const cat: string | null = searchParams.get("cat");
+  const generalCategory: string | null = searchParams.get("generalCategory");
+  const banner = searchParams.get("banner");
+
+  const currPageHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+    setCurrentPage(e.currentTarget.value);
+  };
 
   useEffect(() => {
-    fetchData(category)
-      .then((res) => setData(res))
-      .catch((e) => setError(e.message));
+    const fetchData = async () => {
+      if (category) {
+        setCategory(category);
+        return category ? await getDataByCategory(category) : await getData();
+      }
+      if (!category && !generalCategory) {
+        return await getData();
+      }
+      return getDataByGeneralCategory(generalCategory);
+    };
+
+    fetchData().then((res) => {
+      setData(res);
+      setCurrProducts(res);
+    });
   }, [category]);
 
-  return (
-    <div className="w-full h-full flex justify-center items-center  ">
-      <div className="flex flex-col md:gap-14 gap-8 justify-center items-center w-[1500px] ">
-        <div className="flex md:flex-row flex-col w-[90%] justify-between items-center ">
-          <div className="flex items-center justify-between md:w-[40vh]">
-            <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-bold relative">
-              New Arrivals
-            </h1>
-            <hr className="w-full h-px lg:inline hidden  bg-gray-300 border-0 rounded "></hr>
+  useEffect(() => {
+    getProductsByFilter(filter);
+  }, [filter, filteredPrice, cat, category]);
+
+  const getPriceRangeOfCategory = (products: ProductsType) => {
+    if (products) {
+      const prices = products
+        ?.map((product: SingleProductType) => product?.price)
+        .sort((a, b) => a - b);
+      return [prices[0], prices[prices.length - 1]];
+    }
+
+    return [0, 100];
+  };
+
+  const getProductsByFilter = (type: string) => {
+    let filtered = data && [...data];
+    const filters: any = {
+      byPrice: () =>
+        filtered?.filter(
+          (item: SingleProductType) =>
+            item.price >= filteredPrice[0] && item.price <= filteredPrice[1]
+        ),
+      byRating: () => filtered?.sort((a, b) => b.rating - a.rating),
+      byPriceLowToHigh: () => filtered?.sort((a, b) => a.price - b.price),
+      byPriceHightToLow: () => filtered?.sort((a, b) => b.price - a.price),
+    };
+    const filteredData = filters[type];
+    setCurrProducts(filteredData);
+  };
+
+  try {
+    return (
+      <div className="w-full h-full  flex justify-center items-center  ">
+        <div className="flex flex-col md:gap-5 mt-5 gap-3 justify-center items-center max-w-[1250px] ">
+          <div className="md:hidden flex w-1/2">
+            <FilterByCategory setCategory={setCategory} setFilter={setFilter} />
           </div>
-          <div className="flex md:flex-row flex-col justify-center items-center whitespace-nowrap gap-5 md:w-1/3 w-full">
-            <h2 className="md:text-base text-sm">Browse By Category</h2>
-            <Select
-              options={options}
-              className="capitalize md:text-base text-sm  w-1/2"
-              onChange={(e) => {
-                e && setCategory(e.value);
-              }}
-            />
+          <div className="flex gap-10  w-full ">
+            {/* filters */}
+            <div className="md:flex hidden flex-col gap-10 justify-start items-start ">
+              <FilterByCategory
+                setCategory={setCategory}
+                setFilter={setFilter}
+              />
+              <hr className="w-full h-px md:inline hidden  bg-gray-300 border-0 rounded "></hr>
+              <FilterByPrice
+                category={data}
+                priceRange={getPriceRangeOfCategory(data!)}
+                setFilteredPrice={setFilteredPrice}
+                setFilter={setFilter}
+              />
+              <hr className="w-full h-px md:inline hidden  bg-gray-300 border-0 rounded "></hr>
+              <SortProducts setFilter={setFilter} />
+            </div>
+
+            <div className="flex flex-col md:w-[100vh] justify-center items-center  gap-6 ">
+              <div className=" w-full h-[30vh]  flex justify-center relative">
+                {
+                  <img
+                    src={
+                      banner
+                        ? banner
+                        : "https://www.gadstyle.com/wp-content/uploads/2024/01/new-year-sale-banner-2024-1.webp"
+                    }
+                    alt=""
+                    className="object-cover w-full h-full "
+                  />
+                }
+              </div>
+
+              {error ? (
+                <div className="text-red-500 text-center text-xl mt-20">
+                  Please check your network and try again !
+                </div>
+              ) : (
+                <div className="flex flex-wrap text-sm flex-1 gap-2 justify-center items-center">
+                  {currProducts
+                    ?.slice(indexOfFirstPost, indexOfLastPost)
+                    .map((item, i) => {
+                      return <Product key={i} {...item} />;
+                    })}
+                </div>
+              )}
+
+              <Link
+                href={`${BASE_API_URL}/`}
+                className="text-gray-500  md:text-sm lg:text-sm text-xs"
+              >{`<< Back Home`}</Link>
+              {data && (
+                <Pagination
+                  currPageHandler={currPageHandler}
+                  pagesCount={pagesCount!}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                />
+              )}
+            </div>
           </div>
         </div>
-        {error ? (
-          <div className="text-red-500 text-center text-xl mt-20">
-            Please check your network and try again !
-          </div>
-        ) : (
-          <div className="flex flex-wrap text-sm flex-1 gap-2 justify-center items-center">
-            {data?.map((item, i) => {
-              return <Product key={item.id} {...item} />;
-            })}
-          </div>
-        )}
       </div>
-    </div>
-  );
+    );
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export default Products;
