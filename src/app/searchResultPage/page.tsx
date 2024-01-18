@@ -1,12 +1,22 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Product from "@/components/Product";
-import { fetchProductSearch } from "@/utils/fetchData";
 import { SingleProductType } from "@/types/types";
 import { useSearchParams } from "next/navigation";
 import { ProductsType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import Link from "next/link";
+
+const fetchProductSearch = async (query: string) => {
+  const res = await fetch(`${BASE_API_URL}/api/products/search?q=${query}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
 
 const SearchResult = () => {
   const [data, setData] = useState<ProductsType>();

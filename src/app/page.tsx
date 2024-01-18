@@ -29,6 +29,24 @@ const Home = async () => {
         <Featured data={data} />
         <TopSales data={data} />
         <NewArrivals data={data} />
+        {/* <button
+          className="bg-red-300 text-2xl text-white p-10"
+          onClick={async () => {
+            try {
+              await fetch(`${BASE_API_URL}/api/products`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataBase),
+              });
+            } catch (e) {
+              console.log(e);
+            }
+          }}
+        >
+          Insert data to db
+        </button> */}
       </div>
     </div>
   );

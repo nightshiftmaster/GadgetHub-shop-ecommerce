@@ -91,13 +91,13 @@ const ShopByCategory = () => {
             return (
               <SwiperSlide key={i} className=" animate-slideright">
                 <div
-                  className="flex cursor-pointer w-fit flex-col gap-2 justify-center items-center"
+                  className="flex cursor-pointer w-fit  flex-col gap-2 justify-center items-center"
                   key={cat.id}
                   onClick={() => {
                     router.push(cat.href);
                   }}
                 >
-                  <div className="w-[60px] h-[60px] p-1 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
+                  <div className="w-[60px] h-[60px] p-2 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
                     <img src={cat.image} className="relative grayscale"></img>
                   </div>
                   <span className="text-xs text-slate-500">{cat.name}</span>
@@ -117,7 +117,7 @@ const ShopByCategory = () => {
                 router.push(cat.href);
               }}
             >
-              <div className="w-[60px] h-[60px] p-1 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
+              <div className="w-[60px] h-[60px] p-2 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
                 <img src={cat.image} className="relative grayscale"></img>
               </div>
               <span className="text-xs text-slate-500">{cat.name}</span>

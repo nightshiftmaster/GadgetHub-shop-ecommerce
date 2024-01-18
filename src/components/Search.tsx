@@ -5,7 +5,17 @@ import { ProductsType } from "@/types/types";
 import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 import { useRouter } from "next/navigation";
-import { fetchProductSearch } from "@/utils/fetchData";
+
+const fetchProductSearch = async (query: string) => {
+  const res = await fetch(`${BASE_API_URL}/api/products/search?q=${query}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
 
 const SearchBar = () => {
   const router = useRouter();
@@ -37,11 +47,11 @@ const SearchBar = () => {
           isOpen ? "visible" : "hidden"
         }`}
       >
-        {searchItems?.map((item) => {
+        {searchItems?.map((item, i) => {
           return (
             <Link
               href={`${BASE_API_URL}/products/${item._id}`}
-              key={item._id}
+              key={i}
               onClick={() => setValue("")}
             >
               <li>{item.title}</li>
