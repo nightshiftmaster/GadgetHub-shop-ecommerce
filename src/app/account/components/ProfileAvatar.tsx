@@ -25,12 +25,6 @@ const ProfileAvatar = ({
     fetcher
   );
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  const user = data[0];
-
   useEffect(() => {
     if (session.status === "authenticated" && user) {
       setCurrAvatar(user?.img);
@@ -42,8 +36,13 @@ const ProfileAvatar = ({
     if (tumbnail) {
       setCurrAvatar(tumbnail);
     }
-    return;
-  }, [session, data, tumbnail]);
+  }, [tumbnail]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  const user = data[0];
 
   return (
     <div>
