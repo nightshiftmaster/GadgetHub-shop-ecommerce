@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect } from "react";
-import { SingleProductType } from "../types/types";
+import React, { useEffect, useState } from "react";
+import { ProductsType, SingleProductType } from "../types/types";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -11,36 +11,138 @@ import styles from "./page.module.css";
 import { toast } from "react-toastify";
 import { BASE_API_URL } from "@/utils/constants";
 import { LiaCartPlusSolid } from "react-icons/lia";
+import { IoHeartCircle } from "react-icons/io5";
+import useSWR from "swr";
+import { useSession } from "next-auth/react";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart } from "react-icons/io";
 
 //handle delete
 var _ = require("lodash");
 
 const Product = (props: SingleProductType) => {
+  const [likeStatus, setLikeStatus] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  const { title, thumbnail, price } = props;
+  const session = useSession();
+
+  const fetcher = (...args: Parameters<typeof fetch>) =>
+    fetch(...args).then((res) => res.json());
+
+  const { data, isLoading, mutate } = useSWR(`/api/wishlist`, fetcher);
+
+  useEffect(() => {
+    switch (likeStatus) {
+      case "liked":
+        handlePostWishlist(props);
+        break;
+      case "unliked":
+        handleDeleteWishlist(props._id);
+        break;
+      default:
+        return;
+    }
+  }, [likeStatus]);
+
+  const handlePostWishlist = async (item: SingleProductType) => {
+    if (
+      data[0].wishlist.some((item: SingleProductType) => item._id === props._id)
+    ) {
+      setLikeStatus("unliked");
+      return;
+    }
+    try {
+      await fetch(`${BASE_API_URL}/api/wishlist`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item),
+      });
+      mutate();
+    } catch (e: any) {
+      console.log(e.message);
+    } finally {
+      toast.success("The product added to the wishlist!", {
+        theme: "light",
+      });
+    }
+  };
+
+  const handleDeleteWishlist = async (_id: any) => {
+    try {
+      await fetch(`${BASE_API_URL}/api/wishlist/${_id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      mutate();
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
+
+  if (isLoading) {
+    return;
+  }
+
+  let isAccountCreated = data.length === 0;
+
   return (
     <div
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
     >
-      <div className="flex flex-col h-[220px] w-[150px] gap-3 justify-start items-center  md:gap-1  p-2 ">
+      <div className="flex flex-col h-[220px] w-[150px] gap-3 bg- justify-start items-center  md:gap-1  p-2 ">
         {/* <div className="flex h-1/2"> */}
-        <Link
-          href={`${BASE_API_URL}/products/${props._id}`}
-          className="flex w-[100%] h-full relative"
-        >
-          <div className="h-full w-full hover:opacity-70 flex relative bg-red-300 rounded-md">
-            {props.thumbnail && (
-              <Image
-                priority
-                src={props.thumbnail}
-                alt="image"
-                fill
-                className="object-cover hover:scale-105 transition-all duration-700 "
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
+        <div className="flex w-[100%] h-full relative">
+          <div className="h-full w-full  justify-center flex relative  rounded-md">
+            {session.status === "unauthenticated" || isAccountCreated || (
+              <div
+                className={`hidden ${styles.puffIn}  h-1/3  mt-20 items-center  justify-center md:group-hover:flex z-20 `}
+              >
+                <div
+                  className={`${
+                    likeStatus === "liked" ||
+                    data[0]?.wishlist?.some(
+                      (item: SingleProductType) => item._id === props._id
+                    )
+                      ? "bg-red-500"
+                      : "bg-white"
+                  } block w-6 h-6 absolute z-0`}
+                ></div>
+                <div className="z-20">
+                  <IoHeartCircle
+                    size={50}
+                    style={{
+                      textShadow: "10px",
+                    }}
+                    color="#D7BDE2"
+                    onClick={() => {
+                      setLikeStatus(
+                        likeStatus === "liked" ? "unliked" : "liked"
+                      );
+                    }}
+                  />
+                </div>
+              </div>
             )}
+            <Link
+              href={`${BASE_API_URL}/products/${props._id}`}
+              className="hover:opacity-70"
+            >
+              {props.thumbnail && (
+                <Image
+                  priority
+                  src={props.thumbnail}
+                  alt="image"
+                  fill
+                  className="object-cover hover:scale-110 transition-all duration-700 z-10"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              )}
+            </Link>
           </div>
-        </Link>
+        </div>
 
         {/* price + name */}
         <div className="flex flex-col justify-center  items-center md:gap-2 gap-3 p-1 text-center md:h-1/3 h-1/3 group w-full flex-1 ">
@@ -54,16 +156,33 @@ const Product = (props: SingleProductType) => {
             <div
               className="flex md:hidden"
               onClick={() => {
-                const id = _.uniqueId();
-                dispatch(addProduct({ id, title, thumbnail, price }));
+                const id = { _id: _.uniqueId() };
+                const newProduct = { ...props, ...id };
+                dispatch(addProduct(newProduct));
                 toast.success("The product added to the cart !");
               }}
             >
               <LiaCartPlusSolid color="#DAA06D" size="25px" />
             </div>
+
             <h2 className="md:text-sm flex  justify-center md:group-hover:invisible text-blue-400 items-center font-semibold text-xs basis-5 shrink ">
               ${props.price}
             </h2>
+            <div
+              className="flex md:hidden"
+              onClick={() => {
+                setLikeStatus(likeStatus === "liked" ? "unliked" : "liked");
+              }}
+            >
+              {likeStatus === "liked" ||
+              data[0]?.wishlist?.some(
+                (item: SingleProductType) => item._id === props._id
+              ) ? (
+                <IoIosHeart color="red" size="20px" />
+              ) : (
+                <IoIosHeartEmpty color="#DAA06D" size="20px" />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -71,8 +190,9 @@ const Product = (props: SingleProductType) => {
       <div
         className={`hidden absolute ${styles.entrance} md:bottom-7 bottom-4  md:group-hover:block`}
         onClick={() => {
-          const id = _.uniqueId();
-          dispatch(addProduct({ id, title, thumbnail, price }));
+          const id = { _id: _.uniqueId() };
+          const newProduct = { ...props, ...id };
+          dispatch(addProduct(newProduct));
           toast.success("The product added to the cart !");
         }}
       >

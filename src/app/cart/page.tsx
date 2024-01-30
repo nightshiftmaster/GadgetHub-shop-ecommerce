@@ -22,9 +22,9 @@ const Cart = () => {
     <div className="h-screen flex justify-center items-center bg-slate-50  ">
       {products?.length === 0 ? (
         <div className="absolute h-full w-screen top-0 left-0">
-          <div className="flex h-full flex-col justify-center items-center gap-2">
-            <MdOutlineRemoveShoppingCart size={120} />
-            <h1 className="md:text-3xl text-2xl">CART IS EMPTY</h1>
+          <div className="flex h-full flex-col justify-center mt-14 items-center gap-2">
+            <MdOutlineRemoveShoppingCart size={90} />
+            <h1 className="md:text-3xl text-xl">Cart is empty</h1>
           </div>
         </div>
       ) : (

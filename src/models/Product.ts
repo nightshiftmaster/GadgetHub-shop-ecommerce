@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
-const productSchema = new Schema(
+export const productSchema = new Schema(
   {
     title: {
       type: String,

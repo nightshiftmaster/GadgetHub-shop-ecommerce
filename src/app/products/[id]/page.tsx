@@ -53,8 +53,8 @@ const Product = ({ params }: { params: { id: string } }) => {
           </h2>
           <div
             onClick={() => {
-              const id = _.uniqueId();
-              const newProduct = { ...product, id };
+              const id = { _id: _.uniqueId() };
+              const newProduct = { ...product, ...id };
               dispatch(addProduct(newProduct));
               toast.success("The product added to the cart !");
             }}

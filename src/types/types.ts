@@ -20,9 +20,9 @@ export interface MyFormValues {
   firstName?: string;
   lastName?: string;
   mobileNumber?: string;
-  emailAdress?: string;
-  deliveryAdress?: string;
-  cityName?: string;
+  email?: string;
+  address?: string;
+  city?: string;
   country?: string;
   additionalInfo?: string;
 }
@@ -31,9 +31,29 @@ export interface MyFormTouched {
   firstName?: boolean;
   lastName?: boolean;
   mobileNumber?: boolean;
-  emailAdress?: boolean;
-  deliveryAdress?: boolean;
-  cityName?: boolean;
+  email?: boolean;
+  address?: boolean;
+  city?: boolean;
   country?: boolean;
   additionalInfo?: boolean;
 }
+
+export type UserType = {
+  img: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  email: string;
+  mobileNumber: string;
+  country: string;
+  city: string;
+  address: string;
+  password: string;
+  orders: [ProductsType];
+  wishlist: ProductsType;
+};
+
+export type OrderType = {
+  total: number;
+  order: ProductsType;
+};

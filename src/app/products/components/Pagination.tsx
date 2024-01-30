@@ -11,7 +11,7 @@ const Pagination = ({
   currPageHandler: any;
   pagesCount: number;
 }) => {
-  if (pagesCount < 2) {
+  if (pagesCount < 2 || !pagesCount) {
     return;
   }
   return (

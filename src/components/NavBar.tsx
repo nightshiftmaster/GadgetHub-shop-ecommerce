@@ -16,8 +16,8 @@ import { CiShop } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiMail } from "react-icons/ci";
 import SearchBar from "./Search";
-
-import FormInput from "./Search";
+import { CiLogout } from "react-icons/ci";
+import AccountIcon from "./AccountIcon";
 
 const navs = [
   { name: "home", id: 1, path: "/", icon: <IoHomeOutline size={20} /> },
@@ -46,7 +46,6 @@ const NavBar = () => {
         <div className="flex md:hidden " onClick={() => setOpen(!isOpen)}>
           {isOpen ? <IoIosClose size={30} /> : <FiMenu size={30} />}
         </div>
-        <div></div>
       </div>
     );
   };
@@ -54,7 +53,7 @@ const NavBar = () => {
   const MobileMenu = () => {
     return (
       <div
-        className={`sm:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
+        className={`md:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
       >
         <div className="flex flex-col gap-8">
           <div className="flex flex-col  gap-8 p-4 justify-center items-center mt-6">
@@ -81,7 +80,12 @@ const NavBar = () => {
               className="flex  p-3 gap-3 w-[70%] justify-start items-center "
               key={navs[4].id}
             >
-              {navs[4].icon}
+              {session.status === "authenticated" ? (
+                <CiLogout size={20} />
+              ) : (
+                navs[4].icon
+              )}
+              {/* {navs[4].icon} */}
               <input
                 type="button"
                 className="uppercase text-base"
@@ -102,8 +106,8 @@ const NavBar = () => {
 
   return (
     <div className="sticky top-0 z-20">
-      <div className="text-white py-4 sm:px-[5vh] md:gap-5 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col xl:flex-row items-center justify-between mb-5  ">
-        <div className="flex md:gap-6   md:w-fit w-full md:justify-center items-center justify-around">
+      <div className="text-white py-4 md:px-14 sm:px-[5vh] md:gap-5 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col xl:flex-row items-center justify-between mb-5  ">
+        <div className="flex md:gap-6 md:w-fit w-screen md:justify-center items-center justify-around">
           <Link href="/">
             <h1 className="md:text-4xl  text-2xl font-bold">GadgetHub</h1>
           </Link>
@@ -114,6 +118,9 @@ const NavBar = () => {
             <Link href="/products">
               <CiShop size={25} />
             </Link>
+            <Link href="/account">
+              <AccountIcon />
+            </Link>
           </div>
 
           <MobileMenuIcon />
@@ -123,53 +130,39 @@ const NavBar = () => {
           <div className="md:gap-10 gap-5 justify-center hidden md:flex items-center md:text-xs text-xs">
             {navs.slice(0, 2).map((item, i) => {
               return (
-                <Link href={item.path} key={i} className="uppercase ">
+                <Link
+                  href={item.path}
+                  key={i}
+                  className="uppercase hover:text-sky-500 duration-500 "
+                >
                   {item.name}
                 </Link>
               );
             })}
             <div className="justify-center items-center hidden md:flex ">
-              <Link href={navs[3].path} key={3} className="uppercase">
+              <Link
+                href={navs[3].path}
+                key={3}
+                className="uppercase hover:text-sky-500 duration-500 "
+              >
                 contact
               </Link>
             </div>
 
-            <div className="flex justify-center items-center">
-              <Link href="/cart" key={3} className="uppercase">
+            <div className="flex justify-center items-center  ">
+              <Link
+                href="/cart"
+                key={3}
+                className="uppercase hover:text-sky-500 duration-500"
+              >
                 CART
               </Link>
               <Link href="/cart" key={4} className="uppercase">
                 <CartItem />
               </Link>
             </div>
-            <div className="flex justify-center items-center"></div>
-            <div
-              className="flex gap-2 justify-center items-center"
-              onClick={() => {
-                session.status === "authenticated"
-                  ? logOut()
-                  : router.push("/login");
-              }}
-            >
-              <Link href="/login" key={3} className="uppercase">
-                {session.status === "authenticated" ? "Logout" : "Login"}
-              </Link>
-              <Link href="/login" key={4} className="uppercase">
-                {session.status === "authenticated" ? (
-                  <div className="h-7 w-7">
-                    {session?.data?.user?.image && (
-                      <img
-                        src={session.data.user.image}
-                        alt="avatar"
-                        className="rounded-full"
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <VscAccount size={20} />
-                )}
-              </Link>
-            </div>
+
+            <AccountIcon />
           </div>
         </div>
       </div>

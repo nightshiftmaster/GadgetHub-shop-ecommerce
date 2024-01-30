@@ -30,7 +30,7 @@ const Slider = styled(BaseSlider)(
   ({ theme }) => `
   color: ${theme.palette.mode === "light" ? blue[500] : blue[300]};
   height: 6px;
-  width: 110%;
+  width: 100%;
   padding: 16px 0;
   display: inline-block;
   position: relative;

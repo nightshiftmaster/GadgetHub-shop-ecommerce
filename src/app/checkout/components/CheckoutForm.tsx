@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { BASE_API_URL } from "@/utils/constants";
-
+import { OrderType } from "@/types/types";
 const CheckoutForm = ({ props }: { props: any }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -17,6 +17,24 @@ const CheckoutForm = ({ props }: { props: any }) => {
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const productsSlice = useSelector(
+    (state: RootState) => state.productsReducer
+  );
+
+  const postOrders = async (data: OrderType) => {
+    try {
+      await fetch(`${BASE_API_URL}/api/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
 
   useEffect(() => {
     if (!stripe) {
@@ -51,6 +69,8 @@ const CheckoutForm = ({ props }: { props: any }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const order = { order: productsSlice.cart, total: productsSlice.total };
+    await postOrders(order);
 
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded.
@@ -65,7 +85,7 @@ const CheckoutForm = ({ props }: { props: any }) => {
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: `${BASE_API_URL}/success`,
-        receipt_email: userSlice.emailAdress,
+        receipt_email: userSlice.email,
       },
     });
 

@@ -1,15 +1,15 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { MyFormValues } from "@/types/types";
-import { FormikProps } from "formik";
 import { useDispatch } from "react-redux";
 import { addUserAdressData } from "@/redux/features/userSlice";
+import useSWR from "swr";
+import { BASE_API_URL } from "@/utils/constants";
 
 const PersonalDataSchema = Yup.object().shape({
   firstName: Yup.string().required("Please fill out this field"),
@@ -17,11 +17,11 @@ const PersonalDataSchema = Yup.object().shape({
   mobileNumber: Yup.number()
     .typeError("invalid mobile number")
     .required("Please fill out this field"),
-  emailAdress: Yup.string()
+  email: Yup.string()
     .email("Invalid email")
     .required("Please fill out this field"),
-  deliveryAdress: Yup.string().required("Please fill out this field"),
-  cityName: Yup.string().required("Please fill out this field"),
+  address: Yup.string().required("Please fill out this field"),
+  city: Yup.string().required("Please fill out this field"),
   country: Yup.string().required("Please fill out this field"),
   additionalInfo: Yup.string(),
 });
@@ -29,8 +29,16 @@ const PersonalDataSchema = Yup.object().shape({
 const AdressForm = ({ props }: { props: any }) => {
   const dispatch = useDispatch();
   const { status } = useSession();
+  const session = useSession();
   const router = useRouter();
   const userSlice = useSelector((state: RootState) => state.userReducer);
+  const fetcher = (...args: Parameters<typeof fetch>) =>
+    fetch(...args).then((res) => res.json());
+
+  const { data, isLoading } = useSWR(
+    `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
+    fetcher
+  );
 
   if (status === "loading") {
     return <p>Loading...</p>;
@@ -47,9 +55,9 @@ const AdressForm = ({ props }: { props: any }) => {
           firstName: userSlice?.firstName,
           lastName: userSlice?.lastName,
           mobileNumber: userSlice?.mobileNumber,
-          emailAdress: userSlice?.emailAdress,
-          deliveryAdress: userSlice?.deliveryAdress,
-          cityName: userSlice?.cityName,
+          email: userSlice?.email,
+          address: userSlice?.address,
+          city: userSlice?.city,
           country: userSlice?.country,
           additionalInfo: userSlice?.additionalInfo,
         }}
@@ -61,7 +69,7 @@ const AdressForm = ({ props }: { props: any }) => {
         {({ errors, touched, values, handleChange, setFieldValue }) => {
           return (
             <div className="flex  flex-col gap-7 w-1/2 items-center  ">
-              <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-sreen md:text-base text-sm">
+              <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen md:text-base text-sm">
                 <div className="flex w-full  justify-center items-center flex-col gap-10">
                   <div className="flex gap-5 justify-center  font-light  md:w-[80%] px-10 md:px-0  w-screen  ">
                     <div className="flex flex-col gap-3 w-1/2">

@@ -3,7 +3,7 @@ import SuspenseProvider from "@/providers/SuspenseProvider";
 
 const Loading = () => {
   return (
-    <div className="fixed h-full w-full top-[50%] left-0">
+    <div className="fixed h-screen w-full top-[50%]">
       <SuspenseProvider>Please wait...</SuspenseProvider>
     </div>
   );

@@ -59,7 +59,7 @@ export const AppleReceiptEmail = ({
                         textDecoration: "underline",
                       }}
                     >
-                      {delivery.emailAdress}
+                      {delivery.email}
                     </Link>
                   </Column>
                 </Row>
@@ -123,21 +123,17 @@ export const AppleReceiptEmail = ({
               </Column>
               <Column style={informationTableColumn}>
                 <Text style={informationTableLabel}>EMAIL</Text>
-                <Text style={informationTableValue}>
-                  {delivery.emailAdress}
-                </Text>
+                <Text style={informationTableValue}>{delivery.email}</Text>
               </Column>
             </Row>
             <Row>
               <Column style={informationTableColumn}>
                 <Text style={informationTableLabel}>CITY</Text>
-                <Text style={informationTableValue}>{delivery.cityName}</Text>
+                <Text style={informationTableValue}>{delivery.city}</Text>
               </Column>
               <Column style={informationTableColumn}>
                 <Text style={informationTableLabel}>ADRESS</Text>
-                <Text style={informationTableValue}>
-                  {delivery.deliveryAdress}
-                </Text>
+                <Text style={informationTableValue}>{delivery.address}</Text>
               </Column>
               <Column style={informationTableColumn}>
                 <Text style={informationTableLabel}>COUNTRY</Text>

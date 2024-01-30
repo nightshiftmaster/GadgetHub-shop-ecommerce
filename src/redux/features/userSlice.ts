@@ -5,9 +5,9 @@ const initialState = {
   firstName: "",
   lastName: "",
   mobileNumber: "",
-  emailAdress: "",
-  deliveryAdress: "",
-  cityName: "",
+  email: "",
+  address: "",
+  city: "",
   country: "",
   additionalInfo: "",
 } as MyFormValues;
@@ -26,9 +26,9 @@ const userSlice = createSlice({
       state.firstName = "";
       state.lastName = "";
       state.mobileNumber = "";
-      state.emailAdress = "";
-      state.deliveryAdress = "";
-      state.cityName = "";
+      state.email = "";
+      state.address = "";
+      state.city = "";
       state.country = "";
       state.additionalInfo = "";
     },

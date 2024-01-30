@@ -142,7 +142,7 @@ const Products = () => {
   try {
     return (
       <div className="w-full h-full  flex justify-center items-center  ">
-        <div className="flex flex-col md:gap-5 mt-5 gap-3 justify-center items-center max-w-[1250px] ">
+        <div className="flex flex-col md:gap-5 mt-5 gap-3 p-2 justify-center items-center max-w-[1250px] w-full ">
           <div className="md:hidden flex w-1/2">
             <FilterByCategory setCategory={setCategory} setFilter={setFilter} />
           </div>
@@ -164,7 +164,7 @@ const Products = () => {
               <SortProducts setFilter={setFilter} />
             </div>
 
-            <div className="flex flex-col md:w-[100vh] justify-center items-center  gap-6 ">
+            <div className="flex flex-col w-full justify-center items-center  gap-6 ">
               <div className=" w-full h-[30vh]  flex justify-center relative">
                 {
                   <img
@@ -173,7 +173,7 @@ const Products = () => {
                         ? banner
                         : "https://www.gadstyle.com/wp-content/uploads/2024/01/new-year-sale-banner-2024-1.webp"
                     }
-                    alt=""
+                    alt="banner"
                     className="object-cover w-full h-full "
                   />
                 }
