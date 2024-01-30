@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 import Loading from "@/components/Loader";
+import { SingleProductType } from "@/types/types";
 
 const Order = ({ params }: { params: { id: string } }) => {
   const fetcher = (...args: Parameters<typeof fetch>) =>
@@ -26,7 +27,7 @@ const Order = ({ params }: { params: { id: string } }) => {
 
       {/* products */}
       <div className="w-full h-full lg:text-base text-xs  mt-10 mb-20 flex justify-start items-center  gap-3 flex-col">
-        {data[0].order?.map((item) => {
+        {data[0].order?.map((item: SingleProductType) => {
           return (
             <div
               className="flex justify-start p-2 items-center md:w-[70%] w-full border-b-2 "
