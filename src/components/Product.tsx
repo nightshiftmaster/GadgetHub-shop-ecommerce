@@ -153,6 +153,7 @@ const Product = (props: SingleProductType) => {
             </Link>
           </h1>
           <div className="flex gap-3 justify-center items-center">
+            {/* mobile cart icon */}
             <div
               className="flex md:hidden"
               onClick={() => {
@@ -168,8 +169,14 @@ const Product = (props: SingleProductType) => {
             <h2 className="md:text-sm flex  justify-center md:group-hover:invisible text-blue-400 items-center font-semibold text-xs basis-5 shrink ">
               ${props.price}
             </h2>
+
+            {/* mobile like icon */}
             <div
-              className="flex md:hidden"
+              className={`md:hidden ${
+                session.status === "unauthenticated" || isAccountCreated
+                  ? "hidden"
+                  : "flex"
+              }`}
               onClick={() => {
                 setLikeStatus(likeStatus === "liked" ? "unliked" : "liked");
               }}
