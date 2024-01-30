@@ -42,7 +42,7 @@ const ProfileAvatar = ({
     if (tumbnail) {
       setCurrAvatar(tumbnail);
     }
-  }, [tumbnail]);
+  }, [session, data, tumbnail]);
 
   return (
     <div>
