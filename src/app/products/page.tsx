@@ -25,12 +25,6 @@ const sortBy = {
   womensWear: (item: SingleProductType) => item.category.startsWith("womens"),
 };
 
-//   allForHome: (item: SingleProductType) =>
-//     item.category === "lighting" ||
-//     item.category === "furniture" ||
-//     item.category === "home-decoration",
-// };
-
 const getData = async () => {
   const res = await fetch(`${BASE_API_URL}/api/products`, {
     cache: "no-store",

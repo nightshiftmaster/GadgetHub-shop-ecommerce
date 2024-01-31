@@ -9,41 +9,32 @@ import { ProductsType } from "@/types/types";
 import dataBase from "@/utils/dataBase";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
+import { fetcher } from "@/utils/fetcherSwr";
+import Loading from "@/components/Loader";
+import { use } from "react";
 
-const getData = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/products`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("failed to fetch data");
-  }
-  return res.json();
-};
-
-const Home = async () => {
+const Home = () => {
   const session = useSession();
-  const fetcher = (...args: Parameters<typeof fetch>) =>
-    fetch(...args).then((res) => res.json());
 
-  const { data: user, isLoading } = useSWR(
+  const { data, isLoading, mutate } = useSWR("/api/products", fetcher);
+
+  const { data: user, isLoading: loadingUser } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );
 
-  if (isLoading) {
-    return;
+  if (isLoading || loadingUser) {
+    return <Loading />;
   }
 
-  let isGuest = user.length === 0;
+  let isGuest = user?.length === 0;
 
-  const data: ProductsType = await getData();
   return (
     <div className="h-full w-full overflow-auto flex flex-col justify-center items-center">
       <div className="z-0 h-full w-full flex flex-col gap-3 border-l-2 border-r-2 border-gray-100 ">
         {isGuest || (
           <h1 className="text-center font-semibold md:text-3xl text-lg capitalize p-4 ">
-            Welcome {user[0].firstName} !
+            Welcome {user[0]?.firstName} !
           </h1>
         )}
         <Banner />

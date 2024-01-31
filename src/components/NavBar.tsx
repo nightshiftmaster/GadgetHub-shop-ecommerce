@@ -150,13 +150,6 @@ const NavBar = () => {
             </div>
 
             <div className="flex justify-center items-center  ">
-              <Link
-                href="/cart"
-                key={3}
-                className="uppercase hover:text-sky-500 duration-500"
-              >
-                CART
-              </Link>
               <Link href="/cart" key={4} className="uppercase">
                 <CartItem />
               </Link>

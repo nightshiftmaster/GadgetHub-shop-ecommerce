@@ -12,6 +12,27 @@ import useSWR from "swr";
 import { toast } from "react-toastify";
 import Loading from "@/components/Loader";
 import ProfileAvatar from "./ProfileAvatar";
+import { fetcher } from "@/utils/fetcherSwr";
+import * as Yup from "yup";
+import { error } from "console";
+import { Oval } from "react-loader-spinner";
+
+const PersonalDataSchema = Yup.object().shape({
+  firstName: Yup.string().required("Please fill out this field"),
+  lastName: Yup.string().required("Please fill out this field"),
+  mobileNumber: Yup.number()
+    .typeError("invalid mobile number")
+    .required("Please fill out this field"),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("Please fill out this field"),
+  address: Yup.string().required("Please fill out this field"),
+  city: Yup.string().required("Please fill out this field"),
+  country: Yup.string().required("Please fill out this field"),
+  password: Yup.string()
+    .required("Please fill out this field")
+    .min(6, "Password is too short - should be 8 chars minimum."),
+});
 
 const PersonalInfoForm = () => {
   const [err, setErr] = useState("");
@@ -22,9 +43,6 @@ const PersonalInfoForm = () => {
   useEffect(() => {
     setTumbnail(tumbnail);
   }, [tumbnail]);
-
-  const fetcher = (...args: Parameters<typeof fetch>) =>
-    fetch(...args).then((res) => res.json());
 
   const { data, isLoading } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
@@ -50,8 +68,9 @@ const PersonalInfoForm = () => {
           country: user?.country,
           city: user?.city,
           address: user?.address,
-          password: "*********",
+          password: "",
         }}
+        validationSchema={PersonalDataSchema}
         onSubmit={async (values) => {
           {
             try {
@@ -63,22 +82,33 @@ const PersonalInfoForm = () => {
                 body: JSON.stringify(values),
               });
 
-              res.status === 201 &&
+              if (res.status === 201) {
                 router.push("/login?succes=Account has been created");
-              toast.success("Congratulations! User created successfully!", {
-                theme: "light",
-              });
+                toast.success("Congratulations! User created successfully!", {
+                  theme: "light",
+                });
+              }
+              throw new Error("User already exists !");
             } catch (err: any) {
-              setErr(err);
+              console.log(err.message);
+              setErr(err.message);
             }
           }
         }}
       >
-        {({ errors, touched, values, handleChange, setFieldValue }) => {
+        {({
+          errors,
+          touched,
+          values,
+          handleChange,
+          setFieldValue,
+          isSubmitting,
+        }) => {
           return (
             <div className="flex w-full flex-col justify-center items-center  gap-5">
+              <div className="text-red-400 text-2xl font-semibold">{err}</div>
               <ProfileAvatar tumbnail={tumbnail} setTumbnail={setTumbnail} />
-              <Form className="flex flex-col md:gap-10 gap-10 justify-center items-center w-full md:w-[95vh]">
+              <Form className="flex flex-col md:gap-10 xl:text-base md:text-sm text-xs gap-7 justify-center items-center w-full md:w-[95vh]">
                 <div className="flex justify-center items-center flex-col gap-4 w-full">
                   <div className="flex  gap-3 w-full flex-col  justify-center items-center">
                     <label htmlFor="file" className="">
@@ -107,16 +137,38 @@ const PersonalInfoForm = () => {
                       <label htmlFor="firstName">First Name</label>
                       <Field
                         name="firstName"
-                        className="p-3 rounded-md ring-1"
+                        className={`p-3 rounded-md ${
+                          errors.firstName && touched.firstName
+                            ? "ring-1 ring-red-500"
+                            : "ring-1"
+                        }`}
                         value={values.firstName}
                       />
+                      {typeof errors.firstName === "string" &&
+                        touched.firstName && (
+                          <div className="text-red-500 font-normal">
+                            <span className="mr-2">↑</span>
+                            {errors.firstName}
+                          </div>
+                        )}
                     </div>
                     <div className="flex flex-col gap-3 w-1/2 ">
                       <label htmlFor="lastName">Last Name</label>
                       <Field
                         name="lastName"
-                        className="p-3 rounded-md ring-1"
+                        className={`p-3 rounded-md ${
+                          errors.lastName && touched.lastName
+                            ? "ring-1 ring-red-500"
+                            : "ring-1"
+                        }`}
                       />
+                      {typeof errors.lastName === "string" &&
+                        touched.lastName && (
+                          <div className="text-red-500 font-normal">
+                            <span className="mr-2">↑</span>
+                            {errors.lastName}
+                          </div>
+                        )}
                     </div>
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
@@ -128,37 +180,132 @@ const PersonalInfoForm = () => {
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
                     <label htmlFor="email">Email address</label>
-                    <Field name="email" className="p-3 rounded-md ring-1" />
+                    <Field
+                      name="email"
+                      className={`p-3 rounded-md ${
+                        errors.email && touched.email
+                          ? "ring-1 ring-red-500"
+                          : "ring-1"
+                      }`}
+                    />
+                    {typeof errors.email === "string" && touched.email && (
+                      <div className="text-red-500 font-normal">
+                        <span className="mr-2">↑</span>
+                        {errors.email}
+                      </div>
+                    )}
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
                     <label htmlFor="mobileNumber">Mobile number</label>
                     <Field
                       name="mobileNumber"
-                      className="p-3 rounded-md ring-1"
+                      className={`p-3 rounded-md ${
+                        errors.mobileNumber && touched.mobileNumber
+                          ? "ring-1 ring-red-500"
+                          : "ring-1"
+                      }`}
                     />
+                    {typeof errors.mobileNumber === "string" &&
+                      touched.mobileNumber && (
+                        <div className="text-red-500 font-normal">
+                          <span className="mr-2">↑</span>
+                          {errors.mobileNumber}
+                        </div>
+                      )}
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
                     <label htmlFor="country">Country</label>
-                    <Field name="country" className="p-3 rounded-md ring-1" />
+                    <Field
+                      name="country"
+                      className={`p-3 rounded-md ${
+                        errors.country && touched.country
+                          ? "ring-1 ring-red-500"
+                          : "ring-1"
+                      }`}
+                    />
+                    {typeof errors.country === "string" && touched.country && (
+                      <div className="text-red-500 font-normal">
+                        <span className="mr-2">↑</span>
+                        {errors.country}
+                      </div>
+                    )}
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
-                    <label htmlFor="country">City</label>
-                    <Field name="city" className="p-3 rounded-md ring-1" />
+                    <label htmlFor="city">City</label>
+                    <Field
+                      name="city"
+                      className={`p-3 rounded-md ${
+                        errors.city && touched.city
+                          ? "ring-1 ring-red-500"
+                          : "ring-1"
+                      }`}
+                    />
+                    {typeof errors.city === "string" && touched.city && (
+                      <div className="text-red-500 font-normal">
+                        <span className="mr-2">↑</span>
+                        {errors.city}
+                      </div>
+                    )}
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
-                    <label htmlFor="country">Address</label>
-                    <Field name="address" className="p-3 rounded-md ring-1" />
+                    <label htmlFor="address">Address</label>
+                    <Field
+                      name="address"
+                      className={`p-3 rounded-md ${
+                        errors.address && touched.address
+                          ? "ring-1 ring-red-500"
+                          : "ring-1"
+                      }`}
+                    />
+                    {typeof errors.address === "string" && touched.address && (
+                      <div className="text-red-500 font-normal">
+                        <span className="mr-2">↑</span>
+                        {errors.address}
+                      </div>
+                    )}
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
                     <label htmlFor="country">Password</label>
-                    <Field name="password" className="p-3 rounded-md ring-1" />
+                    <Field
+                      name="password"
+                      type="password"
+                      className={`p-3 rounded-md ${
+                        errors.password && touched.password
+                          ? "ring-1 ring-red-500"
+                          : "ring-1"
+                      }`}
+                    />
+                    {errors.password && touched.password && (
+                      <div className="text-red-500 font-normal">
+                        <span className="mr-2">↑</span>
+                        {errors.password}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <button
-                  className="uppercase md:p-3  text-xs md:text-base p-2  text-white bg-fuchsia-400 w-1/3"
+                  className="uppercase md:p-3 text-xs md:text-sm xl:text-base  p-2  text-white bg-fuchsia-400 w-1/3"
                   type="submit"
+                  disabled={isSubmitting}
                 >
-                  Submit
+                  {isSubmitting ? (
+                    <div className="flex gap-2 justify-center items-center">
+                      <Oval
+                        visible={true}
+                        height="20"
+                        width="20"
+                        color="#f3f6f4"
+                        strokeWidth="8"
+                        secondaryColor="#c0c0c0"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                      />
+                      Please wait...
+                    </div>
+                  ) : (
+                    "SUBMIT"
+                  )}
                 </button>
               </Form>
             </div>

@@ -59,7 +59,7 @@ const Orders = () => {
                   <td className=" text-center text-white items-center">
                     <Link
                       href={`${BASE_API_URL}/account/orders/${order._id}`}
-                      className="bg-gray-500  px-6 py-3 hover:bg-slate-400 rounded-md hidden md:inline"
+                      className="bg-sky-500  px-6 py-3 hover:bg-slate-400 rounded-md hidden md:inline"
                     >
                       view
                     </Link>

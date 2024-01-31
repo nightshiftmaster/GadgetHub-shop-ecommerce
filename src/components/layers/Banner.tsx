@@ -40,6 +40,7 @@ const Banner = () => {
                       src={img}
                       alt="home picture"
                       className="md:object-cover object-fit rounded-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </SwiperSlide>
                 );
@@ -54,7 +55,7 @@ const Banner = () => {
               alt=""
               width={400}
               height={400}
-              className="object-cover rounded-lg"
+              className="object-cover rounded-lg h-auto w-auto"
             />
           </Link>
 
@@ -64,7 +65,7 @@ const Banner = () => {
               alt=""
               width={400}
               height={400}
-              className="object-cover rounded-lg"
+              className="object-cover rounded-lg h-auto w-auto"
             />
           </Link>
         </div>

@@ -11,13 +11,11 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/features/productsSlice";
 import { useRouter } from "next/navigation";
 import { LuHeartOff } from "react-icons/lu";
+import { fetcher } from "@/utils/fetcherSwr";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const fetcher = (...args: Parameters<typeof fetch>) =>
-    fetch(...args).then((res) => res.json());
 
   const { data, isLoading, mutate } = useSWR(`/api/wishlist`, fetcher);
 
@@ -45,10 +43,6 @@ const Wishlist = () => {
       mutate();
     } catch (e: any) {
       console.log(e.message);
-    } finally {
-      toast.error("Product deleted from wishlist", {
-        theme: "light",
-      });
     }
   };
 
@@ -66,17 +60,21 @@ const Wishlist = () => {
                 <div className="flex w-[100%] justify-start items-center gap-4 md:gap-15 ">
                   <div className="relative md:h-12 md:w-12 h-9 w-9 min-w-9">
                     {item.thumbnail && (
-                      <Image
-                        src={item.thumbnail}
-                        fill
-                        className="rounded-full"
-                        alt=""
-                      />
+                      <Link href={`${BASE_API_URL}/products/${item._id}`}>
+                        <Image
+                          src={item.thumbnail}
+                          fill
+                          className="rounded-full"
+                          alt=""
+                        />
+                      </Link>
                     )}
                   </div>
-                  <h1 className="">{item.title}</h1>
+                  <Link href={`${BASE_API_URL}/products/${item._id}`}>
+                    <h1 className="whitespace-nowrap">{item.title}</h1>
+                  </Link>
                   <span
-                    className="md:hidden text-red-500"
+                    className="md:hidden cursor-pointer  text-red-500"
                     onClick={() => handlDelete(item._id)}
                   >
                     x
@@ -91,12 +89,6 @@ const Wishlist = () => {
               </div>
               <div className="flex gap-5">
                 <button
-                  className="bg-gray-500 hidden md:flex text-white px-3 py-2 rounded-md"
-                  onClick={() => handlDelete(item._id)}
-                >
-                  Remove
-                </button>
-                <button
                   className="bg-fuchsia-400 text-white px-3 md:py-2 py-1 whitespace-nowrap rounded-md"
                   onClick={() => {
                     dispatch(addProduct(item));
@@ -104,6 +96,12 @@ const Wishlist = () => {
                   }}
                 >
                   Buy Now
+                </button>
+                <button
+                  className="bg-sky-500 hidden md:flex text-white px-3 py-2 rounded-md"
+                  onClick={() => handlDelete(item._id)}
+                >
+                  Remove
                 </button>
               </div>
             </div>

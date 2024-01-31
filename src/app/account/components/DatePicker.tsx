@@ -42,6 +42,21 @@ export default function DatePickerValue({
               "&.Mui-focused fieldset": {
                 borderColor: "blue",
               },
+              fontSize: "1rem",
+            },
+            "@media (maxWidth: '300px')": {
+              backgroundColor: "red",
+            },
+            backgroundColor: "#fff",
+            "@media (max-width: 1300px)": {
+              "& .MuiOutlinedInput-root": {
+                fontSize: "0.9rem", // Adjusted font size for small screens
+              },
+            },
+            "@media (max-width: 800px)": {
+              "& .MuiOutlinedInput-root": {
+                fontSize: "0.8rem", // Adjusted font size for small screens
+              },
             },
           }}
         />

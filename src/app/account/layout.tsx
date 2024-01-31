@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
-import ProfileAvatar from "./components/ProfileAvatar";
+import WishIcon from "./wishlist/components/WishIcon";
 
 const navs = [
   {
@@ -34,7 +34,7 @@ const navs = [
     name: "Wishlist",
     id: 3,
     path: `/account/wishlist`,
-    icon: <LuHeart size={30} />,
+    icon: <WishIcon />,
   },
 
   {

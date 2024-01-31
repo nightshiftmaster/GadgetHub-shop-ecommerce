@@ -51,7 +51,7 @@ const ProfileAvatar = ({
           <img
             src={currAvatar}
             alt="avatar"
-            className="rounded-full h-28 w-28 object-cover"
+            className="rounded-full h-28 w-28 object-cover border-4 border-white"
           />
         ) : (
           <VscAccount size={100} color="#383838" />
