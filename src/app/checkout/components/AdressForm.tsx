@@ -487,7 +487,7 @@ const AdressForm = ({ props }: { props: any }) => {
                       <option value="Zimbabwe">Zimbabwe</option>
                     </select>
 
-                    {errors.country && touched.country ? (
+                    {typeof errors.country === "string" && touched.country ? (
                       <div className="text-red-500 font-normal  md:text-base text-sm">
                         <span className="mr-2">↑</span>
                         {errors.country}
