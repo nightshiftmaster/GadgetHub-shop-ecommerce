@@ -20,19 +20,20 @@ const productsSlice = createSlice({
     addProduct: (state, action) => {
       const product = action.payload;
       state.cart.push(product);
-      state.total += product.price;
-      state.quantity += 1;
+
+      state.total += product.price * product.quantity;
+      state.quantity += product?.quantity;
     },
     removeProduct: (state, action) => {
       const product = state.cart.find(
         (product) => product._id === action.payload
       );
-      state.total -= product?.price || 0;
+      state.total -= product?.price ? product?.price * product?.quantity : 0;
       const newProducts = state.cart.filter(
         (product) => product._id !== action.payload
       );
       state.cart = newProducts;
-      state.quantity -= 1;
+      state.quantity -= product?.quantity || 0;
     },
     removeAllProducts: (state) => {
       state.cart = [];

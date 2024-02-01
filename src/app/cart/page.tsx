@@ -30,7 +30,7 @@ const Cart = () => {
       ) : (
         <div className="md:w-[120vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg">
           <div className="flex flex-col mb-5  md:w-1/2 w-full h-full p-5 gap-2 md:gap-10 justify-center items-center">
-            <div className="flex justify-around w-full  xl:gap-20 md:text-base xl:text-lg text-sm gap-40 md:w-full  p-7 border-b-2 border-gray-200 font-bold">
+            <div className="flex justify-between w-full  xl:gap-20 md:text-base xl:text-lg text-sm  md:w-full  p-7 border-b-2 border-gray-200 font-bold">
               <h1>Product</h1>
               <h1>Price</h1>
             </div>
@@ -40,16 +40,16 @@ const Cart = () => {
                 products.length > 3 ? "items-start" : "items-center"
               }  overflow-scroll`}
             >
-              <div className="flex md:gap-16 gap-12 w-full flex-col md:mt-1 mt-10 items-center justify-center">
+              <div className="flex xl:gap-16 md:gap-14 gap-10 w-full flex-col md:mt-1 mt-10 items-center justify-center">
                 {products?.map((item) => {
                   return (
                     <div
-                      className="flex  justify-between gap-32 md:gap-40 border-b-2 "
+                      className="flex-1 flex justify-between gap-32 w-full md:gap-40 border-b-2 "
                       key={item._id}
                     >
                       <div className="flex justify-between items-center md:gap-10 w-[17vh] md:w-[20vh] gap-5 ">
                         <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">
-                          <div className="relative xl:h-16 xl:w-16 md:h-16 md:w-16 h-10 w-10">
+                          <div className="relative xl:h-16 xl:w-16 md:h-14 md:w-14 h-10 w-10">
                             {item.thumbnail && (
                               <Image
                                 src={item.thumbnail}
@@ -73,7 +73,10 @@ const Cart = () => {
                         </div>
                       </div>
 
-                      <div className=" flex-1 flex justify-center items-center">
+                      <div className=" flex justify-between w-fit  gap-2 items-center">
+                        <span className="text-gray-400 text-xs md:text-sm whitespace-nowrap">
+                          {item.quantity > 1 ? `${item.quantity} x` : ""}
+                        </span>
                         <h1 className=" text-blue-500  font-semibold md:text-sm text-xs">
                           ${item.price}
                         </h1>

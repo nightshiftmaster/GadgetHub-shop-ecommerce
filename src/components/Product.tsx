@@ -158,7 +158,8 @@ const Product = (props: SingleProductType) => {
               className="flex md:hidden"
               onClick={() => {
                 const id = { _id: _.uniqueId() };
-                const newProduct = { ...props, ...id };
+                const quantity = { quantity: 1 };
+                const newProduct = { ...props, ...quantity, ...id };
                 dispatch(addProduct(newProduct));
                 toast.success("The product added to the cart !");
               }}
@@ -198,7 +199,8 @@ const Product = (props: SingleProductType) => {
         className={`hidden absolute ${styles.entrance} md:bottom-7 bottom-4  md:group-hover:block`}
         onClick={() => {
           const id = { _id: _.uniqueId() };
-          const newProduct = { ...props, ...id };
+          const quantity = { quantity: 1 };
+          const newProduct = { ...props, ...quantity, ...id };
           dispatch(addProduct(newProduct));
           toast.success("The product added to the cart !");
         }}

@@ -11,6 +11,7 @@ export type SingleProductType = {
   thumbnail: string;
   images: [string];
   generalCategory: string;
+  quantity: number;
 };
 
 export type ProductsType = SingleProductType[];
