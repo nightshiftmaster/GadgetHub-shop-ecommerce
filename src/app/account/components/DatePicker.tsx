@@ -55,7 +55,7 @@ export default function DatePickerValue({
             },
             "@media (max-width: 800px)": {
               "& .MuiOutlinedInput-root": {
-                fontSize: "0.8rem", // Adjusted font size for small screens
+                fontSize: "0.9rem", // Adjusted font size for small screens
               },
             },
           }}

@@ -69,7 +69,7 @@ const Contacts = () => {
 
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-col xl:text-base md:text-sm text-xs first-line:md:gap-20 gap-10 md:w-1/2 w-2/3 justify-center "
+          className="flex flex-col xl:text-base md:text-sm text-sm first-line:md:gap-20 gap-10 md:w-1/2 w-2/3 justify-center "
         >
           <div className="flex flex-col gap-4">
             <input

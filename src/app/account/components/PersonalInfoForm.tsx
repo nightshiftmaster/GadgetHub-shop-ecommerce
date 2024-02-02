@@ -108,7 +108,7 @@ const PersonalInfoForm = () => {
             <div className="flex w-full flex-col justify-center items-center  gap-5">
               <div className="text-red-400 text-2xl font-semibold">{err}</div>
               <ProfileAvatar tumbnail={tumbnail} setTumbnail={setTumbnail} />
-              <Form className="flex flex-col md:gap-10 xl:text-base md:text-sm text-xs gap-7 justify-center items-center w-full md:w-[95vh]">
+              <Form className="flex flex-col md:gap-10 xl:text-base md:text-sm text-sm gap-7 justify-center items-center w-full md:w-[95vh]">
                 <div className="flex justify-center items-center flex-col gap-4 w-full">
                   <div className="flex  gap-3 w-full flex-col  justify-center items-center">
                     <label htmlFor="file" className="">
@@ -218,7 +218,7 @@ const PersonalInfoForm = () => {
                     <select
                       id="country"
                       name="country"
-                      className={`p-4 rounded-md  ${
+                      className={`p-4 rounded-md  bg-white ${
                         errors.country && touched.country
                           ? "ring-1 ring-red-500"
                           : "ring-1"

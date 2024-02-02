@@ -42,7 +42,7 @@ const AccountIcon = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="flex gap-2 justify-center items-center relative hover:text-sky-500 duration-500 "
+        className="flex gap-2 justify-center items-center relative md:hover:text-sky-500 duration-500 "
         onClick={() => {
           session.status === "authenticated"
             ? router.push("/account")

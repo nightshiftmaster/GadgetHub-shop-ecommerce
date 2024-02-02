@@ -65,7 +65,7 @@ const AdressForm = ({ props }: { props: any }) => {
         {({ errors, touched, values, handleChange, setFieldValue }) => {
           return (
             <div className="flex  flex-col gap-7 w-1/2 items-center  ">
-              <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen xl:text-base md:text-sm text-xs">
+              <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen xl:text-base md:text-sm text-sm">
                 <div className="flex w-full  justify-center items-center flex-col gap-10">
                   <div className="flex gap-5 md:text-sm xl:text-base text-xs justify-center  font-light  md:w-[80%] px-10 md:px-0  w-screen  ">
                     <div className="flex flex-col gap-3 w-1/2">
@@ -153,7 +153,7 @@ const AdressForm = ({ props }: { props: any }) => {
                     <select
                       id="country"
                       name="country"
-                      className={`p-4 rounded-md  ${
+                      className={`p-4 rounded-md bg-white  ${
                         errors.country && touched.country
                           ? "ring-1 ring-red-500"
                           : "ring-1"
