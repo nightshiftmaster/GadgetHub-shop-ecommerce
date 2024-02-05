@@ -11,6 +11,7 @@ import Loading from "@/components/Loader";
 import { useRouter } from "next/navigation";
 import { BsBookmarkHeart } from "react-icons/bs";
 import { SingleProductType } from "@/types/types";
+import { BASE_API_URL } from "@/utils/constants";
 
 var _ = require("lodash");
 
@@ -21,11 +22,6 @@ const Product = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
 
   const handlePostWishlist = async (item: SingleProductType) => {
-    if (
-      data[0].wishlist.some((item: SingleProductType) => item._id === props._id)
-    ) {
-      return;
-    }
     try {
       await fetch(`${BASE_API_URL}/api/wishlist`, {
         method: "POST",
@@ -34,7 +30,6 @@ const Product = ({ params }: { params: { id: string } }) => {
         },
         body: JSON.stringify(item),
       });
-      mutate();
     } catch (e: any) {
       console.log(e.message);
     } finally {
@@ -134,7 +129,10 @@ const Product = ({ params }: { params: { id: string } }) => {
                   </h2>
                 </div>
               </div>
-              <div className="flex gap-3 text-gray-600 cursor-pointer font-sans justify-center items-center hover:scale-110 transition-all duration-500">
+              <div
+                className="flex gap-3 text-gray-600 cursor-pointer font-sans justify-center items-center hover:scale-110 transition-all duration-500"
+                onClick={() => handlePostWishlist(data)}
+              >
                 <span>Add to wishlist</span>
                 <BsBookmarkHeart size={30} />
               </div>

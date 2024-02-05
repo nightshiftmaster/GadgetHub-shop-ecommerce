@@ -16,17 +16,13 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoIosHeart } from "react-icons/io";
-
-//handle delete
+import { fetcher } from "@/utils/fetcherSwr";
 var _ = require("lodash");
 
 const Product = (props: SingleProductType) => {
   const [likeStatus, setLikeStatus] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const session = useSession();
-
-  const fetcher = (...args: Parameters<typeof fetch>) =>
-    fetch(...args).then((res) => res.json());
 
   const { data, isLoading, mutate } = useSWR(`/api/wishlist`, fetcher);
 

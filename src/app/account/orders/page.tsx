@@ -24,7 +24,7 @@ const Orders = () => {
     return (
       <div className="flex justify-center items-center gap-4 mt-36 flex-col">
         <LuListX size={100} />
-        <h1 className="md:text-2xl texl-xl">You haven't orders !</h1>
+        <h1 className="md:text-2xl texl-xl">You haven&lsquo;t orders !</h1>
       </div>
     );
   }
