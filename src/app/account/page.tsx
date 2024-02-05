@@ -44,7 +44,7 @@ const Account = () => {
 
   const fetcher = (...args: Parameters<typeof fetch>) =>
     fetch(...args).then((res) => res.json());
-  const { data, isLoading } = useSWR(
+  const { data, isLoading, error } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );

@@ -64,7 +64,7 @@ const LoginPage = () => {
                   </div>
                 )}
 
-                <Form className="xl:text-base md:text-sm text-xs flex flex-col items-center justify-center md:gap-10 gap-6 ">
+                <Form className="xl:text-base md:text-sm text-sm flex flex-col items-center justify-center md:gap-10 gap-6 ">
                   <h1 className="font-bold text-lg md:text-2xl ">
                     Please login to purchase products
                   </h1>

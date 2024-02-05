@@ -115,7 +115,7 @@ const PersonalInfoForm = () => {
                       <MdOutlineAddAPhoto size={30} />
                     </label>
                     <input
-                      className="opacity-0 absolute"
+                      className="opacity-0 absolute cursor-pointer"
                       data-testid="avatar-upload"
                       id="img"
                       type="file"

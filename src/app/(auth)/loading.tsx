@@ -3,7 +3,7 @@ import SuspenseProvider from "@/providers/SuspenseProvider";
 
 const Loading = () => {
   return (
-    <div className="fixed h-full w-full top-[50%] left-0">
+    <div className="flex justify-center items-center h-screen w-full">
       {/* <SuspenseProvider>Loading cart...</SuspenseProvider> */}
     </div>
   );

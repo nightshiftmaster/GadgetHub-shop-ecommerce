@@ -94,11 +94,11 @@ const Product = (props: SingleProductType) => {
     >
       <div className="flex flex-col h-[220px] w-[150px] gap-3 bg- justify-start items-center  md:gap-1  p-2 ">
         {/* <div className="flex h-1/2"> */}
-        <div className="flex w-[100%] h-full relative">
-          <div className="h-full w-full  justify-center flex relative  rounded-md">
+        <div className="flex w-[100%] h-full ">
+          <div className="h-full w-full  justify-center flex rounded-md">
             {session.status === "unauthenticated" || isAccountCreated || (
               <div
-                className={`hidden ${styles.puffIn}  h-1/3  mt-20 items-center  justify-center md:group-hover:flex z-20 `}
+                className={`hidden ${styles.puffIn}  h-1/3  mt-20 items-center absolute justify-center md:group-hover:flex z-20 `}
               >
                 <div
                   className={`${
@@ -131,14 +131,16 @@ const Product = (props: SingleProductType) => {
               className="hover:opacity-70"
             >
               {props.thumbnail && (
-                <Image
-                  priority
-                  src={props.thumbnail}
-                  alt="image"
-                  fill
-                  className="object-cover hover:scale-110 transition-all duration-700 z-10"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
+                <div className="relative  h-full w-32 ">
+                  <Image
+                    priority
+                    src={props.thumbnail}
+                    alt="image"
+                    fill
+                    className="object-cover hover:scale-110 transition-all duration-700 z-10"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
               )}
             </Link>
           </div>

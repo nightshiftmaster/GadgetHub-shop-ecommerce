@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { TbChecklist } from "react-icons/tb";
-import { LuHeart } from "react-icons/lu";
 import { MdOutlineFeedback } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import Link from "next/link";
@@ -55,7 +54,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const fetcher = (...args: Parameters<typeof fetch>) =>
     fetch(...args).then((res) => res.json());
 
-  const { data, isLoading } = useSWR(
+  const { data, isLoading, error } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );

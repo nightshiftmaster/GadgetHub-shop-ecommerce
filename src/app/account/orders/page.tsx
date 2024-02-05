@@ -1,14 +1,11 @@
 "use client";
-
-import { ProductsType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import React from "react";
-import session from "redux-persist/es/storage/session";
 import useSWR from "swr";
-import Image from "next/image";
 import Link from "next/link";
 import Loading from "@/components/Loader";
 import { useRouter } from "next/navigation";
+import { LuListX } from "react-icons/lu";
 
 const Orders = () => {
   const router = useRouter();
@@ -22,6 +19,15 @@ const Orders = () => {
   }
 
   const orders = data[0]?.orders;
+
+  if (orders?.length === 0) {
+    return (
+      <div className="flex justify-center items-center gap-4 mt-36 flex-col">
+        <LuListX size={100} />
+        <h1 className="md:text-2xl texl-xl">You haven't orders !</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-10 md:w-full w-full h-full ">

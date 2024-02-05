@@ -10,6 +10,7 @@ const nextConfig = {
       "img.freepik.com",
       "cdn.dummyjson.com",
       "i.ytimg.com",
+      "png.pngtree.com",
     ],
   },
 };

@@ -12,7 +12,7 @@ const NewArrivals = ({ data }: { data: ProductsType }) => {
       <div className="text-center flex flex-col w-[1250px] bg-pink-50 md:text-start pb-10">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center justify-start w-[80%]">
-            <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-bold relative">
+            <h1 className="md:text-2xl text-lg text-slate-900 font-semibold font-sans p-10 whitespace-nowrap relative">
               New Arivals
             </h1>
 

@@ -69,13 +69,13 @@ const categories = [
 const ShopByCategory = () => {
   const router = useRouter();
   return (
-    <div className="w-full">
+    <div className="w-full max-w-[1250px] m-auto">
       <div className=" h-[10%]  flex justify-center items-center">
-        <hr className="w-[24%] md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
-        <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-bold relative">
+        <hr className="w-full md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
+        <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-semibold font-sans relative">
           Shop by Category
         </h1>
-        <hr className="w-[24%] md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
+        <hr className="w-full md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
       </div>
       <div className="flex  justify-center items-center gap-10 px-5 ml-2  md:hidden ">
         <Swiper

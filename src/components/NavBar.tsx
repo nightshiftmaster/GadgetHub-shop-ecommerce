@@ -160,7 +160,7 @@ const NavBar = () => {
         </div>
       </div>
       <div
-        className={`fixed  z-50 shadow-2xl w-[85%] top-0 backdrop-blur-lg transition-all ease-in-out delay-300 duration-300 ${
+        className={`fixed z-50 shadow-2xl w-[85%] top-0 backdrop-blur-lg transition-all ease-in-out delay-300 duration-300 ${
           isOpen ? "left-0" : "-left-full"
         }`}
       >

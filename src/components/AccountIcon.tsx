@@ -70,7 +70,7 @@ const AccountIcon = () => {
             <span className="uppercase">Login</span>
           )}
         </Link>
-        <Link href="/login" key={4} className="uppercase ">
+        <Link href="/login" key={5} className="uppercase ">
           {session.status === "authenticated" ? (
             <div className="flex justify-center relative items-center ">
               {session?.data?.user?.image || data[0]?.img ? (
