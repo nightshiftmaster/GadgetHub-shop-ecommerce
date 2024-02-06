@@ -49,7 +49,7 @@ const Orders = () => {
               return (
                 <tr
                   className="text-xs md:text-base cursor-pointer hover:bg-stone-100"
-                  key={order.id}
+                  key={order._id}
                   onClick={() => {
                     router.push(`/account/orders/${order._id}`);
                   }}

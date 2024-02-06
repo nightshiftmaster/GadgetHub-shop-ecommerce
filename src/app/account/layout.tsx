@@ -8,7 +8,6 @@ import { removeAllProducts } from "@/redux/features/productsSlice";
 import { BASE_API_URL } from "@/utils/constants";
 import { VscAccount } from "react-icons/vsc";
 import { signOut } from "next-auth/react";
-import { removeUserData } from "@/redux/features/userSlice";
 import ModalWindow from "./components/ModalWindow";
 import { useDispatch } from "react-redux";
 import { usePathname, useRouter } from "next/navigation";
@@ -77,7 +76,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   async function logOut() {
     await signOut({ callbackUrl: `${BASE_API_URL}/login` });
     dispatch(removeAllProducts());
-    dispatch(removeUserData());
   }
 
   return (

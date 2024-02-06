@@ -1,9 +1,7 @@
 "use client";
-import userSlice from "@/redux/features/userSlice";
 import { Formik, Form, Field } from "formik";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import DatePickerValue from "./DatePicker";
-import { VscAccount } from "react-icons/vsc";
 import { useSession } from "next-auth/react";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { useRouter } from "next/navigation";
@@ -14,8 +12,8 @@ import Loading from "@/components/Loader";
 import ProfileAvatar from "./ProfileAvatar";
 import { fetcher } from "@/utils/fetcherSwr";
 import * as Yup from "yup";
-import { error } from "console";
 import { Oval } from "react-loader-spinner";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const PersonalDataSchema = Yup.object().shape({
   firstName: Yup.string().required("Please fill out this field"),
@@ -37,6 +35,7 @@ const PersonalDataSchema = Yup.object().shape({
 const PersonalInfoForm = () => {
   const [err, setErr] = useState("");
   const [tumbnail, setTumbnail] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
   const router = useRouter();
   const session = useSession();
 
@@ -594,15 +593,31 @@ const PersonalInfoForm = () => {
                   </div>
                   <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
                     <label htmlFor="country">Password</label>
-                    <Field
-                      name="password"
-                      type="password"
-                      className={`p-3 rounded-md ${
-                        errors.password && touched.password
-                          ? "ring-1 ring-red-500"
-                          : "ring-1"
-                      }`}
-                    />
+                    <div className="w-full relative ">
+                      <Field
+                        name="password"
+                        disabled={isSubmitting}
+                        type={passwordShown ? "text" : "password"}
+                        key="password"
+                        className={`flex md:gap-4 gap-3  p-3 items-center justify-center ${
+                          errors.password && touched.password
+                            ? "ring-1 ring-red-500"
+                            : "ring-1"
+                        } w-full  rounded-md`}
+                      />
+                      <div
+                        className=" flex  items-center justify-center absolute top-4 right-3"
+                        onClick={() =>
+                          setPasswordShown(passwordShown ? false : true)
+                        }
+                      >
+                        {passwordShown ? (
+                          <FaRegEye size={20} color="#85929E" />
+                        ) : (
+                          <FaRegEyeSlash size={20} color="#85929E" />
+                        )}
+                      </div>
+                    </div>
                     {errors.password && touched.password && (
                       <div className="text-red-500 font-normal">
                         <span className="mr-2">↑</span>

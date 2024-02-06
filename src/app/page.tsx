@@ -33,7 +33,7 @@ const Home = () => {
     <div className="h-full w-full overflow-auto flex flex-col justify-center items-center">
       <div className="z-0 h-full w-full flex flex-col gap-3 border-l-2 border-r-2 border-gray-100 ">
         {isGuest || (
-          <h1 className="text-center font-semibold md:text-3xl text-lg capitalize p-4 ">
+          <h1 className="text-center font-semibold font-sans md:text-3xl text-lg capitalize p-4 ">
             Welcome {user[0]?.firstName} !
           </h1>
         )}

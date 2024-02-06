@@ -1,7 +1,6 @@
 "use client";
-import React, { CSSProperties } from "react";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
+import { useEffect } from "react";
 import { BsBagCheckFill } from "react-icons/bs";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -12,15 +11,18 @@ import Confetti from "react-confetti";
 
 const Success = () => {
   const dispatch = useDispatch();
-  const userData = useSelector((state: RootState) => state.userReducer);
   const orderData = useSelector((state: RootState) => state.productsReducer);
+
+  const productsSlice = useSelector(
+    (state: RootState) => state.productsReducer
+  );
 
   useEffect(() => {
     const sendMail = async () => {
       await fetch("api/email", {
         method: "POST",
         body: JSON.stringify({
-          delivery: userData,
+          delivery: productsSlice.deliveryAddress,
           order: orderData,
         }),
       });
@@ -32,7 +34,7 @@ const Success = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-pink-50">
       <Confetti />
-      <div className="md:w-[60%] w-[90%] h-[80%] p-20 text-lg font-semibold flex justify-center flex-col md:gap-20  gap-10 shadow-lg items-center bg-slate-100 rounded-2xl">
+      <div className="md:w-[60%] md:h-full  w-[90%] h-[80%] p-20 text-lg font-semibold flex justify-center flex-col md:gap-20  gap-10 shadow-lg items-center bg-slate-100 rounded-2xl">
         <p>
           <BsBagCheckFill
             size={120}

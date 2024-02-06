@@ -16,7 +16,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addUserAdressData: (state, action) => {
+    addShippingAdressData: (state, action) => {
       (Object.keys(action.payload) as Array<keyof typeof initialState>).map(
         (key) => (state[key] = action.payload[key])
       );
@@ -35,6 +35,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUserAdressData, removeUserData } = userSlice.actions;
+export const { addShippingAdressData, removeUserData } = userSlice.actions;
 
 export default userSlice.reducer;

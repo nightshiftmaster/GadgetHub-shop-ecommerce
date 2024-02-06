@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
@@ -17,7 +17,6 @@ import { Oval } from "react-loader-spinner";
 
 const LoginPage = () => {
   const { data, status } = useSession();
-
   const [passwordShown, setPasswordShown] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -27,16 +26,15 @@ const LoginPage = () => {
     (state: RootState) => state.productsReducer
   );
 
-  // if (status === "loading") {
-  //   return <Loading />;
-  // }
-
-  if (status === "authenticated" && productsSlice.cart.length !== 0) {
-    router.push("/checkout");
-  }
-  if (status === "authenticated" && productsSlice.cart.length === 0) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (status === "authenticated") {
+      if (productsSlice.cart.length !== 0) {
+        router.push("/checkout");
+      } else {
+        router.push("/");
+      }
+    }
+  }, [status, productsSlice.cart.length, router]);
 
   if (status === "unauthenticated") {
     return (

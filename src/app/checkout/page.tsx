@@ -4,8 +4,6 @@ import React from "react";
 import AdressForm from "@/app/checkout/components/AdressForm";
 import OrderPayment from "@/app/checkout/components/OrderPayment";
 import { useState } from "react";
-import { addUserAdressData } from "@/redux/features/userSlice";
-import { useDispatch } from "react-redux";
 import Stepper from "./components/Stepper";
 
 const Checkout = () => {

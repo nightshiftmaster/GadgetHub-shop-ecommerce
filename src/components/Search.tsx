@@ -33,38 +33,11 @@ const SearchBar = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-  };
-
-  const AutoComplete = (): React.ReactNode => {
-    if (!value || searchItems.length === 0) {
-      setOpen(false);
-      return;
-    }
-    setOpen(true);
-    return (
-      <ul
-        className={`absolute flex top-14 left-1 gap-10 p-10 flex-col z-20 max-w-sm  overflow-hidden shadow-lg backdrop-blur-xl cursor-pointer rounded-lg ${
-          isOpen ? "visible" : "hidden"
-        }`}
-      >
-        {searchItems?.map((item, i) => {
-          return (
-            <Link
-              href={`${BASE_API_URL}/products/${item._id}`}
-              key={i}
-              onClick={() => setValue("")}
-            >
-              <li>{item.title}</li>
-            </Link>
-          );
-        })}
-      </ul>
-    );
+    setOpen(!!e.target.value); // Open autocomplete if there's input value
   };
 
   return (
     <div className="flex xl:w-1/2 w-full text-black justify-center items-center font-light text-sm md:text-base ">
-      {/* <Modes /> */}
       <form
         action=""
         className="md:w-full w-[90%]  flex justify-center  relative "
@@ -83,15 +56,56 @@ const SearchBar = () => {
           onClick={() => {
             router.push(`/searchResultPage?search=${value}`);
             setValue("");
+            setOpen(false); // Close autocomplete after search
           }}
           className="flex items-center text-slate-400 justify-center absolute h-full  text-center right-0 md:text-base text-sm border-l-2  px-4 rounded-r-lg"
           type="button"
         >
           <span className="text-3xl/7 self-center ">&#x2315;</span>
         </button>
-        <AutoComplete />
+        <AutoComplete
+          isOpen={isOpen}
+          setOpen={setOpen}
+          setValue={setValue}
+          searchItems={searchItems}
+        />
       </form>
     </div>
+  );
+};
+
+const AutoComplete = ({
+  isOpen,
+  setOpen,
+  setValue,
+  searchItems,
+}: {
+  isOpen: boolean;
+  setOpen: any;
+  setValue: any;
+  searchItems: ProductsType;
+}) => {
+  if (!isOpen || searchItems.length === 0) {
+    return null;
+  }
+
+  return (
+    <ul
+      className={`absolute flex top-14 left-1 gap-10 p-10 flex-col z-20 max-w-sm  overflow-hidden shadow-lg backdrop-blur-xl cursor-pointer rounded-lg`}
+    >
+      {searchItems.map((item, i) => (
+        <Link
+          key={i}
+          href={`${BASE_API_URL}/products/${item._id}`}
+          onClick={() => {
+            setValue("");
+            setOpen(false);
+          }} // Clear input value
+        >
+          <li>{item.title}</li>
+        </Link>
+      ))}
+    </ul>
   );
 };
 

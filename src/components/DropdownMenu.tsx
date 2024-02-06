@@ -8,7 +8,6 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
-import { removeUserData } from "@/redux/features/userSlice";
 
 const navs = [
   {
@@ -31,7 +30,6 @@ const DropdownMenu = ({ setDropdownVisible }: { setDropdownVisible: any }) => {
   async function logOut() {
     await signOut({ callbackUrl: `${BASE_API_URL}/login` });
     dispatch(removeAllProducts());
-    dispatch(removeUserData());
   }
   return (
     <div className="w-fit h-fit">

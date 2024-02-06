@@ -75,7 +75,10 @@ const Wishlist = () => {
                 <div className="flex w-[100%] justify-start items-center gap-4 md:gap-15 ">
                   <div className="relative md:h-12 md:w-12 h-9 w-9 min-w-9">
                     {item.thumbnail && (
-                      <Link href={`${BASE_API_URL}/products/${item._id}`}>
+                      <Link
+                        href={`${BASE_API_URL}/products/${item._id}`}
+                        className=""
+                      >
                         <Image
                           src={item.thumbnail}
                           fill

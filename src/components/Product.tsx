@@ -88,7 +88,7 @@ const Product = (props: SingleProductType) => {
     <div
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
     >
-      <div className="flex flex-col h-[220px] w-[150px] gap-3 bg- justify-start items-center  md:gap-1  p-2 ">
+      <div className="flex flex-col h-[220px] w-[150px] gap-3 bg- justify-start items-center  md:gap-1  p-1  ">
         {/* <div className="flex h-1/2"> */}
         <div className="flex w-[100%] h-full ">
           <div className="h-full w-full  justify-center flex rounded-md">
@@ -127,7 +127,7 @@ const Product = (props: SingleProductType) => {
               className="hover:opacity-70"
             >
               {props.thumbnail && (
-                <div className="relative  h-full w-32 ">
+                <div className="relative  h-full w-36 ">
                   <Image
                     priority
                     src={props.thumbnail}

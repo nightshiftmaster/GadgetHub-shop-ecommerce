@@ -8,6 +8,10 @@ import useSWR from "swr";
 import { BASE_API_URL } from "@/utils/constants";
 import Loading from "@/components/Loader";
 import { fetcher } from "@/utils/fetcherSwr";
+import { useDispatch } from "react-redux";
+import { addDeliveryAddress } from "@/redux/features/productsSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const PersonalDataSchema = Yup.object().shape({
   firstName: Yup.string().required("Please fill out this field"),
@@ -25,9 +29,14 @@ const PersonalDataSchema = Yup.object().shape({
 });
 
 const AdressForm = ({ props }: { props: any }) => {
+  const dispatch = useDispatch();
   const { status } = useSession();
   const session = useSession();
   const router = useRouter();
+
+  const delivery = useSelector(
+    (state: RootState) => state.productsReducer.deliveryAddress
+  );
 
   const { data, isLoading } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
@@ -48,21 +57,29 @@ const AdressForm = ({ props }: { props: any }) => {
     <div className="flex w-full h-fit justify-center">
       <Formik
         initialValues={{
-          firstName: user?.firstName || session.data?.user?.name,
-          lastName: user?.lastName,
-          mobileNumber: user?.mobileNumber,
-          email: user?.email || session.data?.user?.email,
-          address: user?.address,
-          city: user?.city,
-          country: user?.country,
-          additionalInfo: user?.additionalInfo,
+          firstName:
+            delivery.firstName || user?.firstName || session.data?.user?.name,
+          lastName: delivery?.lastName || user?.lastName || "",
+          mobileNumber: delivery.mobileNumber || user?.mobileNumber || "",
+          email: delivery.email || user?.email || session.data?.user?.email,
+          address: delivery.address || user?.address || "",
+          city: delivery.city || user?.city || "",
+          country: delivery.country || user?.country || "",
+          additionalInfo: delivery.additionalInfo || user?.additionalInfo || "",
         }}
         validationSchema={PersonalDataSchema}
         onSubmit={() => {
           console.log("submitted from formik");
         }}
       >
-        {({ errors, touched, values, handleChange, setFieldValue }) => {
+        {({
+          errors,
+          touched,
+          values,
+          handleChange,
+          setFieldValue,
+          handleSubmit,
+        }) => {
           return (
             <div className="flex  flex-col gap-7 w-1/2 items-center  ">
               <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen xl:text-base md:text-sm text-sm">
@@ -90,7 +107,7 @@ const AdressForm = ({ props }: { props: any }) => {
                         )}
                     </div>
                     <div className="flex flex-col gap-3 w-1/2">
-                      <label htmlFor="firstName">
+                      <label htmlFor="lastName">
                         Last Name <span className="text-red-500">*</span>
                       </label>
                       <Field
@@ -100,6 +117,7 @@ const AdressForm = ({ props }: { props: any }) => {
                             ? "ring-1 ring-red-500"
                             : "ring-1"
                         }`}
+                        value={values.lastName}
                       />
                       {typeof errors.lastName === "string" &&
                       touched.lastName ? (
@@ -512,8 +530,9 @@ const AdressForm = ({ props }: { props: any }) => {
 
                   <button
                     className="uppercase md:p-3  text-xs md:text-base p-2  text-white bg-fuchsia-400 w-1/3"
-                    type="submit"
+                    type="button"
                     onClick={() => {
+                      dispatch(addDeliveryAddress(values));
                       Object.values(values)
                         .slice(0, 7)
                         .every((value) => value?.length !== 0) &&

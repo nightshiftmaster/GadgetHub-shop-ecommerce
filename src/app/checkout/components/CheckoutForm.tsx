@@ -10,10 +10,10 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { BASE_API_URL } from "@/utils/constants";
 import { OrderType } from "@/types/types";
+
 const CheckoutForm = ({ props }: { props: any }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const userSlice = useSelector((state: RootState) => state.userReducer);
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ const CheckoutForm = ({ props }: { props: any }) => {
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: `${BASE_API_URL}/success`,
-        receipt_email: userSlice.email,
+        receipt_email: productsSlice.deliveryAddress.email,
       },
     });
 

@@ -30,6 +30,7 @@ const Product = ({ params }: { params: { id: string } }) => {
         },
         body: JSON.stringify(item),
       });
+      mutate();
     } catch (e: any) {
       console.log(e.message);
     } finally {
@@ -38,6 +39,12 @@ const Product = ({ params }: { params: { id: string } }) => {
       });
     }
   };
+
+  const {
+    data: products,
+    isLoading: loadingProducts,
+    mutate,
+  } = useSWR(`/api/wishlist`, fetcher);
 
   const { data, isLoading } = useSWR(`/api/products/${params.id}`, fetcher);
 
@@ -48,9 +55,13 @@ const Product = ({ params }: { params: { id: string } }) => {
     return;
   }, [data]);
 
-  if (isLoading) {
+  if (isLoading || loadingProducts) {
     return <Loading />;
   }
+
+  const isItemInWishlist = products[0]?.wishlist?.some(
+    (item: SingleProductType) => item._id.toString() === params.id
+  );
 
   return (
     <div className="h-[100vh] w-full bg-pink-100 ">
@@ -99,9 +110,9 @@ const Product = ({ params }: { params: { id: string } }) => {
             <p className="lg:text-base md:text-sm text-xs">
               {data?.description}
             </p>
-            <div className="flex justify-start items-center  flex-col lg:flex-row  gap-6 lg:gap-14 ">
+            <div className="flex justify-center items-center  flex-col lg:flex-row  gap-6 lg:gap-20 ">
               {/* quantity counter */}
-              <div className="flex justify-center items-center md:gap-10 gap-3">
+              <div className="flex justify-around items-center md:gap-6 gap-5 ">
                 <div className="w-[15vh] lg:w-[10vh] md:h-10 h-8 flex  justify-between text-gray-500 text-sm rounded-md border cursor-pointer ">
                   <span
                     className="border-r p-1 px-3 flex justify-center items-center hover:bg-sky-400 hover:text-white hover:rounded-l-md transition-all duration-500"
@@ -123,19 +134,21 @@ const Product = ({ params }: { params: { id: string } }) => {
                     +
                   </span>
                 </div>
-                <div className="w-[70px] flex justify-start ">
+                <div className="w-[50px] flex justify-start ">
                   <h2 className="md:text-xl text-blue-500 text-base font-medium">
                     ${data?.price * count}
                   </h2>
                 </div>
               </div>
-              <div
-                className="flex gap-3 text-gray-600 cursor-pointer font-sans justify-center items-center hover:scale-110 transition-all duration-500"
-                onClick={() => handlePostWishlist(data)}
-              >
-                <span>Add to wishlist</span>
-                <BsBookmarkHeart size={30} />
-              </div>
+              {isItemInWishlist || (
+                <div
+                  className="flex gap-3 text-gray-600 cursor-pointer font-sans justify-center items-center hover:scale-110 transition-all duration-500"
+                  onClick={() => handlePostWishlist(data)}
+                >
+                  <span>Add to wishlist</span>
+                  <BsBookmarkHeart size={30} />
+                </div>
+              )}
             </div>
 
             <div className="text-xs whitespace-nowrap md:sm flex md:flex-row flex-col md:gap-10 gap-4 justify-center items-center ">

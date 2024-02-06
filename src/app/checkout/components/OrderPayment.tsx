@@ -40,7 +40,8 @@ const OrderPayment = ({ props }: { props: any }) => {
                               src={item.thumbnail}
                               fill
                               className="rounded-full"
-                              alt=""
+                              alt="item image"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                           )}
                         </div>
@@ -84,7 +85,7 @@ const OrderPayment = ({ props }: { props: any }) => {
               >
                 <Terms />
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-3 md:text-base text-sm">
                 <label>
                   {/* {props.values.termsAndConditions} */}
                   <input

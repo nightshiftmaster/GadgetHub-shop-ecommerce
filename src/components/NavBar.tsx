@@ -7,7 +7,6 @@ import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
-import { removeUserData } from "@/redux/features/userSlice";
 import { BASE_API_URL } from "@/utils/constants";
 import { FiMenu } from "react-icons/fi";
 import { IoIosClose } from "react-icons/io";
@@ -37,7 +36,6 @@ const NavBar = () => {
   async function logOut() {
     await signOut({ callbackUrl: `${BASE_API_URL}/login` });
     dispatch(removeAllProducts());
-    dispatch(removeUserData());
   }
 
   const MobileMenuIcon = () => {

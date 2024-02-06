@@ -12,7 +12,6 @@ import useSWR from "swr";
 import { signOut, useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
-import { removeUserData } from "@/redux/features/userSlice";
 import WishIcon from "./wishlist/components/WishIcon";
 
 const navs = [
@@ -52,7 +51,6 @@ const Account = () => {
   async function logOut() {
     await signOut({ callbackUrl: `${BASE_API_URL}/login` });
     dispatch(removeAllProducts());
-    dispatch(removeUserData());
   }
 
   if (isLoading) {

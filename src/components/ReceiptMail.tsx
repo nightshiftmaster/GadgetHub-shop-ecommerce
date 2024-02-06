@@ -46,109 +46,98 @@ export const AppleReceiptEmail = ({
               <sup style={supStyle}>2</sup>
             </Text>
           </Section>
+
           <Section style={informationTable}>
             <Row style={informationTableRow}>
-              <Column colSpan={2}>
-                <Row>
-                  <Column style={informationTableColumn}>
-                    <Text style={informationTableLabel}>USER ID</Text>
-                    <Link
-                      style={{
-                        ...informationTableValue,
-                        color: "#15c",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      {delivery.email}
-                    </Link>
-                  </Column>
-                </Row>
+              <Column colSpan={3}>
+                <Section>
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>NAME</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.firstName}
+                      </Text>
+                    </Column>
+                  </Row>
 
-                <Row>
-                  <Column style={informationTableColumn}>
-                    <Text style={informationTableLabel}>INVOICE DATE</Text>
-                    <Text style={informationTableValue}>18 Jan 2023</Text>
-                  </Column>
-                </Row>
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>COUNTRY</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.country}
+                      </Text>
+                    </Column>
+                  </Row>
 
-                <Row>
-                  <Column style={informationTableColumn}>
-                    <Text style={informationTableLabel}>ORDER ID</Text>
-                    <Link
-                      style={{
-                        ...informationTableValue,
-                        color: "#15c",
-                        textDecoration: "underline",
-                      }}
-                    >
-                      ML4F5L8522
-                    </Link>
-                  </Column>
-                  <Column style={informationTableColumn}>
-                    <Text style={informationTableLabel}>DOCUMENT NO.</Text>
-                    <Text style={informationTableValue}>186623754793</Text>
-                  </Column>
-                </Row>
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>CITY</Text>
+                      <Text style={informationTableValue}>{delivery.city}</Text>
+                    </Column>
+                  </Row>
+                </Section>
               </Column>
-              <Column style={informationTableColumn} colSpan={2}>
-                <Text style={informationTableLabel}>BILLED TO</Text>
-                <Text style={informationTableValue}>
-                  Visa .... 4242 (Apple Pay)
-                </Text>
-                <Text style={informationTableValue}>Zeno Rocha</Text>
-                <Text style={informationTableValue}>2125 Chestnut St</Text>
-                <Text style={informationTableValue}>
-                  San Francisco, CA 94123
-                </Text>
-                <Text style={informationTableValue}>USA</Text>
+              <Column colSpan={3}>
+                <Section>
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>LAST NAME</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.lastName}
+                      </Text>
+                    </Column>
+                  </Row>
+
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>ADDRESS</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.address}
+                      </Text>
+                    </Column>
+                  </Row>
+
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>MOBILE</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.mobileNumber}
+                      </Text>
+                    </Column>
+                  </Row>
+                </Section>
               </Column>
-            </Row>
-            <hr className="w-full h-px bg-gray-400 border-0 rounded "></hr>
-            <Row>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>FIRST NAME</Text>
-                <Text style={informationTableValue}>{delivery.firstName}</Text>
-              </Column>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>LAST NAME.</Text>
-                <Text style={informationTableValue}>{delivery.lastName}</Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>MOBILE NUMBER.</Text>
-                <Text style={informationTableValue}>
-                  {delivery.mobileNumber}
-                </Text>
-              </Column>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>EMAIL</Text>
-                <Text style={informationTableValue}>{delivery.email}</Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>CITY</Text>
-                <Text style={informationTableValue}>{delivery.city}</Text>
-              </Column>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>ADRESS</Text>
-                <Text style={informationTableValue}>{delivery.address}</Text>
-              </Column>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>COUNTRY</Text>
-                <Text style={informationTableValue}>{delivery.country}</Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column style={informationTableColumn}>
-                <Text style={informationTableLabel}>ADITIONAL INFO</Text>
-                <Text style={informationTableValue}>
-                  {delivery.additionalInfo}
-                </Text>
+              <Column colSpan={3}>
+                <Section>
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>EMAIL</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.email}
+                      </Text>
+                    </Column>
+                  </Row>
+
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}>ADDITIONAL INFO</Text>
+                      <Text style={informationTableValue}>
+                        {delivery.additionalInfo}
+                      </Text>
+                    </Column>
+                  </Row>
+
+                  <Row>
+                    <Column style={informationTableColumn}>
+                      <Text style={informationTableLabel}></Text>
+                      <Text style={informationTableValue}></Text>
+                    </Column>
+                  </Row>
+                </Section>
               </Column>
             </Row>
           </Section>
+
           <Section style={productTitleTable}>
             <Text style={productsTitle}>Purchased Items</Text>
           </Section>
@@ -158,20 +147,20 @@ export const AppleReceiptEmail = ({
                 <Column style={{ width: "64px" }}>
                   <Img
                     src={item.thumbnail}
-                    width="64"
-                    height="64"
-                    alt="HBO Max"
+                    width="55"
+                    height="55"
+                    alt="item image"
                     style={productIcon}
                   />
                 </Column>
                 <Column style={{ paddingLeft: "22px" }}>
                   <Text style={productTitle}>{item.title}</Text>
-                  <Text style={productDescription}>{item.description}</Text>
+                  {/* <Text style={productDescription}>{item.description}</Text> */}
                   {/* <Text style={productDescription}>Renews Aug 20, 2023</Text> */}
                 </Column>
 
                 <Column style={productPriceWrapper} align="right">
-                  <Text style={productPrice}>{item.price}</Text>
+                  <Text style={productPrice}>${item.price}</Text>
                 </Column>
               </Section>
             );
@@ -198,7 +187,7 @@ export const AppleReceiptEmail = ({
           </Section>
 
           <Text style={footerCopyright}>
-            Copyright © 2023 Gadget Hub. <br />{" "}
+            Copyright © 2024 Gadget Hub. <br />{" "}
             <Link href="http://localhost:3000">All rights reserved</Link>
           </Text>
         </Container>
@@ -266,6 +255,7 @@ const informationTableColumn = {
   borderColor: "white",
   borderWidth: "0px 1px 1px 0px",
   height: "44px",
+  width: "70%",
 };
 
 const informationTableLabel = {
@@ -297,29 +287,17 @@ const productsTitle = {
 
 const productIcon = {
   margin: "0 0 0 20px",
-  borderRadius: "14px",
+  borderRadius: "50px",
   border: "1px solid rgba(128,128,128,0.2)",
 };
 
-const productTitle = { fontSize: "12px", fontWeight: "600", ...resetText };
-
-const productDescription = {
-  fontSize: "12px",
-  color: "rgb(102,102,102)",
+const productTitle = {
+  fontSize: "10px",
+  fontWeight: "600",
+  width: "120px",
+  overflow: "scroll",
+  whiteSpace: "nowrap",
   ...resetText,
-};
-
-const productLink = {
-  fontSize: "12px",
-  color: "rgb(0,112,201)",
-  textDecoration: "none",
-};
-
-const divisor = {
-  marginLeft: "4px",
-  marginRight: "4px",
-  color: "rgb(51,51,51)",
-  fontWeight: 200,
 };
 
 const productPriceTotal = {
@@ -334,7 +312,8 @@ const productPriceTotal = {
 const productPrice = {
   fontSize: "12px",
   fontWeight: "600",
-  margin: "0",
+  justifyContent: "start",
+  // margin: "0",
 };
 
 const productPriceLarge = {
@@ -349,7 +328,8 @@ const productPriceWrapper = {
   display: "table-cell",
   padding: "0px 20px 0px 0px",
   width: "100px",
-  verticalAlign: "top",
+  justifyContent: "start",
+  // verticalAlign: "top",
 };
 
 const productPriceLine = { margin: "30px 0 0 0" };
@@ -364,8 +344,6 @@ const productPriceLargeWrapper = { display: "table-cell", width: "90px" };
 
 const productPriceLineBottom = { margin: "0 0 75px 0" };
 
-const block = { display: "block" };
-
 const ctaTitle = {
   display: "block",
   margin: "15px 0 0 0",
@@ -373,54 +351,9 @@ const ctaTitle = {
 
 const ctaText = { fontSize: "24px", fontWeight: "500" };
 
-const walletWrapper = { display: "table-cell", margin: "10px 0 0 0" };
-
-const walletLink = { color: "rgb(0,126,255)", textDecoration: "none" };
-
-const walletImage = {
-  display: "inherit",
-  paddingRight: "8px",
-  verticalAlign: "middle",
-};
-
-const walletBottomLine = { margin: "65px 0 20px 0" };
-
-const footerText = {
-  fontSize: "12px",
-  color: "rgb(102,102,102)",
-  margin: "0",
-  lineHeight: "auto",
-  marginBottom: "16px",
-};
-
-const footerTextCenter = {
-  fontSize: "12px",
-  color: "rgb(102,102,102)",
-  margin: "20px 0",
-  lineHeight: "auto",
-  textAlign: "center" as const,
-};
-
-const footerLink = { color: "rgb(0,115,255)" };
-
-const footerIcon = { display: "block", margin: "40px 0 0 0" };
-
-const footerLinksWrapper = {
-  margin: "8px 0 0 0",
-  textAlign: "center" as const,
-  fontSize: "12px",
-  color: "rgb(102,102,102)",
-};
-
 const footerCopyright = {
   margin: "25px 0 0 0",
   textAlign: "center" as const,
   fontSize: "12px",
   color: "rgb(102,102,102)",
-};
-
-const walletLinkText = {
-  fontSize: "14px",
-  fontWeight: "400",
-  textDecoration: "none",
 };

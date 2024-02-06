@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
   try {
     await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
-      to: "nightshiftmaster@gmail.com",
-      subject: "THIS IS MAIL",
+      to: delivery.email,
+      subject: "Receipt",
       react: AppleReceiptEmail({
         order,
         delivery,
