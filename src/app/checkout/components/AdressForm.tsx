@@ -84,7 +84,7 @@ const AdressForm = ({ props }: { props: any }) => {
             <div className="flex  flex-col gap-7 w-1/2 items-center  ">
               <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen xl:text-base md:text-sm text-sm">
                 <div className="flex w-full  justify-center items-center flex-col gap-10">
-                  <div className="flex gap-5 md:text-sm xl:text-base text-xs justify-center  font-light  md:w-[80%] px-10 md:px-0  w-screen  ">
+                  <div className="flex gap-5  justify-center  font-light  md:w-[80%] px-10 md:px-0  w-screen  ">
                     <div className="flex flex-col gap-3 w-1/2">
                       <label htmlFor="firstName">
                         First Name <span className="text-red-500">*</span>
@@ -140,7 +140,7 @@ const AdressForm = ({ props }: { props: any }) => {
                       ];
                       return (
                         <div
-                          className="flex  md:md:w-[80%]  w-screen md:px-0 px-8 flex-col gap-4 font-light md:text-sm xl:text-base text-xs"
+                          className="flex  md:md:w-[80%]  w-screen md:px-0 px-8 flex-col gap-4 font-light"
                           key={i}
                         >
                           <label>
@@ -164,7 +164,7 @@ const AdressForm = ({ props }: { props: any }) => {
                         </div>
                       );
                     })}
-                  <div className="flex  md:w-[78%] px-8 md:px-0  w-screen   md:text-base text-sm flex-col gap-4 font-light">
+                  <div className="flex  md:w-[78%] px-8 md:px-0  w-screen   flex-col gap-4 font-light">
                     <label htmlFor="country">
                       Country<span className="text-red-500">*</span>
                     </label>
