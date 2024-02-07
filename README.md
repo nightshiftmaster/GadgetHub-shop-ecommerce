@@ -38,10 +38,12 @@ GadgetHub is a comprehensive e-commerce platform catering to the needs of access
 - **API Routing**
 - **Nodemailer**
 - **Resend**
+- **React Email**
 - **Authorization**
 - **NextAuth**
 - **Tailwind**
 - **MUI**
+- **CSS**
 - **Deploy with Vercel**
 
 [Open Demo](https://gadget-hub-shop.vercel.app)
