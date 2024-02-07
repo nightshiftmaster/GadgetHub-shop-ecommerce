@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/utils/db";
 import { Product } from "@/models/Product";
-import { title } from "process";
 
 export const GET = async (request: NextRequest) => {
   const url = new URL(request.url);

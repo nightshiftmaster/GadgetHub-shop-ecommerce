@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ProductsType, SingleProductType } from "../types/types";
+import { SingleProductType } from "../types/types";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
@@ -89,7 +89,6 @@ const Product = (props: SingleProductType) => {
       className={`relative ${styles.enter} bg-white flex flex-col  justify-start  items-center p-1 border  group`}
     >
       <div className="flex flex-col h-[220px] w-[150px] gap-3 bg- justify-start items-center  md:gap-1  p-1  ">
-        {/* <div className="flex h-1/2"> */}
         <div className="flex w-[100%] h-full ">
           <div className="h-full w-full  justify-center flex rounded-md">
             {session.status === "unauthenticated" || isAccountCreated || (

@@ -83,7 +83,6 @@ const NavBar = () => {
               ) : (
                 navs[4].icon
               )}
-              {/* {navs[4].icon} */}
               <input
                 type="button"
                 className="uppercase text-base"

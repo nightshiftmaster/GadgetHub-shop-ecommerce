@@ -1,10 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
 import Image from "next/image";
-import Button from "@/components/Button";
 import Link from "next/link";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { removeProduct } from "@/redux/features/productsSlice";

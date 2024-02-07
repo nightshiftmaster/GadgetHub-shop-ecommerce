@@ -1,9 +1,7 @@
-import { Product } from "@/models/Product";
 import { connect } from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/User";
 import { getAuthSession } from "@/utils/auth";
-import { UserType } from "@/types/types";
 
 export const GET = async () => {
   const session = await getAuthSession();

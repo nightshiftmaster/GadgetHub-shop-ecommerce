@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gadget Hub
 
-## Getting Started
+GadgetHub is a comprehensive e-commerce platform catering to the needs of accessory, gadget, and various goods enthusiasts. This full-stack project is built using Next.js, React with TypeScript, Redux, MongoDB, and other cutting-edge technologies.
 
-First, run the development server:
+## Sections
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **E-commerce Platform**: GadgetHub provides a user-friendly interface for customers to browse and purchase a products.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Product Categories**: The platform offers a diverse selection of accessories, gadgets, and other goods, organized into categories for easy navigation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **User Authentication**: Users can create accounts, log in, and securely manage their profiles, orders, and preferences.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Stripe Payment Integration**: GadgetHub securely processes payments using Stripe, enabling users to make purchases with their credit or debit cards.
 
-## Learn More
+- **Product Search**: GadgetHub features a search functionality, allowing users to quickly find specific products or browse through relevant categories
 
-To learn more about Next.js, take a look at the following resources:
+- **Shopping Cart**: Customers can add items to their shopping carts, review their selections, and proceed to checkout for seamless purchasing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Wishlist**: Users have the option to save desired items to their wishlist for future reference or purchase.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **User Dashboard**: Users have access to a control panel to manage their purchases and wishlists.
 
-## Deploy on Vercel
+- **Responsive Design**: The platform is built with responsiveness in mind, ensuring a seamless experience across devices of all sizes, including desktops, tablets, and smartphones.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Development Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Next**
+- **React**
+- **TypeScript**
+- **Redux**
+- **React Context**
+- **MongoDB**
+- **Mongoose**
+- **Stripe**
+- **Forms, Forms Validation (Yup, Formik)**
+- **SSR/CSR**
+- **SWR**
+- **API Routing**
+- **Nodemailer**
+- **Resend**
+- **Authorization**
+- **NextAuth**
+- **Tailwind**
+- **MUI**
+- **Deploy with Vercel**
+
+[Open Demo](https://gadget-hub-shop.vercel.app)
+
+<!-- ![image](./public/demo.gif) -->
+
+## Setup
+
+1. Clone the repo
+
+   ```shell
+    git clone https://github.com/nightshiftmaster/gadget-shop
+   ```
+
+2. Change directory to the project directory
+
+   ```shell
+   cd gadget-shop
+   ```
+
+3. Install the dependencies
+
+   ```shell
+    npm install
+   ```
+
+4. Run the app
+
+   ```shell
+   npm run dev
+   ```

@@ -1,17 +1,14 @@
 "use client";
-import Featured from "@/components/layers/Featured";
-import TopSales from "@/components/layers/TopSales";
-import Banner from "@/components/layers/Banner";
-import NewArrivals from "@/components/layers/NewArivals";
-import ShopByCategory from "@/components/layers/ShopByCategory";
+import Featured from "@/components/Featured";
+import TopSales from "@/components/TopSales";
+import Banner from "@/components/Banner";
+import NewArrivals from "@/components/NewArivals";
+import ShopByCategory from "@/components/ShopByCategory";
 import { BASE_API_URL } from "@/utils/constants";
-import { ProductsType } from "@/types/types";
-import dataBase from "@/utils/dataBase";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/utils/fetcherSwr";
 import Loading from "@/components/Loader";
-import { use } from "react";
 
 const Home = () => {
   const session = useSession();
@@ -42,24 +39,6 @@ const Home = () => {
         <Featured data={data} />
         <TopSales data={data} />
         <NewArrivals data={data} />
-        {/* <button
-          className="bg-red-300 text-2xl text-white p-10"
-          onClick={async () => {
-            try {
-              await fetch(`${BASE_API_URL}/api/products`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(dataBase),
-              });
-            } catch (e) {
-              console.log(e);
-            }
-          }}
-        >
-          Insert data to db
-        </button> */}
       </div>
     </div>
   );

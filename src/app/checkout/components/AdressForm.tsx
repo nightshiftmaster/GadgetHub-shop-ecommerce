@@ -72,14 +72,7 @@ const AdressForm = ({ props }: { props: any }) => {
           console.log("submitted from formik");
         }}
       >
-        {({
-          errors,
-          touched,
-          values,
-          handleChange,
-          setFieldValue,
-          handleSubmit,
-        }) => {
+        {({ errors, touched, values, handleChange, setFieldValue }) => {
           return (
             <div className="flex  flex-col gap-7 w-1/2 items-center  ">
               <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen xl:text-base md:text-sm text-sm">

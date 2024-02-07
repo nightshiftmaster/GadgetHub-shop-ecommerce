@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { EmailTemplate } from '../../components/EmailTemplate';
 import { Resend } from "resend";
 import { AppleReceiptEmail } from "@/components/ReceiptMail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+resend.domains.create({ name: "nightshift.com" });
 
 export async function POST(request: NextRequest) {
   const data = await request.json();
@@ -12,7 +13,7 @@ export async function POST(request: NextRequest) {
 
   try {
     await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
+      from: "nightshift.com",
       to: delivery.email,
       subject: "Receipt",
       react: AppleReceiptEmail({

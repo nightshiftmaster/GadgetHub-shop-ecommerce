@@ -1,5 +1,4 @@
-import * as React from "react";
-import { styled, alpha, Box } from "@mui/system";
+import { styled, alpha } from "@mui/system";
 import { Slider as BaseSlider, sliderClasses } from "@mui/base/Slider";
 
 const blue = {

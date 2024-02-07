@@ -1,5 +1,4 @@
 "use client";
-import { Suspense } from "react";
 import { Oval } from "react-loader-spinner";
 
 const SuspenseProvider = ({ children }: { children: React.ReactNode }) => {

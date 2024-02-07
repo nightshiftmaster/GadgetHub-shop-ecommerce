@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { BASE_API_URL } from "@/utils/constants";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";

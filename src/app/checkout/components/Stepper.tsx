@@ -18,7 +18,7 @@ const Stepper = ({ step }: { step: number }) => {
           step === 1 && "border-t-2"
         }`}
       >
-        {/* rounnd with number */}
+        {/* round with number */}
         <div
           className={`flex ${
             step === 1 ? "bg-cyan-500" : "bg-zinc-300"

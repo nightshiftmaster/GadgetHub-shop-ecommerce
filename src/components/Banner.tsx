@@ -1,13 +1,11 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
-import { ProductsType } from "@/types/types";
+import "swiper/css";
+import "swiper/css/pagination";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const data = [
   "https://www.gadstyle.com/wp-content/uploads/2023/06/Ugreen-Banner-Design-Gadstyle-.webp",

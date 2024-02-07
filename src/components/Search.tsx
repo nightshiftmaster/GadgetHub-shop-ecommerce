@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductsType } from "@/types/types";
 import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
