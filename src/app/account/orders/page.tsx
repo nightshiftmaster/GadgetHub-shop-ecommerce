@@ -54,9 +54,9 @@ const Orders = () => {
                     router.push(`/account/orders/${order._id}`);
                   }}
                 >
-                  <td className="flex items-center py-5  "># {order._id}</td>
+                  <td className="flex items-center py-5  "># {order?._id}</td>
                   <td className="items-center py-5 px-4 ">
-                    {order.createdAt.slice(0, 9).split("-").reverse().join("/")}
+                    {order?.createdAt.split(",")[0]}
                   </td>
                   <td className=" text-blue-500 py-5 px-3">Completed</td>
                   <td className=" items-center font-semibold text-stone-700 py-5 px-4 ">
