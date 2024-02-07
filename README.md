@@ -2,7 +2,7 @@
 
 GadgetHub is a comprehensive e-commerce platform catering to the needs of accessory, gadget, and various goods enthusiasts. This full-stack project is built using Next.js, React with TypeScript, Redux, MongoDB, and other cutting-edge technologies.
 
-## Sections
+## Key Features
 
 - **E-commerce Platform**: GadgetHub provides a user-friendly interface for customers to browse and purchase a products.
 
