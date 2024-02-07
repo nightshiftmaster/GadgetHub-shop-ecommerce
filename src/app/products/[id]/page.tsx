@@ -69,7 +69,7 @@ const Product = ({ params }: { params: { id: string } }) => {
         <div
           className={`flex md:w-[90%] md:h-full max-w-[1250px] p-3 xl:h-[80%] md:h-fill w-[60vh] h-[90vh] flex-col md:gap-2  md:flex-row ${styles.enter} justify-around items-center bg-slate-100 shadow-lg rounded-xl`}
         >
-          <div className="md:w-[40%] md:shadow-md xl:h-[70%] md:h-[60%] w-[80%] h-1/3 flex flex-col gap-3 relative rounded-md ">
+          <div className="md:w-[40%] md:shadow-md xl:h-[80%] md:h-[70%] w-[80%] h-1/3 flex flex-col gap-3 relative rounded-md ">
             <div className="md:w-full md:h-full w-full h-full relative ">
               {/* main image */}
               <Image
@@ -103,8 +103,8 @@ const Product = ({ params }: { params: { id: string } }) => {
           </div>
 
           {/* desc */}
-          <div className="flex md:w-1/2 xl:h-[70%] md:h-[60%] w-[80%] h-[70%] md:shadow-sm bg-gray-50   md:border-2 justify-center  rounded-md  p-12  flex-col xl:gap-14 md:gap-10 gap-5 text-center md:text-base text-xs">
-            <h1 className="lg:text-2xl md:text-xl text-xs font-bold">
+          <div className="flex md:w-1/2 xl:h-[80%] md:h-[70%] w-[80%] h-[70%] md:shadow-sm bg-gray-50   md:border-2 justify-center  rounded-md  p-12  flex-col xl:gap-14 md:gap-10 gap-5 text-center md:text-base text-xs">
+            <h1 className="lg:text-2xl md:text-xl text-xs font-bold capitalize">
               {data?.title}
             </h1>
             <p className="lg:text-base md:text-sm text-xs">
@@ -113,7 +113,7 @@ const Product = ({ params }: { params: { id: string } }) => {
             <div className="flex justify-center items-center  flex-col lg:flex-row  gap-6 lg:gap-20 ">
               {/* quantity counter */}
               <div className="flex justify-around items-center md:gap-6 gap-5 ">
-                <div className="w-[15vh] lg:w-[10vh] md:h-10 h-8 flex  justify-between text-gray-500 text-sm rounded-md border cursor-pointer ">
+                <div className="w-[15vh]  lg:w-[13vh] md:h-10 h-8 flex  justify-between text-gray-500 text-sm rounded-md border cursor-pointer ">
                   <span
                     className="border-r p-1 px-3 flex justify-center items-center hover:bg-sky-400 hover:text-white hover:rounded-l-md transition-all duration-500"
                     onClick={() =>

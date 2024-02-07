@@ -132,7 +132,7 @@ const Product = (props: SingleProductType) => {
                     src={props.thumbnail}
                     alt="image"
                     fill
-                    className="object-cover hover:scale-110 transition-all duration-700 z-10"
+                    className="object-cover hover:scale-105 transition-all duration-500 z-10"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
@@ -144,7 +144,7 @@ const Product = (props: SingleProductType) => {
         {/* price + name */}
         <div className="flex flex-col justify-center  items-center md:gap-2 gap-3 p-1 text-center md:h-1/3 h-1/3 group w-full flex-1 ">
           <hr className="w-[10vh]  h-px bg-gray-300 border-0 mt-1  "></hr>
-          <h1 className="flex justify-center text-ellipsis md:group-hover:invisible overflow-hidden w-2/3 items-start lg:text-xs text-xs font-semibold text-gray-800 basis-8 shrink-0 ">
+          <h1 className="flex justify-center capitalize text-ellipsis md:group-hover:invisible overflow-hidden w-2/3 items-start lg:text-xs text-xs font-semibold text-gray-800 basis-8 shrink-0 ">
             <Link href={`${BASE_API_URL}/products/${props._id}`}>
               {props.title}
             </Link>
