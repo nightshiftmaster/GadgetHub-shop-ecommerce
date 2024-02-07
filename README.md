@@ -42,7 +42,6 @@ GadgetHub is a comprehensive e-commerce platform catering to the needs of access
 - **Authorization**
 - **NextAuth**
 - **Tailwind**
-- **MUI**
 - **CSS**
 - **Deploy with Vercel**
 
