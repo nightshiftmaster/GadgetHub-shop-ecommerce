@@ -24,11 +24,10 @@ GadgetHub is a comprehensive e-commerce platform catering to the needs of access
 
 ## Development Stack
 
-- **Next**
+- **Next.js**
 - **React**
 - **TypeScript**
 - **Redux**
-- **React Context**
 - **MongoDB**
 - **Mongoose**
 - **Stripe**
