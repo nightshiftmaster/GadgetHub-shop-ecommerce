@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { BsBookmarkHeart } from "react-icons/bs";
 import { SingleProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
+import { useSession } from "next-auth/react";
 
 var _ = require("lodash");
 
@@ -19,6 +20,7 @@ const Product = ({ params }: { params: { id: string } }) => {
   const [mainImg, setMainImg] = useState("");
   const [count, setCount] = useState(1);
   const dispatch = useDispatch();
+  const session = useSession();
   const router = useRouter();
 
   const handlePostWishlist = async (item: SingleProductType) => {
@@ -40,6 +42,11 @@ const Product = ({ params }: { params: { id: string } }) => {
     }
   };
 
+  const { data: userData } = useSWR(
+    `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
+    fetcher
+  );
+
   const {
     data: products,
     isLoading: loadingProducts,
@@ -47,6 +54,8 @@ const Product = ({ params }: { params: { id: string } }) => {
   } = useSWR(`/api/wishlist`, fetcher);
 
   const { data, isLoading } = useSWR(`/api/products/${params.id}`, fetcher);
+
+  const isUserCreated = userData?.length !== 0;
 
   useEffect(() => {
     if (data) {
@@ -69,7 +78,7 @@ const Product = ({ params }: { params: { id: string } }) => {
         <div
           className={`flex md:w-[90%] md:h-full max-w-[1250px] p-3 xl:h-[80%] md:h-fill w-[60vh] h-[90vh] flex-col md:gap-2  md:flex-row ${styles.enter} justify-around items-center bg-slate-100 shadow-lg rounded-xl`}
         >
-          <div className="md:w-[40%] md:shadow-md xl:h-[80%] md:h-[70%] w-[80%] h-1/3 flex flex-col gap-3 relative rounded-md ">
+          <div className="md:w-[40%] md:shadow-md xl:h-[470px] md:h-[70%] w-[80%] h-1/3 flex flex-col gap-3 relative rounded-md ">
             <div className="md:w-full md:h-full w-full h-full relative ">
               {/* main image */}
               <Image
@@ -103,8 +112,8 @@ const Product = ({ params }: { params: { id: string } }) => {
           </div>
 
           {/* desc */}
-          <div className="flex md:w-1/2 xl:h-[80%] md:h-[70%] w-[80%] h-[70%] md:shadow-sm bg-gray-50   md:border-2 justify-center  rounded-md  p-12  flex-col xl:gap-14 md:gap-10 gap-5 text-center md:text-base text-xs">
-            <h1 className="lg:text-2xl md:text-xl text-xs font-bold capitalize">
+          <div className="flex md:w-1/2 xl:h-fit md:h-[70%] w-[80%] h-[70%] md:shadow-sm bg-gray-50   md:border-2 justify-center  rounded-md  p-12  flex-col xl:gap-14 md:gap-10 gap-5 text-center md:text-base text-xs">
+            <h1 className="lg:text-2xl md:text-xl text-xs font-bold ">
               {data?.title}
             </h1>
             <p className="lg:text-base md:text-sm text-xs">
@@ -140,15 +149,17 @@ const Product = ({ params }: { params: { id: string } }) => {
                   </h2>
                 </div>
               </div>
-              {isItemInWishlist || (
-                <div
-                  className="flex gap-3 text-gray-600 cursor-pointer font-sans justify-center items-center hover:scale-110 transition-all duration-500"
-                  onClick={() => handlePostWishlist(data)}
-                >
-                  <span>Add to wishlist</span>
-                  <BsBookmarkHeart size={30} />
-                </div>
-              )}
+              {/* withlist icon */}
+              {isItemInWishlist ||
+                (isUserCreated && (
+                  <div
+                    className="flex gap-3 text-gray-600 cursor-pointer font-sans justify-center items-center hover:scale-110 transition-all duration-500"
+                    onClick={() => handlePostWishlist(data)}
+                  >
+                    <span>Add to wishlist</span>
+                    <BsBookmarkHeart size={30} />
+                  </div>
+                ))}
             </div>
 
             <div className="text-xs whitespace-nowrap md:sm flex md:flex-row flex-col md:gap-10 gap-4 justify-center items-center ">

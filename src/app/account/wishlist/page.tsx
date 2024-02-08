@@ -73,22 +73,20 @@ const Wishlist = () => {
             >
               <div className="flex justify-between md:gap-10 gap-2 w-full ">
                 <div className="flex w-[100%] justify-start items-center gap-4 md:gap-15 ">
-                  <div className="relative md:h-12 md:w-12 h-9 w-9 min-w-9">
-                    {item.thumbnail && (
-                      <Link
-                        href={`${BASE_API_URL}/products/${item._id}`}
-                        className=""
-                      >
-                        <Image
-                          src={item.thumbnail}
-                          fill
-                          className="rounded-full"
-                          alt=""
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      </Link>
-                    )}
-                  </div>
+                  {item.thumbnail && (
+                    <Link
+                      href={`${BASE_API_URL}/products/${item._id}`}
+                      className="relative md:h-12 md:w-12 h-9 w-9 min-w-9"
+                    >
+                      <Image
+                        src={item.thumbnail}
+                        fill
+                        className="rounded-full"
+                        alt=""
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </Link>
+                  )}
                   <Link href={`${BASE_API_URL}/products/${item._id}`}>
                     <h1 className="whitespace-nowrap">{item.title}</h1>
                   </Link>

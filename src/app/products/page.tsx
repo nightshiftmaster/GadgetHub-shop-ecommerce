@@ -10,21 +10,6 @@ import FilterByPrice from "./components/FilterByPrice";
 import SortProducts from "./components/SortProducts";
 import FilterByCategory from "./components/FilterByCategory";
 
-const sortBy = {
-  all: (item: SingleProductType) => item,
-  topSales: (item: SingleProductType) => item.rating > 4.5,
-  newArrivals: (item: SingleProductType) => item.stock > 100,
-  smartphones: (item: SingleProductType) => item.category === "smartphones",
-  laptops: (item: SingleProductType) => item.category === "laptops",
-  sunglasses: (item: SingleProductType) => item.category === "sunglasses",
-  watches: (item: SingleProductType) =>
-    item.category === "mens-watches" || item.category === "womens-watches",
-  cosmetics: (item: SingleProductType) =>
-    item.category === "fragrances" || item.category === "skincare",
-  mensWear: (item: SingleProductType) => item.category.startsWith("mens"),
-  womensWear: (item: SingleProductType) => item.category.startsWith("womens"),
-};
-
 const getData = async () => {
   const res = await fetch(`${BASE_API_URL}/api/products`, {
     cache: "no-store",

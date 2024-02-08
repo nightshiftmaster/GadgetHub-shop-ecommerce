@@ -41,6 +41,12 @@ const SearchBar = () => {
       <form
         action=""
         className="md:w-full w-[90%]  flex justify-center  relative "
+        onSubmit={(e) => {
+          e.preventDefault();
+          router.push(`/searchResultPage?search=${value}`);
+          setValue("");
+          setOpen(false);
+        }}
       >
         <input
           className="h-5 text-sm  border-1 rounded-lg lg:p-6  p-5 w-full focus: outline-none "
