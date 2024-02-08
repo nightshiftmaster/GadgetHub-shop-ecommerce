@@ -121,7 +121,7 @@ const Products = () => {
   try {
     return (
       <div className="w-full h-full  flex justify-center items-center  ">
-        <div className="flex flex-col md:gap-5 mt-5 gap-3 p-2 justify-center items-center max-w-[1250px] w-full ">
+        <div className="flex flex-col md:gap-5 mt-4 md:mt-0 gap-3 p-2 justify-center items-center max-w-[1250px] w-full ">
           <div className="md:hidden flex w-1/2">
             <FilterByCategory setCategory={setCategory} setFilter={setFilter} />
           </div>

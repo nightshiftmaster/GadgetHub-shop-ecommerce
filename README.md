@@ -46,7 +46,7 @@ GadgetHub is a comprehensive e-commerce platform catering to the needs of access
 
 [Open Demo](https://gadget-hub-shop.vercel.app)
 
-<!-- ![image](./public/demo.gif) -->
+![image](./public/demo.gif)
 
 ## Setup
 
