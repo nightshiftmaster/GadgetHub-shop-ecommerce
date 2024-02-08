@@ -34,7 +34,7 @@ GadgetHub is a comprehensive e-commerce platform catering to the needs of access
 - **Forms, Forms Validation (Yup, Formik)**
 - **SSR/CSR**
 - **SWR**
-- **API Routing**
+- **REST API Routing**
 - **Nodemailer**
 - **Resend**
 - **React Email**
