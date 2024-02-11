@@ -6,13 +6,12 @@ import { Page, defineConfig, devices } from "@playwright/test";
 
 let browser;
 let page;
+test.beforeAll(async () => {
+  browser = await chromium.launch();
+  page = await browser.newPage();
+});
 
 test.describe("testing applicatrion", () => {
-  test.beforeAll(async () => {
-    browser = await chromium.launch();
-    page = await browser.newPage();
-  });
-
   test("testing home page", async ({ page }: { page: any }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/", { waitUntil: "networkidle" });
