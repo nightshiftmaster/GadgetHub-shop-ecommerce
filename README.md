@@ -1,3 +1,5 @@
+[![Playwright Tests](https://github.com/nightshiftmaster/gadget-shop/actions/workflows/playwright.yml/badge.svg)](https://github.com/nightshiftmaster/gadget-shop/actions/workflows/playwright.yml)
+
 # Gadget Hub
 
 GadgetHub is a comprehensive e-commerce platform catering to the needs of accessory, gadget, and various goods enthusiasts. This full-stack project is built using Next.js, React with TypeScript, Redux, MongoDB, and other cutting-edge technologies.
