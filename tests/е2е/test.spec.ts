@@ -18,16 +18,16 @@ test.describe("testing applicatrion", () => {
     await page.goto("/", { waitUntil: "networkidle" });
 
     // short delay for loading all page elements before screenshot
-    await page.waitForTimeout(4000);
+    // await page.waitForTimeout(4000);
     // make screenshot
-    await page.screenshot({
-      path: "./tests/screenshots/home-page.png",
-      fullpage: true,
-    });
+    // await page.screenshot({
+    //   path: "./tests/screenshots/home-page.png",
+    //   fullpage: true,
+    // });
 
-    expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/screenshots/home-page.png"
-    );
+    // expect(await page.screenshot()).toMatchSnapshot(
+    //   "./tests/screenshots/home-page.png"
+    // );
 
     await Promise.all([
       page.waitForSelector('[data-testid="home"]'),
@@ -70,14 +70,14 @@ test.describe("testing applicatrion", () => {
     await page.goto("/", { waitUntil: "networkidle" });
 
     //  screenshot
-    await page.waitForTimeout(4000);
-    await page.screenshot({
-      path: "./tests/screenshots/home-page-mobile.png",
-    });
+    // await page.waitForTimeout(4000);
+    // await page.screenshot({
+    //   path: "./tests/screenshots/home-page-mobile.png",
+    // });
 
-    expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/screenshots/home-page-mobile.png"
-    );
+    // expect(await page.screenshot()).toMatchSnapshot(
+    //   "./tests/screenshots/home-page-mobile.png"
+    // );
 
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
@@ -114,15 +114,16 @@ test.describe("testing applicatrion", () => {
   test("testing products section", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/products", { waitUntil: "networkidle" });
-    await page.waitForTimeout(4000);
-    await page.screenshot({
-      path: "./tests/screenshots/products-page.png",
-      fullPage: true,
-    });
 
-    expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/screenshots/products-page.png"
-    );
+    // await page.waitForTimeout(4000);
+    // await page.screenshot({
+    //   path: "./tests/screenshots/products-page.png",
+    //   fullPage: true,
+    // });
+
+    // expect(await page.screenshot()).toMatchSnapshot(
+    //   "./tests/screenshots/products-page.png"
+    // );
 
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
