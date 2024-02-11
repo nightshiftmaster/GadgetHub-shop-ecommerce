@@ -19,16 +19,16 @@ test.describe("testing applicatrion", () => {
     });
 
     // short delay for loading all page elements before screenshot
-    // await page.waitForTimeout(4000);
+    await page.waitForTimeout(4000);
     // make screenshot
-    // await page.screenshot({
-    //   path: "./tests/screenshots/home-page.png",
-    //   fullpage: true,
-    // });
+    await page.screenshot({
+      path: "./tests/screenshots/home-page.png",
+      fullpage: true,
+    });
 
-    // expect(await page.screenshot()).toMatchSnapshot(
-    //   "./tests/screenshots/home-page.png"
-    // );
+    expect(await page.screenshot()).toMatchSnapshot(
+      "./tests/screenshots/home-page.png"
+    );
 
     await Promise.all([
       page.waitForSelector('[data-testid="home"]'),
@@ -72,15 +72,15 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    //  screenshot
-    // await page.waitForTimeout(4000);
-    // await page.screenshot({
-    //   path: "./tests/screenshots/home-page-mobile.png",
-    // });
+    screenshot;
+    await page.waitForTimeout(4000);
+    await page.screenshot({
+      path: "./tests/screenshots/home-page-mobile.png",
+    });
 
-    // expect(await page.screenshot()).toMatchSnapshot(
-    //   "./tests/screenshots/home-page-mobile.png"
-    // );
+    expect(await page.screenshot()).toMatchSnapshot(
+      "./tests/screenshots/home-page-mobile.png"
+    );
 
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
@@ -92,25 +92,25 @@ test.describe("testing applicatrion", () => {
 
     await Promise.all([
       page.getByRole("link", { name: "products" }).click(),
-      page.waitForURL("/products"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/products"),
       page.waitForSelector('[data-testid="products"]'),
     ]);
     await Promise.all([
       openIcon.click(),
       page.getByRole("link", { name: "contact" }).click(),
-      page.waitForURL("/contact"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/contact"),
       page.waitForSelector('[data-testid="contact"]'),
     ]);
     await Promise.all([
       openIcon.click(),
       page.getByRole("link", { name: "cart" }).click(),
-      page.waitForURL("/cart"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/cart"),
       page.waitForSelector('[data-testid="cart"]'),
     ]);
     await Promise.all([
       openIcon.click(),
       page.getByRole("button", { name: "Login" }).click(),
-      page.waitForURL("/login"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/login"),
       page.waitForSelector('[data-testid="login"]'),
     ]);
   });
@@ -120,15 +120,15 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    // await page.waitForTimeout(4000);
-    // await page.screenshot({
-    //   path: "./tests/screenshots/products-page.png",
-    //   fullPage: true,
-    // });
+    await page.waitForTimeout(4000);
+    await page.screenshot({
+      path: "./tests/screenshots/products-page.png",
+      fullPage: true,
+    });
 
-    // expect(await page.screenshot()).toMatchSnapshot(
-    //   "./tests/screenshots/products-page.png"
-    // );
+    expect(await page.screenshot()).toMatchSnapshot(
+      "./tests/screenshots/products-page.png"
+    );
 
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
