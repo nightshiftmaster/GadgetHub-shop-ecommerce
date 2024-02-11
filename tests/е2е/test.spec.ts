@@ -26,6 +26,8 @@ test.describe("testing applicatrion", () => {
       fullpage: true,
     });
 
+    await expect(page).toHaveScreenshot();
+
     expect(await page.screenshot()).toMatchSnapshot(
       "./tests/screenshots/home-page.png"
     );
@@ -46,22 +48,22 @@ test.describe("testing applicatrion", () => {
     await page.goto("https://gadget-hub-shop.vercel.app");
     await Promise.all([
       page.getByRole("link", { name: "products" }).click(),
-      page.waitForURL("/products"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/products"),
       page.waitForSelector('[data-testid="products"]'),
     ]);
     await Promise.all([
       page.getByRole("link", { name: "contact" }).click(),
-      page.waitForURL("/contact"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/contact"),
       page.waitForSelector('[data-testid="contact"]'),
     ]);
     await Promise.all([
       page.getByRole("link", { name: "cart" }).click(),
-      page.waitForURL("/cart"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/cart"),
       page.waitForSelector('[data-testid="cart"]'),
     ]);
     await Promise.all([
       page.getByRole("link", { name: "login" }).click(),
-      page.waitForURL("/login"),
+      page.waitForURL("https://gadget-hub-shop.vercel.app/login"),
       page.waitForSelector('[data-testid="login"]'),
     ]);
   });
@@ -72,7 +74,6 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    screenshot;
     await page.waitForTimeout(4000);
     await page.screenshot({
       path: "./tests/screenshots/home-page-mobile.png",
