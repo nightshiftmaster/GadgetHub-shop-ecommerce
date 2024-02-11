@@ -14,7 +14,9 @@ test.beforeAll(async () => {
 test.describe("testing applicatrion", () => {
   test("testing home page", async ({ page }: { page: any }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto("/", { waitUntil: "networkidle" });
+    await page.goto("https://gadget-hub-shop.vercel.app", {
+      waitUntil: "networkidle",
+    });
 
     // short delay for loading all page elements before screenshot
     // await page.waitForTimeout(4000);
@@ -41,7 +43,7 @@ test.describe("testing applicatrion", () => {
   });
 
   test("testing navbar", async ({ page }: { page: Page }) => {
-    await page.goto("/");
+    await page.goto("https://gadget-hub-shop.vercel.app");
     await Promise.all([
       page.getByRole("link", { name: "products" }).click(),
       page.waitForURL("/products"),
@@ -66,7 +68,9 @@ test.describe("testing applicatrion", () => {
 
   test("testing navbar mobile", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto("/", { waitUntil: "networkidle" });
+    await page.goto("https://gadget-hub-shop.vercel.app", {
+      waitUntil: "networkidle",
+    });
 
     //  screenshot
     // await page.waitForTimeout(4000);
@@ -112,7 +116,9 @@ test.describe("testing applicatrion", () => {
   });
   test("testing products section", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto("/products", { waitUntil: "networkidle" });
+    await page.goto("https://gadget-hub-shop.vercel.app/products", {
+      waitUntil: "networkidle",
+    });
 
     // await page.waitForTimeout(4000);
     // await page.screenshot({
