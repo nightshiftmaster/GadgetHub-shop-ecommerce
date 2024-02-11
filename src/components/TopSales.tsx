@@ -7,7 +7,10 @@ const TopSales = ({ data }: { data: ProductsType }) => {
   const router = useRouter();
 
   return (
-    <div className="w-full flex justify-center items-center">
+    <div
+      className="w-full flex justify-center items-center"
+      data-testid="top-sales"
+    >
       <div className="text-center flex flex-col w-[1250px] bg-lime-50 md:text-start pb-10">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center justify-start w-[80%]">

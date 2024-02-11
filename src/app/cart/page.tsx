@@ -18,7 +18,10 @@ const Cart = () => {
   const products = productsSlice.cart;
 
   return (
-    <div className="h-screen flex justify-center items-center bg-slate-50  ">
+    <div
+      className="h-screen flex justify-center items-center bg-slate-50"
+      data-testid="cart"
+    >
       {products?.length === 0 ? (
         <div className="absolute h-full w-screen top-0 left-0">
           <div className="flex h-full flex-col justify-center mt-14 items-center gap-2">

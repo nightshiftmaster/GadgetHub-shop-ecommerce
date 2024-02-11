@@ -55,7 +55,10 @@ const Contacts = () => {
   });
 
   return (
-    <div className="h-screen w-full  flex  justify-center items-center bg-gray-50 ">
+    <div
+      className="h-screen w-full  flex  justify-center items-center bg-gray-50"
+      data-testid="contact"
+    >
       <div className="md:h-[90vh]  gap-5 md:text-base text-sm h-full bg-white shadow-xl rounded-xl  text-center flex items-center justify-center flex-col xl:w-[80vh] w-full ">
         <div>
           <h1 className="font-bold text-gray-700 md:text-3xl text-2xl">

@@ -51,9 +51,12 @@ const LoginPage = () => {
           }
         }}
       >
-        {({ values, isSubmitting }) => {
+        {({ isSubmitting }) => {
           return (
-            <div className="p-5 w-full flex items-center justify-center h-screen bg-gray-50">
+            <div
+              className="p-5 w-full flex items-center justify-center h-screen bg-gray-50"
+              data-testid="login"
+            >
               <div className="md:h-[90vh] h-full shadow-xl bg-white rounded-lg text-center flex items-center justify-center flex-col xl:w-[60vh] w-full ">
                 {/* form */}
                 {error && (

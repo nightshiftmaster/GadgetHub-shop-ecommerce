@@ -73,7 +73,7 @@ const Product = ({ params }: { params: { id: string } }) => {
   );
 
   return (
-    <div className="h-[100vh] w-full bg-pink-100 ">
+    <div className="h-[100vh] w-full bg-pink-100" data-testid="product-page">
       <div className="flex md:flex-row justify-center items-center h-full w-screen">
         <div
           className={`flex md:w-[90%] md:h-full max-w-[1250px] p-3 xl:h-[80%] md:h-fill w-[60vh] h-[90vh] flex-col md:gap-2  md:flex-row ${styles.enter} justify-around items-center bg-slate-100 shadow-lg rounded-xl`}

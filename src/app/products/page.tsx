@@ -120,14 +120,20 @@ const Products = () => {
 
   try {
     return (
-      <div className="w-full h-full  flex justify-center items-center  ">
-        <div className="flex flex-col md:gap-5 mt-4 md:mt-0 gap-3 p-2 justify-center items-center max-w-[1250px] w-full ">
+      <div
+        className="w-full h-full flex justify-center items-center"
+        data-testid="products"
+      >
+        <div className="flex flex-col md:gap-5  gap-3 p-2 justify-center items-center max-w-[1250px] w-full ">
           <div className="md:hidden flex w-1/2">
             <FilterByCategory setCategory={setCategory} setFilter={setFilter} />
           </div>
           <div className="flex gap-10  w-full ">
             {/* filters */}
-            <div className="md:flex hidden flex-col gap-10 justify-start items-start ">
+            <div
+              className="md:flex hidden flex-col gap-10 justify-start items-start"
+              data-testid="products-filter"
+            >
               <FilterByCategory
                 setCategory={setCategory}
                 setFilter={setFilter}
@@ -143,7 +149,10 @@ const Products = () => {
               <SortProducts setFilter={setFilter} />
             </div>
 
-            <div className="flex flex-col w-full justify-center items-center  gap-6 ">
+            <div
+              className="flex flex-col w-full justify-center items-center  gap-6 "
+              data-testid="products-banner"
+            >
               <div className=" w-full h-[30vh]  flex justify-center relative">
                 {
                   <img
@@ -163,7 +172,10 @@ const Products = () => {
                   Please check your network and try again !
                 </div>
               ) : (
-                <div className="flex flex-wrap text-sm flex-1 gap-2 justify-center items-center">
+                <div
+                  className="flex flex-wrap text-sm flex-1 gap-2 justify-center items-center"
+                  data-testid="products-container"
+                >
                   {currProducts
                     ?.slice(indexOfFirstPost, indexOfLastPost)
                     .map((item, i) => {

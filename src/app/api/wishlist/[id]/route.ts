@@ -5,7 +5,7 @@ import User from "@/models/User";
 
 export const DELETE = async (
   request: NextRequest,
-  { params }: { params: any }
+  { params }: { params: { id: string } }
 ) => {
   const { id } = params;
   const session = await getAuthSession();

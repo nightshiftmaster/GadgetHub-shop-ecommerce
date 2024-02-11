@@ -90,7 +90,10 @@ const Product = (props: SingleProductType) => {
     >
       <div className="flex flex-col h-[220px] w-[150px] gap-3 bg- justify-start items-center  md:gap-1  p-1  ">
         <div className="flex w-[100%] h-full ">
-          <div className="h-full w-full  justify-center flex rounded-md">
+          <div
+            className="h-full w-full  justify-center flex rounded-md"
+            data-testid="test-product"
+          >
             {session.status === "unauthenticated" || isAccountCreated || (
               <div
                 className={`hidden ${styles.puffIn}  h-1/3  mt-20 items-center absolute justify-center md:group-hover:flex z-20 `}

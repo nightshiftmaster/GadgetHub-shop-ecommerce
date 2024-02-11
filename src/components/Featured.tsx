@@ -4,7 +4,10 @@ import Product from "./Product";
 
 const Featured = ({ data }: { data: ProductsType }) => {
   return (
-    <div className="w-full text-center flex justify-center items-center md:text-start">
+    <div
+      className="w-full text-center flex justify-center items-center md:text-start"
+      data-testid="featured"
+    >
       <div className="max-w-[1250px] w-full ">
         <div className=" h-[10%]  flex justify-center items-center">
           <hr className="w-full md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>

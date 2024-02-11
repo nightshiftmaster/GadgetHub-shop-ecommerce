@@ -40,9 +40,13 @@ const NavBar = () => {
 
   const MobileMenuIcon = () => {
     return (
-      <div>
+      <div data-testid="mobile-menu-icon">
         <div className="flex md:hidden " onClick={() => setOpen(!isOpen)}>
-          {isOpen ? <IoIosClose size={30} /> : <FiMenu size={30} />}
+          {isOpen ? (
+            <IoIosClose size={30} data-testid="close-icon" />
+          ) : (
+            <FiMenu size={30} data-testid="open-icon" />
+          )}
         </div>
       </div>
     );
@@ -52,6 +56,7 @@ const NavBar = () => {
     return (
       <div
         className={`md:hidden py-6 px-11 flex-col text-white h-screen flex  bg-gradient-to-r from-purple-400 to-fuchsia-300 w-full rounded-md`}
+        data-testid="mobile-menu"
       >
         <div className="flex flex-col gap-8">
           <div className="flex flex-col  gap-8 p-4 justify-center items-center mt-6">
@@ -102,7 +107,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20">
+    <div className="sticky top-0 z-20" data-testid="navbar">
       <div className="text-white py-4 md:px-14 sm:px-[5vh] md:gap-5 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col xl:flex-row items-center justify-between mb-5  ">
         <div className="flex md:gap-6 md:w-fit w-screen md:justify-center items-center justify-around">
           <Link href="/">

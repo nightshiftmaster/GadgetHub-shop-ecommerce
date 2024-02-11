@@ -16,7 +16,10 @@ const data = [
 
 const Banner = () => {
   return (
-    <div className="h-2/3 w-full  overflow-hidden flex gap-16 justify-center items-center md:bg-gray-100">
+    <div
+      className="h-2/3 w-full  overflow-hidden flex gap-16 justify-center items-center md:bg-gray-100"
+      data-testid="banner"
+    >
       <div className="h-1/2  max-w-[1250px]  gap-2 flex lg:justify-between justify-center items-center  ">
         <Link href="/products">
           <div className="md:h-[400px] md:w-[800px] sm:w-[600px]  h-[200px] w-[350px] flex relative  ">

@@ -68,7 +68,10 @@ const categories = [
 const ShopByCategory = () => {
   const router = useRouter();
   return (
-    <div className="w-full max-w-[1250px] m-auto">
+    <div
+      className="w-full max-w-[1250px] m-auto"
+      data-testid="shop-by-category"
+    >
       <div className=" h-[10%]  flex justify-center items-center">
         <hr className="w-full md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
         <h1 className="md:text-2xl text-lg text-slate-900 p-10 whitespace-nowrap font-semibold font-sans relative">
@@ -78,31 +81,32 @@ const ShopByCategory = () => {
       </div>
       <div className="flex  justify-center items-center gap-10 px-5 ml-2  md:hidden ">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={40}
+          slidesPerView={4}
+          spaceBetween={10}
           freeMode
-          centeredSlides
           centeredSlidesBounds
           modules={[FreeMode]}
-          className="mt-4 "
+          className=""
         >
           {categories.map((cat, i) => {
             return (
-              <SwiperSlide key={i} className=" animate-slideright">
+              <SwiperSlide key={i} className=" animate-slideright w-fit ">
                 <div
-                  className="flex cursor-pointer w-fit  h-[15vh] flex-col gap-2 justify-center items-center"
+                  className="flex cursor-pointer text-center h-[15vh] flex-col gap-2 justify-center items-center"
                   key={cat.id}
                   onClick={() => {
                     router.push(cat.href);
                   }}
                 >
-                  <div className="w-[60px] h-[60px] p-1 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
+                  <div className="w-[60px] h-[60px] p-2 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
                     <img
                       src={cat.image}
-                      className="relative grayscale rounded-full"
+                      className="relative grayscale rounded-[20%]"
                     ></img>
                   </div>
-                  <span className="text-xs text-slate-500">{cat.name}</span>
+                  <span className="text-xs text-slate-500 whitespace-nowrap">
+                    {cat.name}
+                  </span>
                 </div>
               </SwiperSlide>
             );
