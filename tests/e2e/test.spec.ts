@@ -13,7 +13,6 @@ test.beforeAll(async () => {
 });
 
 test.describe("testing applicatrion", () => {
-  console.log(process.env.NEXT_PUBLIC_BASE_API_URL);
   test("testing home page", async ({ page }: { page: any }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/", {
@@ -30,7 +29,7 @@ test.describe("testing applicatrion", () => {
 
     await expect(page).toHaveScreenshot();
 
-    expect(await page.screenshot()).toMatchSnapshot(
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
       "./tests/e2e/__image_snapshots__/home-page.png"
     );
 
@@ -129,7 +128,7 @@ test.describe("testing applicatrion", () => {
       fullPage: true,
     });
 
-    expect(await page.screenshot()).toMatchSnapshot(
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
       "./tests/e2e/__image_snapshots__/products-page.png"
     );
 

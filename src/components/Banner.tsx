@@ -15,6 +15,10 @@ const data = [
 ];
 
 const Banner = () => {
+  const modules =
+    process.env.NODE_ENV !== "production"
+      ? [Pagination]
+      : [Autoplay, Pagination];
   return (
     <div
       className="h-2/3 w-full  overflow-hidden flex gap-16 justify-center items-center md:bg-gray-100"
@@ -25,7 +29,7 @@ const Banner = () => {
           <div className="md:h-[400px] md:w-[800px] sm:w-[600px]  h-[200px] w-[350px] flex relative  ">
             <Swiper
               pagination={true}
-              modules={[Autoplay, Pagination]}
+              modules={modules}
               className="h-full w-full  "
               autoplay={{
                 delay: 5000,
