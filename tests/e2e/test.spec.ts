@@ -24,7 +24,6 @@ test.describe("testing applicatrion", () => {
     // make screenshot
     await page.screenshot({
       path: "./tests/e2e/__image_snapshots__/home-page.png",
-      fullpage: true,
     });
 
     await expect(page).toHaveScreenshot();
@@ -80,6 +79,8 @@ test.describe("testing applicatrion", () => {
       path: "./tests/e2e/__image_snapshots__/home-page-mobile.png",
     });
 
+    await expect(page).toHaveScreenshot();
+
     expect(await page.screenshot()).toMatchSnapshot(
       "./tests/e2e/__image_snapshots__/home-page-mobile.png"
     );
@@ -125,8 +126,9 @@ test.describe("testing applicatrion", () => {
     await page.waitForTimeout(4000);
     await page.screenshot({
       path: "./tests/e2e/__image_snapshots__/products-page.png",
-      fullPage: true,
     });
+
+    await expect(page).toHaveScreenshot();
 
     expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
       "./tests/e2e/__image_snapshots__/products-page.png"
