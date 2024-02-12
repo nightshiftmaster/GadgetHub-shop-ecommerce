@@ -40,7 +40,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Test folder within your repository
-          test_folder: ./tests/e2e/test.spec.ts-snapshots
+          test_folder: /home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots
 
           # Optional npm scripts (the default values are displayed)
           # Script to start the server or 'null' if Playwright is taking care of it
