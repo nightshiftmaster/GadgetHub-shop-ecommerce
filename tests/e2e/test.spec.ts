@@ -2,6 +2,7 @@
 const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
 import { Page, defineConfig, devices } from "@playwright/test";
+
 // import path from "path";
 
 let browser;
@@ -12,9 +13,10 @@ test.beforeAll(async () => {
 });
 
 test.describe("testing applicatrion", () => {
+  console.log(process.env.NEXT_PUBLIC_BASE_API_URL);
   test("testing home page", async ({ page }: { page: any }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto("https://gadget-hub-shop.vercel.app", {
+    await page.goto("/", {
       waitUntil: "networkidle",
     });
 
@@ -22,14 +24,14 @@ test.describe("testing applicatrion", () => {
     await page.waitForTimeout(4000);
     // make screenshot
     await page.screenshot({
-      path: "./tests/screenshots/home-page.png",
+      path: "./tests/e2e/__image_snapshots__/home-page.png",
       fullpage: true,
     });
 
     await expect(page).toHaveScreenshot();
 
     expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/screenshots/home-page.png"
+      "./tests/e2e/__image_snapshots__/home-page.png"
     );
 
     await Promise.all([
@@ -45,42 +47,42 @@ test.describe("testing applicatrion", () => {
   });
 
   test("testing navbar", async ({ page }: { page: Page }) => {
-    await page.goto("https://gadget-hub-shop.vercel.app");
+    await page.goto("/");
     await Promise.all([
       page.getByRole("link", { name: "products" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/products"),
+      page.waitForURL(`/products`),
       page.waitForSelector('[data-testid="products"]'),
     ]);
     await Promise.all([
       page.getByRole("link", { name: "contact" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/contact"),
+      page.waitForURL(`/contact`),
       page.waitForSelector('[data-testid="contact"]'),
     ]);
     await Promise.all([
       page.getByRole("link", { name: "cart" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/cart"),
+      page.waitForURL(`/cart`),
       page.waitForSelector('[data-testid="cart"]'),
     ]);
     await Promise.all([
       page.getByRole("link", { name: "login" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/login"),
+      page.waitForURL(`/login`),
       page.waitForSelector('[data-testid="login"]'),
     ]);
   });
 
   test("testing navbar mobile", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto("https://gadget-hub-shop.vercel.app", {
+    await page.goto("/", {
       waitUntil: "networkidle",
     });
 
     await page.waitForTimeout(4000);
     await page.screenshot({
-      path: "./tests/screenshots/home-page-mobile.png",
+      path: "./tests/e2e/__image_snapshots__/home-page-mobile.png",
     });
 
     expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/screenshots/home-page-mobile.png"
+      "./tests/e2e/__image_snapshots__/home-page-mobile.png"
     );
 
     const openIcon = page.getByTestId("open-icon");
@@ -93,42 +95,42 @@ test.describe("testing applicatrion", () => {
 
     await Promise.all([
       page.getByRole("link", { name: "products" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/products"),
+      page.waitForURL(`/products`),
       page.waitForSelector('[data-testid="products"]'),
     ]);
     await Promise.all([
       openIcon.click(),
       page.getByRole("link", { name: "contact" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/contact"),
+      page.waitForURL(`/contact`),
       page.waitForSelector('[data-testid="contact"]'),
     ]);
     await Promise.all([
       openIcon.click(),
       page.getByRole("link", { name: "cart" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/cart"),
+      page.waitForURL(`/cart`),
       page.waitForSelector('[data-testid="cart"]'),
     ]);
     await Promise.all([
       openIcon.click(),
       page.getByRole("button", { name: "Login" }).click(),
-      page.waitForURL("https://gadget-hub-shop.vercel.app/login"),
+      page.waitForURL(`/login`),
       page.waitForSelector('[data-testid="login"]'),
     ]);
   });
   test("testing products section", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await page.goto("https://gadget-hub-shop.vercel.app/products", {
+    await page.goto(`/products`, {
       waitUntil: "networkidle",
     });
 
     await page.waitForTimeout(4000);
     await page.screenshot({
-      path: "./tests/screenshots/products-page.png",
+      path: "./tests/e2e/__image_snapshots__/products-page.png",
       fullPage: true,
     });
 
     expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/screenshots/products-page.png"
+      "./tests/e2e/__image_snapshots__/products-page.png"
     );
 
     await expect(page.getByTestId("products-banner")).toBeVisible();
