@@ -138,5 +138,6 @@ test.describe("testing applicatrion", () => {
 
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
+    await page.waitForSelector('[data-testid="product-page"]');
   });
 });
