@@ -28,9 +28,13 @@ test.describe("testing applicatrion", () => {
 
     await expect(page).toHaveScreenshot();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-      "./tests/e2e/__image_snapshots__/home-page.png"
-    );
+    expect(
+      await page.screenshot({
+        fullPage: true,
+        type: "png",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots",
+      })
+    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page.png");
 
     await Promise.all([
       page.waitForSelector('[data-testid="home"]'),
@@ -81,9 +85,12 @@ test.describe("testing applicatrion", () => {
 
     await expect(page).toHaveScreenshot();
 
-    expect(await page.screenshot()).toMatchSnapshot(
-      "./tests/e2e/__image_snapshots__/home-page-mobile.png"
-    );
+    expect(
+      await page.screenshot({
+        type: "png",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots",
+      })
+    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-mobile.png");
 
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
@@ -130,9 +137,13 @@ test.describe("testing applicatrion", () => {
 
     await expect(page).toHaveScreenshot();
 
-    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-      "./tests/e2e/__image_snapshots__/products-page.png"
-    );
+    expect(
+      await page.screenshot({
+        fullPage: true,
+        type: "png",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots",
+      })
+    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/products-page.png");
 
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
