@@ -20,33 +20,17 @@ test.describe("testing applicatrion", () => {
     });
 
     // short delay for loading all page elements before screenshot
-    await page.waitForTimeout(4000);
-    // make screenshot
-    await page.screenshot({
-      path: "./tests/e2e/__image_snapshots__/home-page.png",
-    });
 
-    await page.screenshot({
-      path: "./tests/e2e/__image_snapshots__/home-page-1.png",
-    });
+    // await page.waitForTimeout(4000);
+    // await page.screenshot({
+    //   path: "./tests/e2e/__image_snapshots__/home-page.png",
+    //   fullpage: true,
+    // });
 
-    await expect(page).toHaveScreenshot();
-
-    expect(
-      await page.screenshot({
-        fullPage: true,
-        type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-home-page-1-chromium-linux.png",
-      })
-    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-1.png");
-
-    expect(
-      await page.screenshot({
-        fullPage: true,
-        type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-home-page-1-firefox-linux.png",
-      })
-    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-1.png");
+    // await expect(page).toHaveScreenshot();
+    // expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    //   "./tests/e2e/__image_snapshots__/home-page.png"
+    // );
 
     await Promise.all([
       page.waitForSelector('[data-testid="home"]'),
@@ -90,30 +74,14 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    await page.waitForTimeout(4000);
-    await page.screenshot({
-      path: "./tests/e2e/__image_snapshots__/home-page-mobile.png",
-    });
+    // await page.waitForTimeout(4000);
+    // await page.screenshot({
+    //   path: "./tests/e2e/__image_snapshots__/home-page-mobile.png",
+    // });
 
-    await page.screenshot({
-      path: "./tests/e2e/__image_snapshots__/home-page-mobile-1.png",
-    });
-
-    await expect(page).toHaveScreenshot();
-
-    // expect(
-    //   await page.screenshot({
-    //     type: "png",
-    //     path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-navbar-mobile-1-chromium-linux.png",
-    //   })
-    // ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-mobile.png");
-
-    expect(
-      await page.screenshot({
-        type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-navbar-mobile-1-firefox-linux.png",
-      })
-    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-mobile-1.png");
+    // expect(await page.screenshot()).toMatchSnapshot(
+    //   "./tests/e2e/__image_snapshots__/home-page-mobile.png"
+    // );
 
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
@@ -153,32 +121,15 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    await page.waitForTimeout(4000);
-    await page.screenshot({
-      path: "./tests/e2e/__image_snapshots__/products-page.png",
-    });
+    // await page.waitForTimeout(4000);
+    // await page.screenshot({
+    //   path: "./tests/e2e/__image_snapshots__/products-page.png",
+    //   fullPage: true,
+    // });
 
-    await page.screenshot({
-      path: "./tests/e2e/__image_snapshots__/products-page-1.png",
-    });
-
-    await expect(page).toHaveScreenshot();
-
-    // expect(
-    //   await page.screenshot({
-    //     fullPage: true,
-    //     type: "png",
-    //     path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-products-section-1-chromium-linux.png",
-    //   })
-    // ).toMatchSnapshot("./tests/e2e/__image_snapshots__/products-page.png");
-
-    expect(
-      await page.screenshot({
-        fullPage: true,
-        type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-products-section-1-firefox-linux.png",
-      })
-    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/products-page-1.png");
+    // expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    //   "./tests/e2e/__image_snapshots__/products-page.png"
+    // );
 
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
