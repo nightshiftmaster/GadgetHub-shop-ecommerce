@@ -197,4 +197,44 @@ test.describe("testing applicatrion", () => {
     ).toBeVisible();
     await expect(page.getByRole("button", { name: "Buy now" })).toBeVisible();
   });
+
+  test("testing contact page", async ({ page }: { page: Page }) => {
+    await page.goto(`/contact`, {
+      waitUntil: "networkidle",
+    });
+
+    if (process.env.NODE_ENV === "development") {
+      await page.waitForTimeout(4000);
+      await page.screenshot({
+        path: `${pathToImageSnapshots}/contact-page.png`,
+        fullPage: true,
+      });
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+        `${pathToImageSnapshots}/contact-page.png`
+      );
+    }
+    await page.waitForSelector('[data-testid="contact"]');
+    await expect(page.getByText("Let's Keep in Touch")).toBeVisible();
+    await page.getByRole("button", { name: "Send Message" }).click();
+    await expect(page.getByText("Please fill the name field")).toBeVisible();
+    await expect(page.getByText("Email is required")).toBeVisible();
+    await expect(page.getByText("Message is required")).toBeVisible();
+
+    const name = page.getByPlaceholder("name");
+    const email = page.getByPlaceholder("email");
+    const message = page.getByPlaceholder("message");
+
+    await name.fill("vlad");
+    await email.fill("nightshift@gmail.com");
+    await message.fill("Hello");
+
+    await expect(name).toHaveValue("vlad");
+    await expect(email).toHaveValue("nightshift@gmail.com");
+    await expect(message).toHaveValue("Hello");
+
+    await page.getByRole("button", { name: "Send Message" }).click();
+
+    await expect(page.getByText("Email sent successfully!")).toBeVisible();
+  });
 });

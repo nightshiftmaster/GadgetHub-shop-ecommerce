@@ -19,6 +19,11 @@ export const POST = async (request: NextRequest) => {
     subject: "Contact Form Submission",
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
+
+  if (process.env.NODE_ENV !== "production") {
+    return new NextResponse("Thank you for feedback!", { status: 200 });
+  }
+
   try {
     transporter.sendMail(mailOptions, (error: any, info: any) => {
       console.log(error);
