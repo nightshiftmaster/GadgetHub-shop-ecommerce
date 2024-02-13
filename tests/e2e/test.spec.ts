@@ -2,8 +2,16 @@
 const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
 import { Page, defineConfig, devices } from "@playwright/test";
+const path = require("path");
 
-// import path from "path";
+const dotenv = require("dotenv");
+dotenv.config();
+
+const pathToImageSnapshots = path.join(process.cwd(), "__image_snapshots__");
+const pathToSpecTsSnapshots = path.join(
+  process.cwd(),
+  "test.spec.ts-snapshots"
+);
 
 let browser;
 let page;
@@ -18,19 +26,18 @@ test.describe("testing applicatrion", () => {
     await page.goto("/", {
       waitUntil: "networkidle",
     });
-
+    // if (process.env.NODE_ENV === "development") {
     // short delay for loading all page elements before screenshot
-
-    // await page.waitForTimeout(4000);
-    // await page.screenshot({
-    //   path: "./tests/e2e/__image_snapshots__/home-page.png",
-    //   fullpage: true,
-    // });
-
-    // await expect(page).toHaveScreenshot();
-    // expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-    //   "./tests/e2e/__image_snapshots__/home-page.png"
-    // );
+    await page.waitForTimeout(4000);
+    await page.screenshot({
+      path: `${pathToImageSnapshots}/home-page.png`,
+      fullpage: true,
+    });
+    await expect(page).toHaveScreenshot();
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+      `${pathToImageSnapshots}/home-page.png`
+    );
+    // }
 
     await Promise.all([
       page.waitForSelector('[data-testid="home"]'),
@@ -74,14 +81,16 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    // await page.waitForTimeout(4000);
-    // await page.screenshot({
-    //   path: "./tests/e2e/__image_snapshots__/home-page-mobile.png",
-    // });
+    // if (process.env.NODE_ENV === "development") {
+    await page.waitForTimeout(4000);
+    await page.screenshot({
+      path: `${pathToImageSnapshots}/home-page-mobile.png`,
+    });
 
-    // expect(await page.screenshot()).toMatchSnapshot(
-    //   "./tests/e2e/__image_snapshots__/home-page-mobile.png"
-    // );
+    expect(await page.screenshot()).toMatchSnapshot(
+      `${pathToImageSnapshots}/home-page-mobile.png`
+    );
+    // }
 
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
@@ -121,15 +130,17 @@ test.describe("testing applicatrion", () => {
       waitUntil: "networkidle",
     });
 
-    // await page.waitForTimeout(4000);
-    // await page.screenshot({
-    //   path: "./tests/e2e/__image_snapshots__/products-page.png",
-    //   fullPage: true,
-    // });
+    // if (process.env.NODE_ENV === "development") {
+    await page.waitForTimeout(4000);
+    await page.screenshot({
+      path: `${pathToImageSnapshots}/products-page.png`,
+      fullPage: true,
+    });
 
-    // expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-    //   "./tests/e2e/__image_snapshots__/products-page.png"
-    // );
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+      `${pathToImageSnapshots}/products-page.png`
+    );
+    // }
 
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
@@ -138,5 +149,28 @@ test.describe("testing applicatrion", () => {
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
     await page.waitForSelector('[data-testid="product-page"]');
+  });
+
+  test("testing product page", async ({ page }: { page: Page }) => {
+    await page.goto(`/products`, {
+      waitUntil: "networkidle",
+    });
+
+    await expect(page.getByTestId("products-container")).toBeVisible();
+    const elements = await page.$$('[data-testid="test-product"]');
+    await elements[0].click();
+    await page.waitForSelector('[data-testid="product-page"]');
+
+    // if (process.env.NODE_ENV === "development") {
+    await page.waitForTimeout(4000);
+    await page.screenshot({
+      path: `${pathToImageSnapshots}/product-page.png`,
+      fullPage: true,
+    });
+
+    expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+      `${pathToImageSnapshots}/product-page.png`
+    );
+    // }
   });
 });
