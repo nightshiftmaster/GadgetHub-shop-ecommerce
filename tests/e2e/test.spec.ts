@@ -32,7 +32,7 @@ test.describe("testing applicatrion", () => {
       await page.screenshot({
         fullPage: true,
         type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-home-page-1-chromium-linux.png",
       })
     ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page.png");
 
@@ -88,7 +88,7 @@ test.describe("testing applicatrion", () => {
     expect(
       await page.screenshot({
         type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-navbar-mobile-1-chromium-linux.png",
       })
     ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-mobile.png");
 
@@ -141,7 +141,7 @@ test.describe("testing applicatrion", () => {
       await page.screenshot({
         fullPage: true,
         type: "png",
-        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-products-section-1-chromium-linux.png",
       })
     ).toMatchSnapshot("./tests/e2e/__image_snapshots__/products-page.png");
 
