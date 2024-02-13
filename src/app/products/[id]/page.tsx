@@ -79,7 +79,10 @@ const Product = ({ params }: { params: { id: string } }) => {
           className={`flex md:w-[90%] md:h-full max-w-[1250px] p-3 xl:h-[80%] md:h-fill w-[60vh] h-[90vh] flex-col md:gap-2  md:flex-row ${styles.enter} justify-around items-center bg-slate-100 shadow-lg rounded-xl`}
         >
           <div className="md:w-[40%] md:shadow-md xl:h-[470px] md:h-[70%] w-[80%] h-1/3 flex flex-col gap-3 relative rounded-md ">
-            <div className="md:w-full md:h-full w-full h-full relative ">
+            <div
+              className="md:w-full md:h-full w-full h-full relative"
+              data-testid="main-image"
+            >
               {/* main image */}
               <Image
                 src={
@@ -93,7 +96,10 @@ const Product = ({ params }: { params: { id: string } }) => {
               />
             </div>
             {data?.images.length < 2 || (
-              <div className="h-1/2 md:flex hidden transition-opacity gap-2 justify-start items-start w-full duration-500 opacity-100 overflow-scroll rounded-b-md">
+              <div
+                className="h-1/2 md:flex hidden transition-opacity gap-2 justify-start items-start w-full duration-500 opacity-100 overflow-scroll rounded-b-md"
+                data-testid="additional-images"
+              >
                 {data?.images.map((item: string, i: number) => {
                   return (
                     <img
@@ -113,15 +119,24 @@ const Product = ({ params }: { params: { id: string } }) => {
 
           {/* desc */}
           <div className="flex md:w-1/2 xl:h-fit md:h-[70%] w-[80%] h-[70%] md:shadow-sm bg-gray-50   md:border-2 justify-center  rounded-md  p-12  flex-col xl:gap-14 md:gap-10 gap-5 text-center md:text-base text-xs">
-            <h1 className="lg:text-2xl md:text-xl text-xs font-bold ">
+            <h1
+              className="lg:text-2xl md:text-xl text-xs font-bold "
+              data-testid="title"
+            >
               {data?.title}
             </h1>
-            <p className="lg:text-base md:text-sm text-xs">
+            <p
+              className="lg:text-base md:text-sm text-xs"
+              data-testid="description"
+            >
               {data?.description}
             </p>
             <div className="flex justify-center items-center  flex-col lg:flex-row  gap-6 lg:gap-20 ">
               {/* quantity counter */}
-              <div className="flex justify-around items-center md:gap-6 gap-5 ">
+              <div
+                className="flex justify-around items-center md:gap-6 gap-5 "
+                data-testid="quantity-counter"
+              >
                 <div className="w-[15vh]  lg:w-[13vh] md:h-10 h-8 flex  justify-between text-gray-500 text-sm rounded-md border cursor-pointer ">
                   <span
                     className="border-r p-1 px-3 flex justify-center items-center hover:bg-sky-400 hover:text-white hover:rounded-l-md transition-all duration-500"
@@ -144,7 +159,10 @@ const Product = ({ params }: { params: { id: string } }) => {
                   </span>
                 </div>
                 <div className="w-[50px] flex justify-start ">
-                  <h2 className="md:text-xl text-blue-500 text-base font-medium">
+                  <h2
+                    className="md:text-xl text-blue-500 text-base font-medium"
+                    data-testid="price"
+                  >
                     ${data?.price * count}
                   </h2>
                 </div>
@@ -173,12 +191,14 @@ const Product = ({ params }: { params: { id: string } }) => {
                   toast.success("The product added to the cart !");
                 }}
                 className="uppercase  md:w-[45%] w-[50%] py-3  rounded-lg bg-fuchsia-400 text-white hover:scale-110 transition-all duration-500"
+                data-testid="add-to-cart-button"
               >
                 Add To Cart
               </button>
               {/* <Button text="Add To Cart" /> */}
               <button
                 className="uppercase  md:w-[45%] w-[50%] py-3  rounded-lg bg-sky-400 text-white hover:scale-110 transition-all duration-500"
+                data-testid="buy-now-button"
                 onClick={() => {
                   const id = { _id: _.uniqueId() };
                   const quantity = { quantity: count };

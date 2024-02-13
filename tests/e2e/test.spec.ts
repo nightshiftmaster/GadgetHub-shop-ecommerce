@@ -7,14 +7,20 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const pathToImageSnapshots = path.join(process.cwd(), "__image_snapshots__");
+const pathToImageSnapshots = path.join(
+  process.cwd(),
+  "tests",
+  "e2e",
+  "__image_snapshots__"
+);
 const pathToSpecTsSnapshots = path.join(
   process.cwd(),
+  "tests",
+  "e2e",
   "test.spec.ts-snapshots"
 );
 
 let browser;
-
 let page;
 test.beforeAll(async () => {
   browser = await chromium.launch();
@@ -179,5 +185,16 @@ test.describe("testing applicatrion", () => {
         `${pathToImageSnapshots}/product-page.png`
       );
     }
+
+    await expect(page.getByTestId("main-image")).toBeVisible();
+    await expect(page.getByTestId("additional-images")).toBeVisible();
+    await expect(page.getByTestId("title")).toBeVisible();
+    await expect(page.getByTestId("description")).toBeVisible();
+    await expect(page.getByTestId("quantity-counter")).toBeVisible();
+    await expect(page.getByTestId("price")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Add To Cart" })
+    ).toBeVisible();
+    await expect(page.getByRole("button", { name: "Buy now" })).toBeVisible();
   });
 });
