@@ -35,6 +35,13 @@ test.describe("testing applicatrion", () => {
         path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-home-page-1-chromium-linux.png",
       })
     ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page.png");
+    expect(
+      await page.screenshot({
+        fullPage: true,
+        type: "png",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-home-page-1-firefox-linux.png",
+      })
+    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page.png");
 
     await Promise.all([
       page.waitForSelector('[data-testid="home"]'),
@@ -92,6 +99,13 @@ test.describe("testing applicatrion", () => {
       })
     ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-mobile.png");
 
+    expect(
+      await page.screenshot({
+        type: "png",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-navbar-mobile-1-firefox-linux.png",
+      })
+    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/home-page-mobile.png");
+
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
     await openIcon.click();
@@ -142,6 +156,14 @@ test.describe("testing applicatrion", () => {
         fullPage: true,
         type: "png",
         path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-products-section-1-chromium-linux.png",
+      })
+    ).toMatchSnapshot("./tests/e2e/__image_snapshots__/products-page.png");
+
+    expect(
+      await page.screenshot({
+        fullPage: true,
+        type: "png",
+        path: "/home/runner/work/gadget-shop/gadget-shop/tests/e2e/test.spec.ts-snapshots/testing-applicatrion-testing-products-section-1-firefox-linux.png",
       })
     ).toMatchSnapshot("./tests/e2e/__image_snapshots__/products-page.png");
 
