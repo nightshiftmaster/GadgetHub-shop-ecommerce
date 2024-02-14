@@ -269,16 +269,43 @@ test.describe("testing applicatrion", () => {
     await expect(
       page.getByText("The product added to the cart !")
     ).toBeVisible();
+
+    await elements[1].hover();
+    await expect(
+      page.getByRole("button", { name: "Add To Cart" })
+    ).toBeVisible();
+    await page.getByRole("button", { name: "Add To Cart" }).click();
+
     await page.goto(`/cart`, {
       waitUntil: "networkidle",
     });
     await expect(page.getByTestId("cart-container")).toBeVisible();
     await expect(page.getByTestId("cart-totals")).toBeVisible();
-    const productsInCart = await page.$$('[data-testid="cart-item"]');
-    await expect(productsInCart).toHaveLength(1);
-    await page.getByTestId("delete-item").click();
-    await expect(page.getByText("Cart is empty")).toBeVisible();
+    let productsInCart = await page.$$('[data-testid="cart-item"]');
+    await expect(productsInCart).toHaveLength(2);
 
     // deleting product from cart
+    await page.getByTestId("delete-item-1").click();
+    productsInCart = await page.$$('[data-testid="cart-item"]');
+    await expect(productsInCart).toHaveLength(1);
+    await page.getByTestId("delete-item-0").click();
+    await expect(page.getByText("Cart is empty")).toBeVisible();
+  });
+
+  test("testing checkout", async ({ page }: { page: Page }) => {
+    await page.goto(`/products`, {
+      waitUntil: "networkidle",
+    });
+
+    await expect(page.getByTestId("products-container")).toBeVisible();
+    const elements = await page.$$('[data-testid="test-product"]');
+    await elements[0].hover();
+    await page.getByRole("button", { name: "Add To Cart" }).click();
+
+    await page.goto(`/cart`, {
+      waitUntil: "networkidle",
+    });
+
+    await page.waitForSelector('[data-testid="cart-item"]');
   });
 });

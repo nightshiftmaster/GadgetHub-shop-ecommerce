@@ -46,7 +46,7 @@ const Cart = () => {
               }  overflow-scroll`}
             >
               <div className="flex xl:gap-16 md:gap-14 gap-10 w-full flex-col md:mt-1 mt-10 items-center justify-center">
-                {products?.map((item) => {
+                {products?.map((item, i) => {
                   return (
                     <div
                       className="flex-1 flex justify-between gap-32 w-full md:gap-40 border-b-2"
@@ -74,7 +74,7 @@ const Cart = () => {
                           <span
                             onClick={() => dispatch(removeProduct(item._id))}
                             className="cursor-pointer"
-                            data-testid="delete-item"
+                            data-testid={`delete-item-${i}`}
                           >
                             x
                           </span>
