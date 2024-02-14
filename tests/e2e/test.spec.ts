@@ -305,7 +305,31 @@ test.describe("testing applicatrion", () => {
     await page.goto(`/cart`, {
       waitUntil: "networkidle",
     });
-
     await page.waitForSelector('[data-testid="cart-item"]');
+    await page.getByRole("button", { name: "PROCEED TO CHECKOUT" }).click();
+
+    // login before checkout
+    await page.waitForURL(`/login`);
+    await page.waitForSelector('[data-testid="login"]');
+    const email = page.getByPlaceholder("email");
+    const password = page.getByPlaceholder("password");
+    await email.fill("test@gmail.com");
+    await password.fill("Vlad19820708");
+    await page.getByRole("button", { name: "Login" }).click();
+
+    // checkout address forms
+    await page.waitForSelector('[data-testid="address-form"]');
+
+    if (process.env.NODE_ENV === "development") {
+      await page.waitForTimeout(4000);
+      await page.screenshot({
+        path: `${pathToImageSnapshots}/address-form-page.png`,
+        fullPage: true,
+      });
+
+      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+        `${pathToImageSnapshots}/address-form-page.png`
+      );
+    }
   });
 });

@@ -74,7 +74,10 @@ const AdressForm = ({ props }: { props: any }) => {
       >
         {({ errors, touched, values, handleChange, setFieldValue }) => {
           return (
-            <div className="flex  flex-col gap-7 w-1/2 items-center  ">
+            <div
+              className="flex  flex-col gap-7 w-1/2 items-center"
+              data-testid="address-form"
+            >
               <Form className="flex flex-col  md:gap-20 gap-14 justify-center items-center md:w-[85vh] w-screen xl:text-base md:text-sm text-sm">
                 <div className="flex w-full  justify-center items-center flex-col gap-10">
                   <div className="flex gap-5  justify-center  font-light  md:w-[80%] px-10 md:px-0  w-screen  ">
