@@ -30,7 +30,10 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="md:w-[120vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg">
+        <div
+          className="md:w-[120vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg"
+          data-testid="cart-container"
+        >
           <div className="flex flex-col mb-5  md:w-1/2 w-full h-full p-5 gap-2 md:gap-10 justify-center items-center">
             <div className="flex justify-between w-full  xl:gap-20 md:text-base xl:text-lg text-sm  md:w-full  p-7 border-b-2 border-gray-200 font-bold">
               <h1>Product</h1>
@@ -46,7 +49,8 @@ const Cart = () => {
                 {products?.map((item) => {
                   return (
                     <div
-                      className="flex-1 flex justify-between gap-32 w-full md:gap-40 border-b-2 "
+                      className="flex-1 flex justify-between gap-32 w-full md:gap-40 border-b-2"
+                      data-testid="cart-item"
                       key={item._id}
                     >
                       <div className="flex justify-between items-center md:gap-10 w-[17vh] md:w-[20vh] gap-5 ">
@@ -70,6 +74,7 @@ const Cart = () => {
                           <span
                             onClick={() => dispatch(removeProduct(item._id))}
                             className="cursor-pointer"
+                            data-testid="delete-item"
                           >
                             x
                           </span>
@@ -92,7 +97,10 @@ const Cart = () => {
           </div>
 
           {/* cart */}
-          <div className="bg-orange-100  flex md:justify-around justify-center flex-col items-center md:w-1/2 w-full md:rounded-r-lg rounded-b-lg p-5">
+          <div
+            className="bg-orange-100  flex md:justify-around justify-center flex-col items-center md:w-1/2 w-full md:rounded-r-lg rounded-b-lg p-5"
+            data-testid="cart-totals"
+          >
             <div className="flex flex-col  md:gap-14 gap-7 md:w-1/2 w-full h-1/2  md:text-base text-sm text-red-500 justify-center items-center">
               <h1 className="text-black text-center font-bold">CART TOTALS</h1>
               <hr className="w-full border-slate-300 border  "></hr>

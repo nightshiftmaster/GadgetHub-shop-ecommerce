@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/utils/db";
 import { getAuthSession } from "@/utils/auth";
 import User from "@/models/User";
+import { OrderType } from "@/types/types";
 
 export const GET = async (
   request: NextRequest,
-  { params }: { params: any }
-) => {
+  { params }: { params: { id: number } }
+): Promise<NextResponse<OrderType>> => {
   const { id } = params;
   const session = await getAuthSession();
   const email: any = session?.user?.email;

@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/utils/db";
 import User from "@/models/User";
+import { UserType } from "@/types/types";
 
-export const GET = async (request: NextRequest) => {
+export const GET = async (
+  request: NextRequest
+): Promise<NextResponse<UserType>> => {
   const url = new URL(request.url);
   const email: any = url.searchParams.get("email");
 

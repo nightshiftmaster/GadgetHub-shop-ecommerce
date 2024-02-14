@@ -3,7 +3,9 @@ import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-export const POST = async (request: NextRequest) => {
+export const POST = async (
+  request: NextRequest
+): Promise<NextResponse<String>> => {
   const user = await request.json();
   const email = user.email;
   await connect();
@@ -17,7 +19,6 @@ export const POST = async (request: NextRequest) => {
       };
       const newUser = new User(userWithHashedPassword);
       await newUser.save();
-      console.log("User has bee created");
       return new NextResponse("User has been created", { status: 201 });
     } else {
       console.log("User with this email already exists");

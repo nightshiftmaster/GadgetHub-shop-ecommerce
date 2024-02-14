@@ -6,7 +6,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 resend.domains.create({ name: "nightshift.com" });
 
-export async function POST(request: NextRequest) {
+export async function POST(
+  request: NextRequest
+): Promise<NextResponse<String>> {
   const data = await request.json();
 
   const { order, delivery } = data;
