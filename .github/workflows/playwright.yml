@@ -4,6 +4,8 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+env:
+  STRIPE_SECRET_KEY: sk_test_51ORdTLBrmXYcd23gdLqHGjDGCbBZGVJr5IWJiISSijDia8msu9RQepBQg1W2SGu77RF3o8DzcaXIvGAgrbj90wBB00vD0b2XQ1
 jobs:
   test:
     timeout-minutes: 60
