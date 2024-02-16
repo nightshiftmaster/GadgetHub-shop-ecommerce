@@ -33,7 +33,7 @@ const AccountIcon = () => {
     return <div className="md:text-sm text-xs">Loading...</div>;
   }
 
-  const wishlist = user[0]?.wishlist;
+  const wishlist = user ? user[0]?.wishlist : [];
 
   return (
     <div

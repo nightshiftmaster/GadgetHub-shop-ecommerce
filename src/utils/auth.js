@@ -5,7 +5,7 @@ import { connect } from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { getServerSession } from "next-auth";
 
-export const fakeUser = {
+const fakeUser = {
   firstName: "vlad",
   lastName: "medevedev",
   dateOfBirth: "2024-01-12",

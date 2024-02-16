@@ -82,7 +82,7 @@ const Product = (props: SingleProductType) => {
     return;
   }
 
-  let isAccountCreated = data.length === 0;
+  let isAccountCreated = data?.length === 0;
 
   return (
     <div
