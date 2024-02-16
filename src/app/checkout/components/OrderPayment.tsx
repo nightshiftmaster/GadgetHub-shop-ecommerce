@@ -15,7 +15,10 @@ const OrderPayment = ({ props }: { props: any }) => {
   );
 
   return (
-    <div className="w-[90%]  flex justify-center md:shadow-lg  items-center  rounded-xl md:p-10 p-4">
+    <div
+      className="w-full h-full flex justify-center md:shadow-lg  items-center  rounded-xl md:p-10 p-4"
+      data-testid="payment-page"
+    >
       <div className="md:w-[90%] w-full md:text-lg text-xs justify-center items-center h-fit flex flex-col ">
         <div className="flex flex-col  mb-5 w-full h-full gap-10 justify-center items-center">
           <div className="flex justify-between  w-full md:w-[73%] p-7 border-b-2 border-gray-200 font-bold">
@@ -25,7 +28,10 @@ const OrderPayment = ({ props }: { props: any }) => {
 
           <div className="w-full h-full flex justify-center flex-col items-center ">
             {/* products */}
-            <div className="w-full md:h-fit max-h-[30vh] mb-10 overflow-scroll flex justify-start items-center md:gap-8 gap-6 flex-col">
+            <div
+              className="w-full md:h-fit max-h-[30vh] mb-10 overflow-scroll flex justify-start items-center md:gap-8 gap-6 flex-col"
+              data-testid="products-checkout"
+            >
               {productsSlice.cart.map((item) => {
                 return (
                   <div
@@ -60,7 +66,10 @@ const OrderPayment = ({ props }: { props: any }) => {
               })}
             </div>
             {/* totals */}
-            <div className="flex flex-col gap-7 w-full h-full md:text-base text-sm justify-center items-center">
+            <div
+              className="flex flex-col gap-7 w-full h-full md:text-base text-sm justify-center items-center"
+              data-testid="totals-checkout"
+            >
               <div className="flex justify-between md:w-[70%] w-full border-b-2 py-5">
                 <h1 className="font-semibold">Subtotal</h1>
                 <h1 className="text-blue-500">${productsSlice.total}</h1>
@@ -90,6 +99,7 @@ const OrderPayment = ({ props }: { props: any }) => {
                   {/* {props.values.termsAndConditions} */}
                   <input
                     onChange={() => setTermsChecked(!termsChecked)}
+                    data-testid="terms-checkbox"
                     type="checkbox"
                     checked={termsChecked}
                     name="termsAndConditions"

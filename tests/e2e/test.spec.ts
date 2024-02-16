@@ -7,6 +7,16 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const fakeUserAdress = {
+  firstName: "vlad",
+  lastName: "medevedev",
+  email: "test@gmail.com",
+  mobileNumber: "0547355910",
+  country: "israel",
+  city: "eilat",
+  address: "knaanim",
+};
+
 const pathToImageSnapshots = path.join(
   process.cwd(),
   "tests",
@@ -27,7 +37,7 @@ test.beforeAll(async () => {
   page = await browser.newPage();
 });
 
-test.describe("testing applicatrion", () => {
+test.describe("testing application", () => {
   test("testing home page", async ({ page }: { page: any }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/", {
@@ -60,6 +70,34 @@ test.describe("testing applicatrion", () => {
       page.waitForSelector('[data-testid="new-arivals"]'),
       page.waitForSelector('[data-testid="shop-by-category"]'),
     ]);
+
+    // testing choose by category from home page
+
+    await page.getByTestId("general-category-Smartphones").click();
+    await page.waitForURL(`/products?generalCategory=smartphones`);
+    await page.waitForSelector('[data-testid="products"]'),
+      await page.goto("/", {
+        waitUntil: "networkidle",
+      });
+    await page.getByTestId("general-category-Laptops").click();
+    await page.waitForURL(`/products?generalCategory=laptops`);
+    await page.waitForSelector('[data-testid="products"]');
+
+    // testing new arivals and top sales filters
+    await page.goto("/", {
+      waitUntil: "networkidle",
+    });
+    await page.getByTestId("view-all-top-sales").click();
+    await page.waitForURL(`/products?filter=topSales`);
+    await page.waitForSelector('[data-testid="products"]');
+
+    await page.goto("/", {
+      waitUntil: "networkidle",
+    });
+    await page.waitForSelector('[data-testid="new-arivals"]');
+    await page.getByTestId("view-all-top-arrivals").click();
+    await page.waitForURL(`/products?filter=newArrivals`);
+    await page.waitForSelector('[data-testid="products"]');
   });
 
   test("testing navbar", async ({ page }: { page: Page }) => {
@@ -323,13 +361,46 @@ test.describe("testing applicatrion", () => {
     if (process.env.NODE_ENV === "development") {
       await page.waitForTimeout(4000);
       await page.screenshot({
-        path: `${pathToImageSnapshots}/address-form-page.png`,
+        path: `${pathToImageSnapshots}/address-page.png`,
         fullPage: true,
       });
-
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-        `${pathToImageSnapshots}/address-form-page.png`
+        `${pathToImageSnapshots}/address-page.png`
       );
     }
+    // await page.waitForSelector('[data-testid="address-form"]');
+
+    // checking form inputs
+    // in case of created user inputs are filled with registr values
+    await Promise.all(
+      Object.entries(fakeUserAdress).map(async ([field, value]) => {
+        const input = await page.inputValue(`[data-testid="input-${field}"]`);
+        expect(input).toBe(value);
+      })
+    );
+
+    await Promise.all([
+      page.getByRole("button", { name: "next" }).click(),
+      page.waitForURL("/checkout"),
+      page.waitForSelector('[data-testid="payment-page"]'),
+    ]);
+
+    await expect(page.getByTestId("products-checkout")).toBeVisible();
+    await expect(page.getByTestId("totals-checkout")).toBeVisible();
+    await expect(page.getByTestId("terms-checkbox")).toBeVisible();
+
+    await page.getByTestId("terms-checkbox").check();
+    await expect(page.getByTestId("pay-component")).toBeVisible();
+
+    if (process.env.NODE_ENV === "development") {
+      await page.waitForTimeout(4000);
+      await page.screenshot({
+        path: `${pathToImageSnapshots}/payment-page.png`,
+      });
+      expect(await page.screenshot()).toMatchSnapshot(
+        `${pathToImageSnapshots}/payment-page.png`
+      );
+    }
+    await page.waitForSelector('[data-testid="payment-page"]');
   });
 });

@@ -90,7 +90,11 @@ const ShopByCategory = () => {
         >
           {categories.map((cat, i) => {
             return (
-              <SwiperSlide key={i} className=" animate-slideright w-fit ">
+              <SwiperSlide
+                key={i}
+                className=" animate-slideright w-fit"
+                data-testid={`general-category-${cat.name}-mobile`}
+              >
                 <div
                   className="flex cursor-pointer text-center h-[15vh] flex-col gap-2 justify-center items-center"
                   key={cat.id}
@@ -118,6 +122,7 @@ const ShopByCategory = () => {
           return (
             <div
               className="cursor-pointer flex-col gap-4 justify-center items-center flex"
+              data-testid={`general-category-${cat.name}`}
               key={cat.id}
               onClick={() => {
                 router.push(cat.href);

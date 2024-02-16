@@ -23,9 +23,8 @@ const TopSales = ({ data }: { data: ProductsType }) => {
 
           <h1
             className="text-xs font-medium cursor-pointer text-slate-900 p-10 whitespace-nowrap relative"
-            onClick={() =>
-              router.push(`/products?filter=${"topSales"}&name=${"Top Sales"}`)
-            }
+            data-testid="view-all-top-sales"
+            onClick={() => router.push(`/products?filter=${"topSales"}`)}
           >
             {`View All >>`}
           </h1>

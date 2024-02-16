@@ -2,7 +2,7 @@
 import Featured from "@/components/Featured";
 import TopSales from "@/components/TopSales";
 import Banner from "@/components/Banner";
-import NewArrivals from "@/components/NewArivals";
+import NewArrivals from "@/components/NewArrivals";
 import ShopByCategory from "@/components/ShopByCategory";
 import { BASE_API_URL } from "@/utils/constants";
 import useSWR from "swr";

@@ -5,6 +5,20 @@ import { connect } from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { getServerSession } from "next-auth";
 
+export const fakeUser = {
+  firstName: "vlad",
+  lastName: "medevedev",
+  dateOfBirth: "2024-01-12",
+  email: "test@gmail.com",
+  mobileNumber: "0547355910",
+  country: "israel",
+  city: "eilat",
+  address: "knaanim",
+  password: "$2a$05$2nggFZFBAYkFaP0iBp0Aq.x13tX5ut8sJzgKLarQfiBr1H2uOKqvS",
+  orders: [],
+  wishlist: [],
+};
+
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -15,9 +29,24 @@ export const authOptions = {
       id: "credentials",
       name: "Credentials",
       async authorize(credentials) {
+        // autorization for tests
+        if (process.env.NODE_ENV === "development") {
+          const isPasswordCorrect = await bcrypt.compare(
+            credentials.password,
+            fakeUser.password
+          );
+          if (isPasswordCorrect) {
+            return fakeUser;
+          } else {
+            throw new Error("Wrong password");
+          }
+        }
+
+        // autorization
         await connect();
         try {
           const user = await User.findOne({ email: credentials.email });
+          console.log(user);
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,

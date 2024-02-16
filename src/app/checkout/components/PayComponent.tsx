@@ -41,7 +41,7 @@ const PayComponent = ({ props }: { props: any }) => {
   };
 
   return (
-    <div>
+    <div data-testid="pay-component">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm props={props} />
