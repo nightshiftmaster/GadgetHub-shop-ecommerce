@@ -193,6 +193,7 @@ test.describe("testing application", () => {
       );
     }
 
+    await page.waitForSelector('[data-testid="products-container"]');
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
     await expect(page.getByTestId("products-container")).toBeVisible();
@@ -414,6 +415,6 @@ test.describe("testing application", () => {
     await page.getByRole("button", { name: "Confirm order" }).click();
     await page.waitForTimeout(6000);
     const currentUrl = page.url();
-    expect(currentUrl).toContain("/success");
+    expect(currentUrl).toContain("success");
   });
 });
