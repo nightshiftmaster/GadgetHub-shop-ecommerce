@@ -153,7 +153,7 @@ const Products = () => {
               className="flex flex-col w-full justify-center items-center  gap-6 "
               data-testid="products-banner"
             >
-              <div className=" w-full h-[30vh]  flex justify-center relative">
+              {/* <div className=" w-full h-[30vh]  flex justify-center relative">
                 {
                   <img
                     src={
@@ -165,24 +165,18 @@ const Products = () => {
                     className="object-cover w-full h-full "
                   />
                 }
-              </div>
+              </div> */}
 
-              {error ? (
-                <div className="text-red-500 text-center text-xl mt-20">
-                  Please check your network and try again !
-                </div>
-              ) : (
-                <div
-                  className="flex flex-wrap text-sm flex-1 gap-2 justify-center items-center"
-                  data-testid="products-container"
-                >
-                  {currProducts
-                    ?.slice(indexOfFirstPost, indexOfLastPost)
-                    .map((item, i) => {
-                      return <Product key={i} {...item} />;
-                    })}
-                </div>
-              )}
+              <div
+                className="flex flex-wrap text-sm flex-1 gap-2 justify-center items-center"
+                data-testid="products-container"
+              >
+                {currProducts
+                  ?.slice(indexOfFirstPost, indexOfLastPost)
+                  .map((item, i) => {
+                    return <Product key={i} {...item} />;
+                  })}
+              </div>
 
               <Link
                 href={`${BASE_API_URL}/`}

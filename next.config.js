@@ -26,6 +26,30 @@ const nextConfig = {
     //     pathname: "**",
     //     port: "",
     //   },
+    //   {
+    //     protocol: "https",
+    //     hostname: "static.vecteezy.com",
+    //     pathname: "**",
+    //     port: "",
+    //   },
+    //   {
+    //     protocol: "https",
+    //     hostname: "idme-marketplace.s3.amazonaws.com",
+    //     pathname: "**",
+    //     port: "",
+    //   },
+    //   {
+    //     protocol: "https",
+    //     hostname: "img.freepik.com",
+    //     pathname: "**",
+    //     port: "",
+    //   },
+    //   {
+    //     protocol: "https",
+    //     hostname: "img.freepik.com",
+    //     pathname: "**",
+    //     port: "",
+    //   },
     // ],
     domains: [
       "via.placeholder.com",
