@@ -193,7 +193,7 @@ test.describe("testing application", () => {
       );
     }
 
-    await page.waitForSelector('[data-testid="products-container"]');
+    // await page.waitForSelector('[data-testid="products-container"]');
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
     await expect(page.getByTestId("products-container")).toBeVisible();
@@ -361,16 +361,16 @@ test.describe("testing application", () => {
     // checkout address forms
     await page.waitForSelector('[data-testid="address-form"]');
 
-    // if (process.env.NODE_ENV === "development") {
-    //   await page.waitForTimeout(4000);
-    //   await page.screenshot({
-    //     path: `${pathToImageSnapshots}/address-page.png`,
-    //   });
-    //   expect(await page.screenshot()).toMatchSnapshot(
-    //     `${pathToImageSnapshots}/address-page.png`
-    //   );
-    // }
-    // await page.waitForSelector('[data-testid="address-form"]');
+    if (process.env.NODE_ENV === "development") {
+      await page.waitForTimeout(3000);
+      await page.screenshot({
+        path: `${pathToImageSnapshots}/address-page.png`,
+      });
+      expect(await page.screenshot()).toMatchSnapshot(
+        `${pathToImageSnapshots}/address-page.png`
+      );
+    }
+    await page.waitForSelector('[data-testid="address-form"]');
 
     // checking form inputs
     // in case of created user inputs are filled with registr values

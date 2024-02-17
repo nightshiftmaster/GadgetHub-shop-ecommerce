@@ -5,8 +5,8 @@ const { defineConfig, devices } = require("@playwright/test");
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-const dotenv = require("dotenv");
-dotenv.config();
+// const dotenv = require("dotenv");
+// dotenv.config();
 
 /**
  * @see https://playwright.dev/docs/test-configuration
