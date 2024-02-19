@@ -10,17 +10,6 @@ import FilterByPrice from "./components/FilterByPrice";
 import SortProducts from "./components/SortProducts";
 import FilterByCategory from "./components/FilterByCategory";
 
-const getData = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/products`, {
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    throw new Error("failed to fetch data");
-  }
-  return res.json();
-};
-
 const getDataByCategory = async (category: any) => {
   const res = await fetch(`${BASE_API_URL}/api/products/category/${category}`, {
     cache: "no-store",
@@ -69,6 +58,18 @@ const Products = () => {
     setCurrentPage(e.currentTarget.value);
   };
 
+  const getData = async () => {
+    const res = await fetch(`${BASE_API_URL}/api/products`, {
+      cache: "no-store",
+    });
+    console.log(res);
+
+    if (!res || !res.ok) {
+      setError("Something went wrong !");
+    }
+    return res.json();
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       if (category) {
@@ -81,10 +82,12 @@ const Products = () => {
       return getDataByGeneralCategory(generalCategory);
     };
 
-    fetchData().then((res) => {
-      setData(res);
-      setCurrProducts(res);
-    });
+    fetchData()
+      .then((res) => {
+        setData(res);
+        setCurrProducts(res);
+      })
+      .catch((e) => setError("Something went wrong !"));
   }, [category]);
 
   useEffect(() => {
@@ -168,8 +171,8 @@ const Products = () => {
               </div>
 
               {error ? (
-                <div className="text-red-500 text-center text-xl mt-20">
-                  Please check your network and try again !
+                <div>
+                  <h1 className="text-red-500 text-2xl p-10">{error}</h1>
                 </div>
               ) : (
                 <div
@@ -201,8 +204,9 @@ const Products = () => {
         </div>
       </div>
     );
-  } catch (e) {
-    console.log(e);
+  } catch (e: any) {
+    // console.log(e);
+    setError(e.message);
   }
 };
 

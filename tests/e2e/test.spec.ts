@@ -46,18 +46,10 @@ test.describe("testing application", () => {
 
     if (process.env.NODE_ENV === "development") {
       // short delay for loading all page elements before screenshot
-      await page.waitForTimeout(5000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/home-page.png`,
-        fullpage: true,
-      });
-      await expect(page).toHaveScreenshot();
-      expect(
-        await page.screenshot({
-          path: `${pathToSpecTsSnapshots}/home-page.png`,
-          fullPage: true,
-        })
-      ).toMatchSnapshot(`${pathToImageSnapshots}/home-page.png`);
+      await page.waitForTimeout(3000);
+      expect(await page.screenshot()).toMatchSnapshot(
+        `${pathToImageSnapshots}/home-page.png`
+      );
     }
 
     await Promise.all([
@@ -131,11 +123,7 @@ test.describe("testing application", () => {
     });
 
     if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(4000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/home-page-mobile.png`,
-      });
-
+      await page.waitForTimeout(3000);
       expect(
         await page.screenshot({
           path: `${pathToSpecTsSnapshots}/home-page.png`,
@@ -182,12 +170,7 @@ test.describe("testing application", () => {
     });
 
     if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(4000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/products-page.png`,
-        fullPage: true,
-      });
-
+      await page.waitForTimeout(3000);
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         `${pathToImageSnapshots}/products-page.png`
       );
@@ -208,20 +191,13 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    await expect(page.getByTestId("products-container")).toBeVisible({
-      timeout: 10000,
-    });
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
     await page.waitForSelector('[data-testid="product-page"]');
 
     if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(4000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/product-page.png`,
-        fullPage: true,
-      });
-
+      await page.waitForTimeout(3000);
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         `${pathToImageSnapshots}/product-page.png`
       );
@@ -245,12 +221,7 @@ test.describe("testing application", () => {
     });
 
     if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(4000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/contact-page.png`,
-        fullPage: true,
-      });
-
+      await page.waitForTimeout(3000);
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         `${pathToImageSnapshots}/contact-page.png`
       );
@@ -284,12 +255,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(4000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/cart-page.png`,
-        fullPage: true,
-      });
-
+      await page.waitForTimeout(3000);
       expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
         `${pathToImageSnapshots}/cart-page.png`
       );
@@ -363,9 +329,6 @@ test.describe("testing application", () => {
 
     if (process.env.NODE_ENV === "development") {
       await page.waitForTimeout(3000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/address-page.png`,
-      });
       expect(await page.screenshot()).toMatchSnapshot(
         `${pathToImageSnapshots}/address-page.png`
       );
@@ -397,9 +360,6 @@ test.describe("testing application", () => {
 
     if (process.env.NODE_ENV === "development") {
       await page.waitForTimeout(3000);
-      await page.screenshot({
-        path: `${pathToImageSnapshots}/payment-page.png`,
-      });
       expect(await page.screenshot()).toMatchSnapshot(
         `${pathToImageSnapshots}/payment-page.png`
       );
@@ -415,8 +375,44 @@ test.describe("testing application", () => {
     await iframeContent.getByPlaceholder("CVC").fill("424");
 
     await page.getByRole("button", { name: "Confirm order" }).click();
-    await page.waitForTimeout(6000);
+    await page.waitForTimeout(3000);
     const currentUrl = page.url();
     expect(currentUrl).toContain("success");
+  });
+
+  test("testing creating profile", async ({ page }: { page: Page }) => {
+    await page.goto(`/login`, {
+      waitUntil: "networkidle",
+    });
+    await page.waitForSelector('[data-testid="login"]');
+    await page.getByRole("link", { name: "Create new account" }).click();
+    await page.waitForSelector('[data-testid="register"]');
+
+    if (process.env.NODE_ENV === "development") {
+      expect(await page.screenshot()).toMatchSnapshot(
+        `${pathToImageSnapshots}/registration-page.png`
+      );
+    }
+
+    await page.waitForSelector('[data-testid="register"]');
+
+    await page.fill('[name="firstName"]', "vladislav");
+    await page.fill('[name="lastName"]', "medvedev");
+    await page.fill('[name="email"]', "test25@gmail.com");
+    await page.fill('[name="mobileNumber"]', "0547355910");
+    await page.fill('[name="dateOfBirth"]', "01101998");
+    await page.getByTestId("input-country").selectOption("Israel");
+    await page.fill('[name="city"]', "eilat");
+    await page.fill('[name="address"]', "address");
+    await page.fill('[name="password"]', "Vlad19820708");
+    await page
+      .getByTestId("avatar-upload")
+      .setInputFiles(path.join(process.cwd(), "public", "facebook.png"));
+    await page.getByRole("button", { name: "SUBMIT" }).click();
+    await page.waitForTimeout(3000);
+    await expect(
+      page.getByText("Congratulations! User created successfully!")
+    ).toBeVisible();
+    await page.waitForURL(`/login?succes=Account has been created`);
   });
 });

@@ -2,14 +2,32 @@ import { connect } from "@/utils/db";
 import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+const fs = require("fs");
+const path = require("path");
 
 export const POST = async (
   request: NextRequest
 ): Promise<NextResponse<String>> => {
   const user = await request.json();
   const email = user.email;
-  await connect();
+
+  if (process.env.NODE_ENV === "development") {
+    const file = path.join(process.cwd(), "public");
+
+    fs.writeFile(`${file}/user.txt`, JSON.stringify(user), (err: any) => {
+      if (err) {
+        return new NextResponse("Error,", {
+          status: 500,
+        });
+      }
+      // console.log("File written successfully\n");
+      // console.log(fs.readFileSync(`${file}/user.txt`, "utf8"));
+    });
+    return new NextResponse("User has been created", { status: 201 });
+  }
+
   try {
+    await connect();
     const alreadyCreatedUser = await User.find(email && { email });
     if (alreadyCreatedUser.length === 0) {
       const hashedPassword = await bcrypt.hash(user.password, 5);

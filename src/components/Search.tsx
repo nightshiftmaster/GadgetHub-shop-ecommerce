@@ -11,8 +11,8 @@ const fetchProductSearch = async (query: string) => {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    throw new Error("failed to fetch data");
+  if (!res.ok || !res) {
+    console.log("failed to fetch data");
   }
   return res.json();
 };

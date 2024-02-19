@@ -22,15 +22,27 @@ const AccountIcon = () => {
     setDropdownVisible(false);
   };
 
-  const { data, isLoading } = useSWR(
+  const {
+    data,
+    isLoading,
+    error: userError,
+  } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );
 
-  const { data: user, isLoading: loading } = useSWR(`/api/wishlist`, fetcher);
+  const {
+    data: user,
+    isLoading: loading,
+    error,
+  } = useSWR(`/api/wishlist`, fetcher);
 
   if (isLoading || loading) {
     return <div className="md:text-sm text-xs">Loading...</div>;
+  }
+
+  if (error || userError) {
+    return <div className="md:text-sm text-xs">Error...</div>;
   }
 
   const wishlist = user ? user[0]?.wishlist : [];

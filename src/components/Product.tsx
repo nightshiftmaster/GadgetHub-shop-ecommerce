@@ -24,7 +24,7 @@ const Product = (props: SingleProductType) => {
   const dispatch = useDispatch<AppDispatch>();
   const session = useSession();
 
-  const { data, isLoading, mutate } = useSWR(`/api/wishlist`, fetcher);
+  const { data, isLoading, mutate, error } = useSWR(`/api/wishlist`, fetcher);
 
   useEffect(() => {
     switch (likeStatus) {
@@ -79,6 +79,9 @@ const Product = (props: SingleProductType) => {
   };
 
   if (isLoading) {
+    return;
+  }
+  if (error) {
     return;
   }
 

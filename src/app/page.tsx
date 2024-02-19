@@ -9,19 +9,33 @@ import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/utils/fetcherSwr";
 import Loading from "@/components/Loader";
+import { PiSmileyXEyes } from "react-icons/pi";
 
 const Home = () => {
   const session = useSession();
 
-  const { data, isLoading, mutate } = useSWR("/api/products", fetcher);
+  const { data, isLoading, error: isError } = useSWR("/api/products", fetcher);
 
-  const { data: user, isLoading: loadingUser } = useSWR(
+  const {
+    data: user,
+    isLoading: loadingUser,
+    error,
+  } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );
 
   if (isLoading || loadingUser) {
     return <Loading />;
+  }
+
+  if (error || isError) {
+    return (
+      <div className="flex justify-center items-center flex-col mt-20 gap-5">
+        <PiSmileyXEyes size={70} />
+        <h1 className="text-4xl ">Something went wrong !</h1>{" "}
+      </div>
+    );
   }
 
   let isGuest = user ? user?.length === 0 : true;
