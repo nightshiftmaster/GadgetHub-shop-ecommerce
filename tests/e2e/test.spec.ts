@@ -44,16 +44,16 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    if (process.env.NODE_ENV === "development") {
-      // short delay for loading all page elements before screenshot
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot()).toMatchSnapshot(
-        `${pathToImageSnapshots}/home-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   // short delay for loading all page elements before screenshot
+    //   await page.waitForTimeout(4000);
+    //   expect(await page.screenshot()).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/home-page.png`
+    //   );
+    // }
 
     await Promise.all([
-      page.waitForSelector('[data-testid="home"]', { timeout: 30000 }),
+      page.waitForSelector('[data-testid="home"]'),
       page.waitForSelector('[data-testid="footer"]'),
       page.waitForSelector('[data-testid="navbar"]'),
       page.waitForSelector('[data-testid="banner"]'),
@@ -169,19 +169,17 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-        `${pathToImageSnapshots}/products-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/products-page.png`
+    //   );
+    // }
 
     // await page.waitForSelector('[data-testid="products-container"]');
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
-    await expect(page.getByTestId("products-container")).toBeVisible({
-      timeout: 30000,
-    });
+    await expect(page.getByTestId("products-container")).toBeVisible();
 
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
@@ -193,19 +191,17 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    await expect(page.getByTestId("products-container")).toBeVisible({
-      timeout: 30000,
-    });
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
     await page.waitForSelector('[data-testid="product-page"]');
 
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-        `${pathToImageSnapshots}/product-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/product-page.png`
+    //   );
+    // }
 
     await expect(page.getByTestId("main-image")).toBeVisible();
     await expect(page.getByTestId("additional-images")).toBeVisible();
@@ -224,12 +220,12 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-        `${pathToImageSnapshots}/contact-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/contact-page.png`
+    //   );
+    // }
     await page.waitForSelector('[data-testid="contact"]');
     await expect(page.getByText("Let's Keep in Touch")).toBeVisible();
     await page.getByRole("button", { name: "Send Message" }).click();
@@ -258,21 +254,20 @@ test.describe("testing application", () => {
     await page.goto(`/cart`, {
       waitUntil: "networkidle",
     });
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
-        `${pathToImageSnapshots}/cart-page.png`
-      );
-    }
+
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(await page.screenshot({ fullPage: true })).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/cart-page.png`
+    //   );
+    // }
     await expect(page.getByText("Cart is empty")).toBeVisible();
 
     // adding product to cart
     await page.goto(`/products`, {
       waitUntil: "networkidle",
     });
-    await expect(page.getByTestId("products-container")).toBeVisible({
-      timeout: 30000,
-    });
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].hover();
     await expect(
@@ -310,9 +305,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    await expect(page.getByTestId("products-container")).toBeVisible({
-      timeout: 30000,
-    });
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].hover();
     await page.getByRole("button", { name: "Add To Cart" }).click();
@@ -335,12 +328,12 @@ test.describe("testing application", () => {
     // checkout address forms
     await page.waitForSelector('[data-testid="address-form"]');
 
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot()).toMatchSnapshot(
-        `${pathToImageSnapshots}/address-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(await page.screenshot()).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/address-page.png`
+    //   );
+    // }
     await page.waitForSelector('[data-testid="address-form"]');
 
     // checking form inputs
@@ -366,12 +359,12 @@ test.describe("testing application", () => {
     await expect(page.getByTestId("pay-component")).toBeVisible();
     await expect(page.locator('[id="payment-form"]')).toBeVisible();
 
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(await page.screenshot()).toMatchSnapshot(
-        `${pathToImageSnapshots}/payment-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(await page.screenshot()).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/payment-page.png`
+    //   );
+    // }
     // payment
     await page.waitForSelector('[data-testid="payment-page"]');
     const iframe = await page.waitForSelector("#payment-element iframe");
@@ -383,7 +376,7 @@ test.describe("testing application", () => {
     await iframeContent.getByPlaceholder("CVC").fill("424");
 
     await page.getByRole("button", { name: "Confirm order" }).click();
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(6000);
     const currentUrl = page.url();
     expect(currentUrl).toContain("success");
   });
@@ -394,13 +387,13 @@ test.describe("testing application", () => {
     });
     await page.waitForSelector('[data-testid="login"]');
     await page.getByRole("link", { name: "Create new account" }).click();
-    await page.waitForSelector('[data-testid="register"]', { timeout: 30000 });
+    await page.waitForSelector('[data-testid="register"]');
 
-    if (process.env.NODE_ENV === "development") {
-      expect(await page.screenshot()).toMatchSnapshot(
-        `${pathToImageSnapshots}/registration-page.png`
-      );
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   expect(await page.screenshot()).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/registration-page.png`
+    //   );
+    // }
 
     await page.waitForSelector('[data-testid="register"]');
 

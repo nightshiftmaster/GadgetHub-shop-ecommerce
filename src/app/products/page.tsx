@@ -62,7 +62,6 @@ const Products = () => {
     const res = await fetch(`${BASE_API_URL}/api/products`, {
       cache: "no-store",
     });
-    console.log(res);
 
     if (!res || !res.ok) {
       setError("Something went wrong !");
