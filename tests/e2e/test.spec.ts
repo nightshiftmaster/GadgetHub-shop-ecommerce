@@ -357,7 +357,9 @@ test.describe("testing application", () => {
 
     await page.getByTestId("terms-checkbox").check();
     await page.waitForTimeout(10000);
-    await expect(page.getByTestId("pay-component")).toBeVisible();
+    await expect(page.getByTestId("pay-component")).toBeVisible({
+      timeout: 10000,
+    });
     await expect(page.locator('[id="payment-form"]')).toBeVisible();
 
     // if (process.env.NODE_ENV === "development") {
@@ -397,11 +399,14 @@ test.describe("testing application", () => {
     // }
 
     await page.waitForSelector('[data-testid="register"]');
+    const element = await page.$('input[name="dateOfBirth"]');
+    await element.evaluate((element) => element.removeAttribute("readonly"));
 
     await page.fill('[name="firstName"]', "vladislav");
     await page.fill('[name="lastName"]', "medvedev");
     await page.fill('[name="email"]', "test25@gmail.com");
     await page.fill('[name="mobileNumber"]', "0547355910");
+    await element.fill("01101998");
     await page.fill('[name="dateOfBirth"]', "01101998");
     await page.getByTestId("input-country").selectOption("Israel");
     await page.fill('[name="city"]', "eilat");

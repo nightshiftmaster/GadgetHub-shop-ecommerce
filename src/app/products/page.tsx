@@ -61,7 +61,6 @@ const Products = () => {
     });
 
     if (!res || !res.ok) {
-      s;
       setError("Something went wrong !");
     }
     return res.json();
