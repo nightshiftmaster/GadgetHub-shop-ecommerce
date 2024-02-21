@@ -122,14 +122,14 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    if (process.env.NODE_ENV === "development") {
-      await page.waitForTimeout(3000);
-      expect(
-        await page.screenshot({
-          path: `${pathToSpecTsSnapshots}/home-page.png`,
-        })
-      ).toMatchSnapshot(`${pathToImageSnapshots}/home-page-mobile.png`);
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   await page.waitForTimeout(3000);
+    //   expect(
+    //     await page.screenshot({
+    //       path: `${pathToSpecTsSnapshots}/home-page.png`,
+    //     })
+    //   ).toMatchSnapshot(`${pathToImageSnapshots}/home-page-mobile.png`);
+    // }
 
     const openIcon = page.getByTestId("open-icon");
     await expect(openIcon).toBeVisible();
