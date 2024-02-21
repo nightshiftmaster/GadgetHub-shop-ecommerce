@@ -53,7 +53,7 @@ test.describe("testing application", () => {
     // }
 
     await Promise.all([
-      // page.waitForSelector('[data-testid="home"]'),
+      page.waitForSelector('[data-testid="home"]'),
       page.waitForSelector('[data-testid="footer"]'),
       page.waitForSelector('[data-testid="navbar"]'),
       page.waitForSelector('[data-testid="banner"]'),
@@ -112,7 +112,7 @@ test.describe("testing application", () => {
     await Promise.all([
       page.getByRole("link", { name: "login" }).click(),
       // page.waitForURL(`/login`),
-      // page.waitForSelector('[data-testid="login"]'),
+      page.waitForSelector('[data-testid="login"]'),
     ]);
   });
 
@@ -179,7 +179,7 @@ test.describe("testing application", () => {
     // await page.waitForSelector('[data-testid="products-container"]');
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
-    // await expect(page.getByTestId("products-container")).toBeVisible();
+    await expect(page.getByTestId("products-container")).toBeVisible();
 
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
@@ -191,7 +191,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    // await expect(page.getByTestId("products-container")).toBeVisible();
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].click();
     await page.waitForSelector('[data-testid="product-page"]');
@@ -267,7 +267,7 @@ test.describe("testing application", () => {
     await page.goto(`/products`, {
       waitUntil: "networkidle",
     });
-    // await expect(page.getByTestId("products-container")).toBeVisible();
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].hover();
     await expect(
@@ -305,7 +305,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
 
-    // await expect(page.getByTestId("products-container")).toBeVisible();
+    await expect(page.getByTestId("products-container")).toBeVisible();
     const elements = await page.$$('[data-testid="test-product"]');
     await elements[0].hover();
     await page.getByRole("button", { name: "Add To Cart" }).click();
@@ -387,7 +387,7 @@ test.describe("testing application", () => {
     });
     await page.waitForSelector('[data-testid="login"]');
     await page.getByRole("link", { name: "Create new account" }).click();
-    // await page.waitForSelector('[data-testid="register"]');
+    await page.waitForSelector('[data-testid="register"]');
 
     // if (process.env.NODE_ENV === "development") {
     //   expect(await page.screenshot()).toMatchSnapshot(
