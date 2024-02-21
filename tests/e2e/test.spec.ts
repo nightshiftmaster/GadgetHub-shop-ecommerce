@@ -376,7 +376,7 @@ test.describe("testing application", () => {
     await iframeContent.getByPlaceholder("CVC").fill("424");
 
     await page.getByRole("button", { name: "Confirm order" }).click();
-    await page.waitForTimeout(6000);
+    await page.waitForTimeout(10000);
     const currentUrl = page.url();
     expect(currentUrl).toContain("success");
   });
