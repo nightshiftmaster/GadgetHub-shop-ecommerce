@@ -356,6 +356,7 @@ test.describe("testing application", () => {
     await expect(page.getByTestId("terms-checkbox")).toBeVisible();
 
     await page.getByTestId("terms-checkbox").check();
+    await page.waitForTimeout(10000);
     await expect(page.getByTestId("pay-component")).toBeVisible();
     await expect(page.locator('[id="payment-form"]')).toBeVisible();
 
