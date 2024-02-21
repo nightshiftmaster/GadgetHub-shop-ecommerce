@@ -21,7 +21,7 @@ const ProfileAvatar = ({
     fetch(...args).then((res) => res.json());
 
   const { data, isLoading } = useSWR(
-    `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
+    `/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );
 

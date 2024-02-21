@@ -11,7 +11,7 @@ import SortProducts from "./components/SortProducts";
 import FilterByCategory from "./components/FilterByCategory";
 
 const getDataByCategory = async (category: any) => {
-  const res = await fetch(`${BASE_API_URL}/api/products/category/${category}`, {
+  const res = await fetch(`/api/products/category/${category}`, {
     cache: "no-store",
   });
 
@@ -22,12 +22,9 @@ const getDataByCategory = async (category: any) => {
 };
 
 const getDataByGeneralCategory = async (generalCategory: any) => {
-  const res = await fetch(
-    `${BASE_API_URL}/api/products/generalCategory/${generalCategory}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`/api/products/generalCategory/${generalCategory}`, {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("failed to fetch data");
   }
@@ -59,11 +56,12 @@ const Products = () => {
   };
 
   const getData = async () => {
-    const res = await fetch(`${BASE_API_URL}/api/products`, {
+    const res = await fetch(`/api/products`, {
       cache: "no-store",
     });
 
     if (!res || !res.ok) {
+      s;
       setError("Something went wrong !");
     }
     return res.json();

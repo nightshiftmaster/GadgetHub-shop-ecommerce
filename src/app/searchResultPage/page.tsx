@@ -8,7 +8,7 @@ import { BASE_API_URL } from "@/utils/constants";
 import Link from "next/link";
 
 const fetchProductSearch = async (query: string) => {
-  const res = await fetch(`${BASE_API_URL}/api/products/search?q=${query}`, {
+  const res = await fetch(`/api/products/search?q=${query}`, {
     cache: "no-store",
   });
 

@@ -1,1 +1,4 @@
-export const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+export const BASE_API_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://gadget-hub-shop.vercel.app";

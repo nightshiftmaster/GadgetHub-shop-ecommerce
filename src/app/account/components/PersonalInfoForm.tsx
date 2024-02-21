@@ -74,7 +74,7 @@ const PersonalInfoForm = () => {
         onSubmit={async (values) => {
           {
             try {
-              const res = await fetch(`${BASE_API_URL}/api/auth/register`, {
+              const res = await fetch(`/api/auth/register`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

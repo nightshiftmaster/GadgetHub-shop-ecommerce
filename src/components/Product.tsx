@@ -47,7 +47,7 @@ const Product = (props: SingleProductType) => {
       return;
     }
     try {
-      await fetch(`${BASE_API_URL}/api/wishlist`, {
+      await fetch(`/api/wishlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const Product = (props: SingleProductType) => {
 
   const handleDeleteWishlist = async (_id: any) => {
     try {
-      await fetch(`${BASE_API_URL}/api/wishlist/${_id}`, {
+      await fetch(`/api/wishlist/${_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

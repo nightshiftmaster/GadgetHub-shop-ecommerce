@@ -176,7 +176,7 @@ test.describe("testing application", () => {
     //   );
     // }
 
-    // await page.waitForSelector('[data-testid="products-container"]');
+    await page.waitForSelector('[data-testid="products-container"]');
     await expect(page.getByTestId("products-banner")).toBeVisible();
     await expect(page.getByTestId("products-filter")).toBeVisible();
     await expect(page.getByTestId("products-container")).toBeVisible();

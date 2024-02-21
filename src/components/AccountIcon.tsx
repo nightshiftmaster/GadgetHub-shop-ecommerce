@@ -26,10 +26,7 @@ const AccountIcon = () => {
     data,
     isLoading,
     error: userError,
-  } = useSWR(
-    `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
-    fetcher
-  );
+  } = useSWR(`/api/user?email=${session?.data?.user?.email}`, fetcher);
 
   const {
     data: user,
