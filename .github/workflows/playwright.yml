@@ -20,6 +20,7 @@ jobs:
       - name: Run Playwright tests
         env:
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
         run: npx playwright test
       - uses: actions/upload-artifact@v3
         if: always()
