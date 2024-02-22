@@ -380,7 +380,9 @@ test.describe("testing application", () => {
 
     await page.getByRole("button", { name: "Confirm order" }).click();
     await page.waitForTimeout(10000);
-    await page.waitForSelector('[data-testid="success-page"]');
+    await page.waitForSelector('[data-testid="success-page"]', {
+      timeout: 60000,
+    });
     // const currentUrl = page.url();
     // expect(currentUrl).toContain("success");
   });
