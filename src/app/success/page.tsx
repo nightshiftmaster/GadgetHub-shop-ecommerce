@@ -53,7 +53,10 @@ const Success = () => {
   }
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-pink-50">
+    <div
+      className="h-screen w-screen flex justify-center items-center bg-pink-50"
+      data-testid="success-page"
+    >
       <Confetti />
       <div className="md:w-[60%] md:h-full  w-[90%] h-[80%] p-20 text-lg font-semibold flex justify-center flex-col md:gap-20  gap-10 shadow-lg items-center bg-slate-100 rounded-2xl">
         <p>
