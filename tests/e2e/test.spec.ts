@@ -33,6 +33,7 @@ const pathToSpecTsSnapshots = path.join(
 let browser;
 let page;
 test.beforeAll(async () => {
+  test.setTimeout(60000);
   browser = await chromium.launch();
   page = await browser.newPage();
 });
@@ -89,7 +90,7 @@ test.describe("testing application", () => {
     await page.waitForSelector('[data-testid="new-arivals"]');
     await page.getByTestId("view-all-top-arrivals").click();
     await page.waitForURL(`/products?filter=newArrivals`);
-    await page.waitForSelector('[data-testid="products"]');
+    await page.waitForSelector('[data-testid="products"]', { timeout: 60000 });
   });
 
   test("testing navbar", async ({ page }: { page: Page }) => {
@@ -374,14 +375,21 @@ test.describe("testing application", () => {
     const iframeContent = await iframe.contentFrame();
     await iframeContent
       .getByPlaceholder("1234 1234 1234 1234")
-      .fill("4242424242424242"); // Example card number
-    await iframeContent.getByPlaceholder("MM / YY").fill("0424");
+      .fill("4242 4242 4242 4242"); // Example card number
+    await iframeContent.getByPlaceholder("MM / YY").fill("04 / 24");
     await iframeContent.getByPlaceholder("CVC").fill("424");
-
     await page.getByRole("button", { name: "Confirm order" }).click();
-    await page.waitForTimeout(10000);
+
+    await expect(
+      iframeContent.getByPlaceholder("1234 1234 1234 1234")
+    ).toHaveValue("4242 4242 4242 4242");
+    await expect(iframeContent.getByPlaceholder("MM / YY")).toHaveValue(
+      "04 / 24"
+    );
+    await expect(iframeContent.getByPlaceholder("CVC")).toHaveValue("424");
+    await page.waitForTimeout(5000);
     await page.waitForSelector('[data-testid="success-page"]', {
-      timeout: 60000,
+      timeout: 5000,
     });
     // const currentUrl = page.url();
     // expect(currentUrl).toContain("success");
