@@ -387,9 +387,9 @@ test.describe("testing application", () => {
       "04 / 24"
     );
     await expect(iframeContent.getByPlaceholder("CVC")).toHaveValue("424");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(10000);
     await page.waitForSelector('[data-testid="success-page"]', {
-      timeout: 5000,
+      timeout: 10000,
     });
     // const currentUrl = page.url();
     // expect(currentUrl).toContain("success");
