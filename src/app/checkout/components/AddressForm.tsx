@@ -192,7 +192,7 @@ const AddressForm = ({ props }: { props: any }) => {
                       className="ring-1 p-3 rounded-md"
                       rows={5}
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                        setFieldValue("additionalInfo", e.target.value);
+                        void setFieldValue("additionalInfo", e.target.value);
                       }}
                       value={values.additionalInfo}
                     ></textarea>

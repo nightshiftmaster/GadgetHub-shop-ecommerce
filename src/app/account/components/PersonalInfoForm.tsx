@@ -126,7 +126,7 @@ const PersonalInfoForm = () => {
                         const selectedFile = e.target.files![0];
                         reader.readAsDataURL(selectedFile);
                         reader.onload = () => {
-                          setFieldValue("img", reader.result);
+                            void setFieldValue("img", reader.result);
                           setThumbnail(reader.result as string);
                         };
                       }}

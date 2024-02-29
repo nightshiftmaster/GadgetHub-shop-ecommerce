@@ -92,7 +92,7 @@ const Account = () => {
             <div
               className="flex gap-3  px-9 justify-start h-[10vh]  hover:bg-slate-200 items-center cursor-pointer duration-500 rounded-lg"
               onClick={() => {
-                logOut();
+                void logOut();
               }}
             >
               {navs[3]?.icon}

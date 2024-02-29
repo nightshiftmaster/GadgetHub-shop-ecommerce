@@ -32,7 +32,7 @@ const Product = ({ params }: { params: { id: string } }) => {
         },
         body: JSON.stringify(item),
       });
-      mutate();
+      void mutate();
     } catch (e: any) {
       console.log(e.message);
     } finally {

@@ -32,7 +32,7 @@ const PayComponent = ({ props }: { props: any }) => {
         console.log(err);
       }
     };
-    makeRequest();
+    void makeRequest();
   }, [products]);
 
   const options: StripeElementsOptions = {

@@ -55,7 +55,7 @@ const Wishlist = () => {
           "Content-Type": "application/json",
         },
       });
-      mutate();
+      void mutate();
     } catch (e: any) {
       console.log(e.message);
     }
