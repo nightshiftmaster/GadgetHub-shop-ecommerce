@@ -9,8 +9,8 @@ export const GET = async (): Promise<NextResponse<ProductsType>> => {
     return new NextResponse(JSON.stringify(fakeDB), { status: 200 });
   }
 
-  await connect();
   try {
+    await connect();
     const products = await Product.find();
     return new NextResponse(JSON.stringify(products), {
       status: 200,

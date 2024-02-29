@@ -8,7 +8,7 @@ export const connect = async () => {
       return;
     }
     const db = await mongoose.connect(
-      `mongodb+srv://nightshiftmaster:Vlad19820708@cluster0.lrcjkhf.mongodb.net/shop_database?retryWrites=true&w=majority`
+      "mongodb+srv://nightshiftmaster:Vlad19820708@cluster0.lrcjkhf.mongodb.net/shop_database?retryWrites=true&w=majority"
     );
 
     connection.isConnected = db.connections[0].readyState;
