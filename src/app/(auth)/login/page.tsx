@@ -7,16 +7,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { InitialState } from "@/redux/features/productsSlice";
-import SuspenseProvider from "@/providers/SuspenseProvider";
 import { BASE_API_URL } from "@/utils/constants";
 import { Formik, Form, Field } from "formik";
-import Loading from "@/components/Loader";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { Oval } from "react-loader-spinner";
 
 const LoginPage = () => {
-  const { data, status } = useSession();
+  const { status } = useSession();
   const [passwordShown, setPasswordShown] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -97,7 +95,7 @@ const LoginPage = () => {
                     <div
                         className=" flex  items-center justify-center absolute top-4 right-3"
                         onClick={() =>
-                            setPasswordShown(passwordShown ? false : true)
+                            setPasswordShown(!passwordShown)
                         }
                     >
                       {passwordShown ? (
