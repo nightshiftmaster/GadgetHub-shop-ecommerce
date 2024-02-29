@@ -1,10 +1,9 @@
 "use client";
 import Featured from "@/components/Featured";
-import TopSales from "@/components/TopSales";
+import TopSales from "@/components/ProductsDisplay";
 import Banner from "@/components/Banner";
-import NewArrivals from "@/components/NewArrivals";
+import NewArrivals from "@/components/ProductsDisplay";
 import ShopByCategory from "@/components/ShopByCategory";
-import { BASE_API_URL } from "@/utils/constants";
 import useSWR from "swr";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/utils/fetcherSwr";
@@ -51,8 +50,24 @@ const Home = () => {
         <Banner />
         <ShopByCategory />
         <Featured data={data} />
-        <TopSales data={data} />
-        <NewArrivals data={data} />
+        <TopSales
+            data={data}
+            title="Top Sales"
+            filterValue="topSales"
+            dataTestId="top-sales"
+            bgColor="bg-lime-50"
+            startIndex={0}
+            endIndex={14}
+        />
+        <NewArrivals
+            data={data}
+            title="New Arrivals"
+            filterValue="newArrivals"
+            dataTestId="new-arivals"
+            bgColor="bg-pink-50"
+            startIndex={30}
+            endIndex={44}
+        />
       </div>
     </div>
   );
