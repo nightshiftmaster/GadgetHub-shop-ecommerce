@@ -29,7 +29,7 @@ const PersonalDataSchema = Yup.object().shape({
   additionalInfo: Yup.string(),
 });
 
-const AdressForm = ({ props }: { props: any }) => {
+const AddressForm = ({ props }: { props: any }) => {
   const dispatch = useDispatch();
   const { status } = useSession();
   const session = useSession();
@@ -221,4 +221,4 @@ const AdressForm = ({ props }: { props: any }) => {
   );
 };
 
-export default AdressForm;
+export default AddressForm;

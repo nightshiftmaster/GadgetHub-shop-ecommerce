@@ -1,18 +1,16 @@
 "use client";
 import Loading from "@/components/Loader";
-import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import useSWR from "swr";
 
 const ProfileAvatar = ({
-  tumbnail,
-  setTumbnail,
+  thumbnail,
+  setThumbnail,
 }: {
-  tumbnail: string;
-  setTumbnail: any;
+  thumbnail: string;
+  setThumbnail: any;
 }) => {
   const session = useSession();
   const [currAvatar, setCurrAvatar] = useState("");
@@ -33,10 +31,10 @@ const ProfileAvatar = ({
       setCurrAvatar(session?.data?.user?.image);
     }
 
-    if (tumbnail) {
-      setCurrAvatar(tumbnail);
+    if (thumbnail) {
+      setCurrAvatar(thumbnail);
     }
-  }, [tumbnail]);
+  }, [thumbnail]);
 
   if (isLoading) {
     return <Loading />;

@@ -19,7 +19,7 @@ const PayComponent = ({ props }: { props: any }) => {
   );
 
   useEffect(() => {
-    const makeReqest = async () => {
+    const makeRequest = async () => {
       try {
         const res = await fetch("api/create-intent", {
           method: "POST",
@@ -32,7 +32,7 @@ const PayComponent = ({ props }: { props: any }) => {
         console.log(err);
       }
     };
-    makeReqest();
+    makeRequest();
   }, [products]);
 
   const options: StripeElementsOptions = {

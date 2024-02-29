@@ -4,7 +4,6 @@ import PersonalInfoForm from "./components/PersonalInfoForm";
 import ProfileAvatar from "./components/ProfileAvatar";
 import Link from "next/link";
 import { TbChecklist } from "react-icons/tb";
-import { LuHeart } from "react-icons/lu";
 import { CiLogout } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
 import { BASE_API_URL } from "@/utils/constants";
@@ -68,7 +67,7 @@ const Account = () => {
           {/* head */}
           <h1 className="text-center text-2xl p-6">My Account</h1>
           <div className="flex flex-col p-5 bg-sky-100 justify-center items-center gap-7">
-            <ProfileAvatar tumbnail="" setTumbnail="" />
+            <ProfileAvatar thumbnail="" setThumbnail="" />
             <h1 className="capitalize font-serif">
               {data[0]?.firstName} {data[0]?.lastName}
             </h1>

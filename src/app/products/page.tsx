@@ -111,7 +111,7 @@ const Products = () => {
         ),
       byRating: () => filtered?.sort((a, b) => b.rating - a.rating),
       byPriceLowToHigh: () => filtered?.sort((a, b) => a.price - b.price),
-      byPriceHightToLow: () => filtered?.sort((a, b) => b.price - a.price),
+      byPriceHeightToLow: () => filtered?.sort((a, b) => b.price - a.price),
     };
     const filteredData = filters[type];
     setCurrProducts(filteredData);

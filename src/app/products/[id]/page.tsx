@@ -89,7 +89,7 @@ const Product = ({ params }: { params: { id: string } }) => {
                   mainImg ||
                   "https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg"
                 }
-                alt="tumbnail"
+                alt="thumbnail"
                 fill
                 className="transition-opacity duration-1000 opacity-100 rounded-t-md"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -167,7 +167,7 @@ const Product = ({ params }: { params: { id: string } }) => {
                   </h2>
                 </div>
               </div>
-              {/* withlist icon */}
+              {/* with list icon */}
               {isItemInWishlist ||
                 (isUserCreated && (
                   <div
