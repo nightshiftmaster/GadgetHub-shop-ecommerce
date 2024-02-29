@@ -1,7 +1,8 @@
 .withVerticalCustomScroll{
+    //@Todo: vlad medvede - change the color and other configurations as you wish
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+    scrollbar-color: rgb(240, 171, 252) transparent;
 
     &::-webkit-scrollbar {
         width: 8px;
