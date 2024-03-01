@@ -1,4 +1,4 @@
-//@Todo: vlad medvede - если  используешь .eslintrc.js, ты обязан его настроить, пустой кофиг это очень похо
+//@Todo: vlad medvede - если  используешь .eslintrc.js, ты обязан его настроить, пустой кофиг это очень похо, используй npm init @eslint/config, https://eslint.org/docs/latest/use/getting-started, эта команда задаст вопросы и создаст базовый конфиг
 {
   "extends": "next/core-web-vitals"
 }
