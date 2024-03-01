@@ -40,7 +40,7 @@ const Success = () => {
         }),
       });
     };
-    sendMail();
+    void sendMail();
     dispatch(removeAllProducts());
   }, []);
 

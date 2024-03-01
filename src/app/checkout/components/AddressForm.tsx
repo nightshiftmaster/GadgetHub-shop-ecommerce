@@ -29,7 +29,7 @@ const PersonalDataSchema = Yup.object().shape({
   additionalInfo: Yup.string(),
 });
 
-const AdressForm = ({ props }: { props: any }) => {
+const AddressForm = ({ props }: { props: any }) => {
   const dispatch = useDispatch();
   const { status } = useSession();
   const session = useSession();
@@ -192,7 +192,7 @@ const AdressForm = ({ props }: { props: any }) => {
                       className="ring-1 p-3 rounded-md"
                       rows={5}
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                        setFieldValue("additionalInfo", e.target.value);
+                        void setFieldValue("additionalInfo", e.target.value);
                       }}
                       value={values.additionalInfo}
                     ></textarea>
@@ -221,4 +221,4 @@ const AdressForm = ({ props }: { props: any }) => {
   );
 };
 
-export default AdressForm;
+export default AddressForm;

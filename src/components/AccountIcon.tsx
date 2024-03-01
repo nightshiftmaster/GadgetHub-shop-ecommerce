@@ -1,13 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import React, {useState} from "react";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 import Link from "next/link";
-import { VscAccount } from "react-icons/vsc";
-import { BASE_API_URL } from "@/utils/constants";
+import {VscAccount} from "react-icons/vsc";
 import useSWR from "swr";
 import DropdownMenu from "./DropdownMenu";
-import { fetcher } from "@/utils/fetcherSwr";
+import {fetcher} from "@/utils/fetcherSwr";
 
 const AccountIcon = () => {
   const session = useSession();

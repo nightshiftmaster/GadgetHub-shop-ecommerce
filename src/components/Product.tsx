@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { SingleProductType } from "../types/types";
+import { SingleProductType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct, InitialState } from "@/redux/features/productsSlice";
+import { useDispatch } from "react-redux";
+import { addProduct } from "@/redux/features/productsSlice";
 import { AppDispatch } from "@/redux/store";
 import styles from "./page.module.css";
 import { toast } from "react-toastify";
@@ -29,10 +29,10 @@ const Product = (props: SingleProductType) => {
   useEffect(() => {
     switch (likeStatus) {
       case "liked":
-        handlePostWishlist(props);
+        void handlePostWishlist(props);
         break;
       case "unliked":
-        handleDeleteWishlist(props._id);
+        void handleDeleteWishlist(props._id);
         break;
       default:
         return;
@@ -54,7 +54,7 @@ const Product = (props: SingleProductType) => {
         },
         body: JSON.stringify(item),
       });
-      mutate();
+      void mutate();
     } catch (e: any) {
       console.log(e.message);
     } finally {
@@ -72,7 +72,7 @@ const Product = (props: SingleProductType) => {
           "Content-Type": "application/json",
         },
       });
-      mutate();
+      void mutate();
     } catch (e: any) {
       console.log(e.message);
     }

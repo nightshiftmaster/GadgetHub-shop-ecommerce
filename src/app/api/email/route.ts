@@ -4,7 +4,7 @@ import { AppleReceiptEmail } from "@/components/ReceiptMail";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-resend.domains.create({ name: "nightshift.com" });
+void resend.domains.create({ name: "nightshift.com" });
 
 export async function POST(
   request: NextRequest

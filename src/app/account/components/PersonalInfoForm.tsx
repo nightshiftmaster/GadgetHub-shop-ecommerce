@@ -35,14 +35,14 @@ const PersonalDataSchema = Yup.object().shape({
 
 const PersonalInfoForm = () => {
   const [err, setErr] = useState("");
-  const [tumbnail, setTumbnail] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   const router = useRouter();
   const session = useSession();
 
   useEffect(() => {
-    setTumbnail(tumbnail);
-  }, [tumbnail]);
+    setThumbnail(thumbnail);
+  }, [thumbnail]);
 
   const { data, isLoading } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
@@ -107,7 +107,7 @@ const PersonalInfoForm = () => {
           return (
             <div className="flex w-full flex-col justify-center items-center  gap-5">
               <div className="text-red-400 text-2xl font-semibold">{err}</div>
-              <ProfileAvatar tumbnail={tumbnail} setTumbnail={setTumbnail} />
+              <ProfileAvatar thumbnail={thumbnail} setThumbnail={setThumbnail} />
               <Form className="flex flex-col md:gap-10 xl:text-base md:text-sm text-sm gap-7 justify-center items-center w-full md:w-[95vh]">
                 <div className="flex justify-center items-center flex-col gap-4 w-full">
                   <div className="flex  gap-3 w-full flex-col  justify-center items-center">
@@ -126,8 +126,8 @@ const PersonalInfoForm = () => {
                         const selectedFile = e.target.files![0];
                         reader.readAsDataURL(selectedFile);
                         reader.onload = () => {
-                          setFieldValue("img", reader.result);
-                          setTumbnail(reader.result as string);
+                            void setFieldValue("img", reader.result);
+                          setThumbnail(reader.result as string);
                         };
                       }}
                     />

@@ -88,7 +88,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.waitForSelector('[data-testid="new-arivals"]');
-    await page.getByTestId("view-all-top-arrivals").click();
+    await page.getByTestId("view-all-new-arivals").click();
     await page.waitForURL(`/products?filter=newArrivals`);
     await page.waitForSelector('[data-testid="products"]', { timeout: 60000 });
   });

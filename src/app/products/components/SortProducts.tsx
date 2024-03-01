@@ -4,7 +4,7 @@ import Select from "react-select";
 const options = [
   { value: "byRating", label: "Sort by rating" },
   { value: "byPriceLowToHigh", label: "Sort by price: low to high" },
-  { value: "byPriceHightToLow", label: "Sort by price: high to low" },
+  { value: "byPriceHeightToLow", label: "Sort by price: high to low" },
 ];
 
 const SortProducts = ({ setFilter }: { setFilter: any }) => {
