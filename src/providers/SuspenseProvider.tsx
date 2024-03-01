@@ -12,8 +12,6 @@ const SuspenseProvider = ({ children }: { children: React.ReactNode }) => {
         strokeWidth="4"
         secondaryColor="#c0c0c0"
         ariaLabel="oval-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
       />
       {children}
     </div>
