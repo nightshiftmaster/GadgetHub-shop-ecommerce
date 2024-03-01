@@ -39,6 +39,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    //Todo - очень плохой подход как по мне в схеме должен быть ссылочный подход, и orders должен ссылаться на схему продуктов можно с доп данными скажем quantity или как ты сам решишь уже чтоб это было
     orders: {
       type: [Object],
     },

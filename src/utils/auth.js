@@ -29,7 +29,7 @@ export const authOptions = {
       id: "credentials",
       name: "Credentials",
       async authorize(credentials) {
-        // autorization for tests
+        // authorization for tests
         if (process.env.NODE_ENV === "development") {
           const isPasswordCorrect = await bcrypt.compare(
             credentials.password,
@@ -61,7 +61,7 @@ export const authOptions = {
             throw new Error("User not found");
           }
         } catch (err) {
-          throw new Error(err);
+          throw Error(err);
         }
       },
     }),

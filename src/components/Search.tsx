@@ -25,6 +25,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     const fetch = async () => {
+      //Todo: смысла тут в доп переменной просто нету просто верни fetchProductSearch вот так: return await fetchProductSearch(value);
       const data = await fetchProductSearch(value);
       return data;
     };

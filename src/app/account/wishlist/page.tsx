@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { LuHeartOff } from "react-icons/lu";
 import { fetcher } from "@/utils/fetcherSwr";
 import { useSession } from "next-auth/react";
+//Todo: нафига тут вар? это же es6 по чему не const?
 var _ = require("lodash");
 
 const Wishlist = () => {

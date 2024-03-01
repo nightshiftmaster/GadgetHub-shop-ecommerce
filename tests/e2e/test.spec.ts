@@ -1,7 +1,8 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
-import { Page, defineConfig, devices } from "@playwright/test";
+import {Page} from "@playwright/test";
+
 const path = require("path");
 
 const dotenv = require("dotenv");
@@ -68,7 +69,7 @@ test.describe("testing application", () => {
 
     await page.getByTestId("general-category-Smartphones").click();
     await page.waitForURL(`/products?generalCategory=smartphones`);
-    await page.waitForSelector('[data-testid="products"]'),
+    await page.waitForSelector('[data-testid="products"]');
       await page.goto("/", {
         waitUntil: "networkidle",
       });

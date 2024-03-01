@@ -77,7 +77,7 @@ const CheckoutForm = ({ props }: { props: any }) => {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
+    //Todo что это за 4; тут? выглядит как опечатка...
     setIsLoading(true);
     4;
     const { error } = await stripe.confirmPayment({

@@ -103,6 +103,7 @@ const ShopByCategory = () => {
                   }}
                 >
                   <div className="w-[60px] h-[60px] p-2 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
+                    {/* Todo: тут также нужно использовать <Image />  из next/image */}
                     <img
                       src={cat.image}
                       className="relative grayscale rounded-[20%]"
@@ -129,6 +130,7 @@ const ShopByCategory = () => {
               }}
             >
               <div className="w-[70px] h-[70px] p-1 hover:scale-125 transition-all duration-700 relative ring-slate-200 ring-1 flex justify-center items-center rounded-full">
+                {/* Todo: тут также нужно использовать <Image />  из next/image */}
                 <img
                   src={cat.image}
                   className="relative grayscale rounded-full"

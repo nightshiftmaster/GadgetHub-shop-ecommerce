@@ -279,6 +279,9 @@ const PersonalInfoForm = () => {
                       <div
                         className=" flex  items-center justify-center absolute top-4 right-3"
                         onClick={() =>
+                            //Todo: перестань везде использовать   passwordShown ? false : true
+                            /// в чём смысл ?   /// в чём смысл ? можно же просто сделать так !passwordShown если ты не уверен или туда может попать не bool
+                            // просто оберни в метод Boolean к примеру тут можно сделать так !Boolean(passwordShown)
                           setPasswordShown(passwordShown ? false : true)
                         }
                       >

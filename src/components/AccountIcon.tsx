@@ -81,7 +81,11 @@ const AccountIcon = () => {
         <Link href="/login" key={5} className="uppercase ">
           {session.status === "authenticated" ? (
             <div className="flex justify-center relative items-center ">
+
               {session?.data?.user?.image || data[0]?.img ? (
+
+                //  ESLint: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element(@next/next/no-img-element)
+                  //Todo у тебя не выводит эту ошибку там где img нужно использовать Image компонерт, если стили изменятся, стилизуй, на сколько помню там есть width, height и другие пропы, этот компонент помагает нексу в кешировании изображений и подстройки их под правильный размер
                 <img
                   src={
                     session?.data?.user?.image

@@ -1,5 +1,6 @@
 import confetti from "canvas-confetti";
 
+//@Todo: vlad medvede - зачем это тут?, тем более с var, тем более что эта функция не используется в приложении, просто удали этот файл
 export const runFireWorks = () => {
   var duration = 15 * 1000;
   var animationEnd = Date.now() + duration;

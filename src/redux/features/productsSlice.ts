@@ -1,6 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SingleProductType } from "@/types/types";
+import {createSlice} from "@reduxjs/toolkit";
+import {SingleProductType} from "@/types/types";
 
+//@Todo: vlad medvede - что такое features папка?, почитай про структуру редакс и подход redux ducks, если один редюсер, назови файл reducers и храни всё там, если много релюсеров и экшэнов
+//@Todo: делай папку для каждой сущности скажем для продуктов, в каждой такой папке index.ts и оттуда експортируй всё
+//@Todo: филотный експорт тут лучше не делать, експортируемый редюсер должен быть с постоянным именем, а значит експорт лучше сделать именованным
 export type InitialState = {
   cart: SingleProductType[];
   quantity: number;
@@ -35,10 +38,9 @@ const productsSlice = createSlice({
         (product) => product._id === action.payload
       );
       state.total -= product?.price ? product?.price * product?.quantity : 0;
-      const newProducts = state.cart.filter(
-        (product) => product._id !== action.payload
+      state.cart = state.cart.filter(
+          (product) => product._id !== action.payload
       );
-      state.cart = newProducts;
       state.quantity -= product?.quantity || 0;
     },
     removeAllProducts: (state) => {

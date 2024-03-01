@@ -1,18 +1,17 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { TbChecklist } from "react-icons/tb";
-import { MdOutlineFeedback } from "react-icons/md";
-import { CiLogout } from "react-icons/ci";
+import React, {useEffect, useState} from "react";
+import {TbChecklist} from "react-icons/tb";
+import {MdOutlineFeedback} from "react-icons/md";
+import {CiLogout} from "react-icons/ci";
 import Link from "next/link";
-import { removeAllProducts } from "@/redux/features/productsSlice";
-import { BASE_API_URL } from "@/utils/constants";
-import { VscAccount } from "react-icons/vsc";
-import { signOut } from "next-auth/react";
+import {removeAllProducts} from "@/redux/features/productsSlice";
+import {BASE_API_URL} from "@/utils/constants";
+import {VscAccount} from "react-icons/vsc";
+import {signOut, useSession} from "next-auth/react";
 import ModalWindow from "./components/ModalWindow";
-import { useDispatch } from "react-redux";
-import { usePathname, useRouter } from "next/navigation";
+import {useDispatch} from "react-redux";
+import {usePathname} from "next/navigation";
 import useSWR from "swr";
-import { useSession } from "next-auth/react";
 import WishIcon from "./wishlist/components/WishIcon";
 
 const navs = [

@@ -1,22 +1,22 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { SingleProductType } from "@/types/types";
+import React, {useEffect, useState} from "react";
+import {SingleProductType} from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
-import { useDispatch, useSelector } from "react-redux";
-import { addProduct, InitialState } from "@/redux/features/productsSlice";
-import { AppDispatch } from "@/redux/store";
+import {useDispatch} from "react-redux";
+import {addProduct} from "@/redux/features/productsSlice";
+import {AppDispatch} from "@/redux/store";
 import styles from "./page.module.css";
-import { toast } from "react-toastify";
-import { BASE_API_URL } from "@/utils/constants";
-import { LiaCartPlusSolid } from "react-icons/lia";
-import { IoHeartCircle } from "react-icons/io5";
+import {toast} from "react-toastify";
+import {BASE_API_URL} from "@/utils/constants";
+import {LiaCartPlusSolid} from "react-icons/lia";
+import {IoHeartCircle} from "react-icons/io5";
 import useSWR from "swr";
-import { useSession } from "next-auth/react";
-import { IoIosHeartEmpty } from "react-icons/io";
-import { IoIosHeart } from "react-icons/io";
-import { fetcher } from "@/utils/fetcherSwr";
+import {useSession} from "next-auth/react";
+import {IoIosHeart, IoIosHeartEmpty} from "react-icons/io";
+import {fetcher} from "@/utils/fetcherSwr";
+//Todo: ту тоже за чем то var
 var _ = require("lodash");
 
 const Product = (props: SingleProductType) => {
@@ -25,6 +25,10 @@ const Product = (props: SingleProductType) => {
   const session = useSession();
 
   const { data, isLoading, mutate, error } = useSWR(`/api/wishlist`, fetcher);
+
+  //Todo: если в useEffect есть установки стейтов, или что то что влияит на отрисовку, тебе нужно это отрендерить до того как пользователю отрисуется обновлённое состояние в браузере
+  // а значит было бы логичнее испльзовать useLayoutEffect в место useEffect, поменячй, и проверь как работает в контексте этого кода
+  // если всё ок оставь его, это показывает что ты знаешь что к чему=))
 
   useEffect(() => {
     switch (likeStatus) {

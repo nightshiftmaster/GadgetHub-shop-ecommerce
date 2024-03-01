@@ -42,6 +42,10 @@ export const AppleReceiptEmail = ({
             <Text style={cupomText}>
               Save 3% on all your purchases.
               <sup style={supStyle}>1</sup>{" "}
+              {/*Todo - не знаю за чем это лень разбираться, но если приложение работает не на localhost и не на 3000 порту?,  */}
+              {/*для примера создать где-нибудь файл с экспортом clientUrl */}
+              {/*в случаи с react файл .env.development и  .env.production в корне, в .env.production для примера REACT_APP_CLIENT_URL=REACT_APP_API_URL=https:[*] в .env.development REACT_APP_API_URL=https:http://localhost:3000*/}
+              {/* у тебя как я понял есть уже src/utils/constants.js можешь сделать там export const clientUrl=process.env.REACT_APP_CLIENT_URL в контексте next вроде должно работать без REACT_APP */}
               <Link href="http://localhost:3000">Apply and use in minutes</Link>
               <sup style={supStyle}>2</sup>
             </Text>

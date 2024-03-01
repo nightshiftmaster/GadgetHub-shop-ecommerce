@@ -154,6 +154,7 @@ const Products = () => {
             >
               <div className=" w-full h-[30vh]  flex justify-center relative">
                 {
+                  // Todo: тут также нужно использовать <Image />  из next/image
                   <img
                     src={
                       banner

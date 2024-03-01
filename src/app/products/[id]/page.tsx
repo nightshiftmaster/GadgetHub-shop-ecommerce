@@ -13,7 +13,7 @@ import { BsBookmarkHeart } from "react-icons/bs";
 import { SingleProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
-
+//Todo: ту тоже за чем то var
 var _ = require("lodash");
 
 const Product = ({ params }: { params: { id: string } }) => {
@@ -102,6 +102,7 @@ const Product = ({ params }: { params: { id: string } }) => {
               >
                 {data?.images.map((item: string, i: number) => {
                   return (
+                      // Todo: тут также нужно использовать <Image />  из next/image
                     <img
                       key={i}
                       src={item}

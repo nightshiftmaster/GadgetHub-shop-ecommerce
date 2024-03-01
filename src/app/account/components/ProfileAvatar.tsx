@@ -46,6 +46,7 @@ const ProfileAvatar = ({
     <div>
       <div className="flex justify-center items-center">
         {currAvatar ? (
+            // Todo: тут также нужно использовать <Image />  из next/image
           <img
             src={currAvatar}
             alt="avatar"

@@ -1,5 +1,4 @@
 import React from "react";
-import SuspenseProvider from "@/providers/SuspenseProvider";
 
 const Loading = () => {
   return (

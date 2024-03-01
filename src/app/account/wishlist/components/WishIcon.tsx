@@ -1,11 +1,8 @@
 "use client";
-import { LuHeart } from "react-icons/lu";
+import {LuHeart} from "react-icons/lu";
 import React from "react";
-import { InitialState } from "@/redux/features/productsSlice";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
 import useSWR from "swr";
-import { fetcher } from "@/utils/fetcherSwr";
+import {fetcher} from "@/utils/fetcherSwr";
 
 const WishIcon = () => {
   const { data, isLoading } = useSWR(`/api/wishlist`, fetcher);
