@@ -24,7 +24,7 @@ export default function DatePickerValue({
           name={name}
           value={value}
           onChange={(newValue) => {
-            setFieldValue("dateOfBirth", newValue?.format("YYYY-MM-DD"));
+            void setFieldValue("dateOfBirth", newValue?.format("YYYY-MM-DD"));
           }}
           className="w-full"
           slotProps={{ textField: { size: "medium" } }}

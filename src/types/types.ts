@@ -28,17 +28,6 @@ export interface MyFormValues {
   additionalInfo?: string;
 }
 
-export interface MyFormTouched {
-  firstName?: boolean;
-  lastName?: boolean;
-  mobileNumber?: boolean;
-  email?: boolean;
-  address?: boolean;
-  city?: boolean;
-  country?: boolean;
-  additionalInfo?: boolean;
-}
-
 export type UserType = {
   img: string;
   firstName: string;

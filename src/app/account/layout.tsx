@@ -117,7 +117,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               <div
                 className="flex gap-3  px-10 justify-start h-[10vh]  hover:bg-slate-400 items-center cursor-pointer duration-500"
                 onClick={() => {
-                  logOut();
+                  void logOut();
                 }}
               >
                 {navs[4].icon}

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import AdressForm from "@/app/checkout/components/AdressForm";
+import AddressForm from "@/app/checkout/components/AddressForm";
 import OrderPayment from "@/app/checkout/components/OrderPayment";
 import { useState } from "react";
 import Stepper from "./components/Stepper";
@@ -11,7 +11,7 @@ const Checkout = () => {
   const nextStep = (): void => setStep(step + 1);
   const prevStep = (): void => setStep(step - 1);
 
-  const steps = [AdressForm, OrderPayment];
+  const steps = [AddressForm, OrderPayment];
 
   const Page = steps[step];
 

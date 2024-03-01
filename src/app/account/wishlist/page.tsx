@@ -47,7 +47,7 @@ const Wishlist = () => {
     );
   }
 
-  const handlDelete = async (id: number) => {
+  const handleDelete = async (id: number) => {
     try {
       await fetch(`${BASE_API_URL}/api/wishlist/${id}`, {
         method: "DELETE",
@@ -55,7 +55,7 @@ const Wishlist = () => {
           "Content-Type": "application/json",
         },
       });
-      mutate();
+      void mutate();
     } catch (e: any) {
       console.log(e.message);
     }
@@ -92,7 +92,7 @@ const Wishlist = () => {
                   </Link>
                   <span
                     className="md:hidden cursor-pointer  text-red-500"
-                    onClick={() => handlDelete(item._id)}
+                    onClick={() => handleDelete(item._id)}
                   >
                     x
                   </span>
@@ -119,7 +119,7 @@ const Wishlist = () => {
                 </button>
                 <button
                   className="bg-sky-500 hidden md:flex text-white px-3 py-2 rounded-md"
-                  onClick={() => handlDelete(item._id)}
+                  onClick={() => handleDelete(item._id)}
                 >
                   Remove
                 </button>
