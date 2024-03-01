@@ -1,3 +1,4 @@
+//@Todo: vlad medvede - если  используешь .eslintrc.js, ты обязан его настроить, пустой кофиг это очень похо
 {
   "extends": "next/core-web-vitals"
 }
