@@ -13,9 +13,9 @@ import {
   Text,
 } from "@react-email/components";
 import * as React from "react";
-
 import { MyFormValues } from "@/types/types";
 import { InitialState } from "@/redux/features/productsSlice";
+import { BASE_API_URL } from "@/utils/constants";
 
 export const AppleReceiptEmail = ({
   delivery,
@@ -32,7 +32,7 @@ export const AppleReceiptEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Section>
-            <div className="flex  justify-center">
+            <div className="flex justify-center">
               <Column>
                 <Text style={heading}>GadgetHub Receipt</Text>
               </Column>
@@ -42,7 +42,7 @@ export const AppleReceiptEmail = ({
             <Text style={cupomText}>
               Save 3% on all your purchases.
               <sup style={supStyle}>1</sup>{" "}
-              <Link href="http://localhost:3000">Apply and use in minutes</Link>
+              <Link href={BASE_API_URL}>Apply and use in minutes</Link>
               <sup style={supStyle}>2</sup>
             </Text>
           </Section>
@@ -188,7 +188,7 @@ export const AppleReceiptEmail = ({
 
           <Text style={footerCopyright}>
             Copyright © 2024 Gadget Hub. <br />{" "}
-            <Link href="http://localhost:3000">All rights reserved</Link>
+            <Link href={BASE_API_URL}>All rights reserved</Link>
           </Text>
         </Container>
       </Body>

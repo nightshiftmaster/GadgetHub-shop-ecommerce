@@ -2,8 +2,8 @@ import { connect } from "@/utils/db";
 import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 export const POST = async (
   request: NextRequest
@@ -20,8 +20,6 @@ export const POST = async (
           status: 500,
         });
       }
-      // console.log("File written successfully\n");
-      // console.log(fs.readFileSync(`${file}/user.txt`, "utf8"));
     });
     return new NextResponse("User has been created", { status: 201 });
   }

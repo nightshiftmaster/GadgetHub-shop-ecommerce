@@ -9,6 +9,7 @@ import Pagination from "@/app/products/components/Pagination";
 import FilterByPrice from "./components/FilterByPrice";
 import SortProducts from "./components/SortProducts";
 import FilterByCategory from "./components/FilterByCategory";
+import Image from "next/image";
 
 const getDataByCategory = async (category: any) => {
   const res = await fetch(`/api/products/category/${category}`, {
@@ -153,17 +154,16 @@ const Products = () => {
               data-testid="products-banner"
             >
               <div className=" w-full h-[30vh]  flex justify-center relative">
-                {
-                  <img
-                    src={
-                      banner
-                        ? banner
-                        : "https://www.gadstyle.com/wp-content/uploads/2024/01/new-year-sale-banner-2024-1.webp"
-                    }
-                    alt="banner"
-                    className="object-cover w-full h-full "
-                  />
-                }
+                <Image
+                  src={
+                    banner
+                      ? banner
+                      : "https://www.gadstyle.com/wp-content/uploads/2024/01/new-year-sale-banner-2024-1.webp"
+                  }
+                  alt="banner"
+                  fill
+                  className="object-cover w-full h-full "
+                />
               </div>
 
               {error ? (

@@ -52,6 +52,12 @@ const nextConfig = {
     //   },
     // ],
     domains: [
+      "www.bajajallianz.com",
+      "schrammek.co.il",
+      "www.optistore-eilat.net",
+      "watch4u.b-cdn.net",
+      "www.lenovo.com",
+      "lh3.googleusercontent.com",
       "via.placeholder.com",
       "i.dummyjson.com",
       "static.vecteezy.com",
@@ -61,6 +67,7 @@ const nextConfig = {
       "cdn.dummyjson.com",
       "i.ytimg.com",
       "png.pngtree.com",
+      "watches.ae",
     ],
   },
 };

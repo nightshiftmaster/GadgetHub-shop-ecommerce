@@ -1,8 +1,8 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
-import { Page, defineConfig, devices } from "@playwright/test";
-const path = require("path");
+import { Page } from "@playwright/test";
+import path = require("path");
 
 const dotenv = require("dotenv");
 dotenv.config();

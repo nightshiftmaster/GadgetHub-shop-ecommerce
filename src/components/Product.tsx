@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { SingleProductType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +17,7 @@ import { useSession } from "next-auth/react";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoIosHeart } from "react-icons/io";
 import { fetcher } from "@/utils/fetcherSwr";
-var _ = require("lodash");
+import _ from "lodash";
 
 const Product = (props: SingleProductType) => {
   const [likeStatus, setLikeStatus] = useState("");
@@ -26,7 +26,7 @@ const Product = (props: SingleProductType) => {
 
   const { data, isLoading, mutate, error } = useSWR(`/api/wishlist`, fetcher);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     switch (likeStatus) {
       case "liked":
         void handlePostWishlist(props);

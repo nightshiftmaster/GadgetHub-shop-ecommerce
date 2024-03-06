@@ -25,8 +25,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const data = await fetchProductSearch(value);
-      return data;
+      return await fetchProductSearch(value);
     };
     fetch().then((res) => setSearchItems(res));
   }, [value]);

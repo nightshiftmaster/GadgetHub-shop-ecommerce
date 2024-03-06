@@ -8,9 +8,6 @@ import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/features/productsSlice";
 import { RootState } from "@/redux/store";
 import Confetti from "react-confetti";
-import useSWR from "swr";
-import { BASE_API_URL } from "@/utils/constants";
-import { fetcher } from "@/utils/fetcherSwr";
 import Loading from "@/components/Loader";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -23,11 +20,6 @@ const Success = () => {
 
   const productsSlice = useSelector(
     (state: RootState) => state.productsReducer
-  );
-
-  const { data, isLoading } = useSWR(
-    `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
-    fetcher
   );
 
   useEffect(() => {
@@ -44,7 +36,7 @@ const Success = () => {
     dispatch(removeAllProducts());
   }, []);
 
-  if (isLoading) {
+  if (session.status === "loading") {
     return <Loading />;
   }
 

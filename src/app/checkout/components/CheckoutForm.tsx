@@ -77,9 +77,7 @@ const CheckoutForm = ({ props }: { props: any }) => {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
     setIsLoading(true);
-    4;
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {

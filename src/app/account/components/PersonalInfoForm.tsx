@@ -83,7 +83,7 @@ const PersonalInfoForm = () => {
               });
 
               if (res.status === 201) {
-                router.push("/login?succes=Account has been created");
+                router.push("/login?success=Account has been created");
                 toast.success("Congratulations! User created successfully!", {
                   theme: "light",
                 });
@@ -107,7 +107,10 @@ const PersonalInfoForm = () => {
           return (
             <div className="flex w-full flex-col justify-center items-center  gap-5">
               <div className="text-red-400 text-2xl font-semibold">{err}</div>
-              <ProfileAvatar thumbnail={thumbnail} setThumbnail={setThumbnail} />
+              <ProfileAvatar
+                thumbnail={thumbnail}
+                setThumbnail={setThumbnail}
+              />
               <Form className="flex flex-col md:gap-10 xl:text-base md:text-sm text-sm gap-7 justify-center items-center w-full md:w-[95vh]">
                 <div className="flex justify-center items-center flex-col gap-4 w-full">
                   <div className="flex  gap-3 w-full flex-col  justify-center items-center">
@@ -126,7 +129,7 @@ const PersonalInfoForm = () => {
                         const selectedFile = e.target.files![0];
                         reader.readAsDataURL(selectedFile);
                         reader.onload = () => {
-                            void setFieldValue("img", reader.result);
+                          void setFieldValue("img", reader.result);
                           setThumbnail(reader.result as string);
                         };
                       }}
@@ -278,9 +281,7 @@ const PersonalInfoForm = () => {
                       />
                       <div
                         className=" flex  items-center justify-center absolute top-4 right-3"
-                        onClick={() =>
-                          setPasswordShown(passwordShown ? false : true)
-                        }
+                        onClick={() => setPasswordShown(!passwordShown)}
                       >
                         {passwordShown ? (
                           <FaRegEye size={20} color="#85929E" />

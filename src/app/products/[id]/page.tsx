@@ -13,8 +13,7 @@ import { BsBookmarkHeart } from "react-icons/bs";
 import { SingleProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
-
-var _ = require("lodash");
+import _ from "lodash";
 
 const Product = ({ params }: { params: { id: string } }) => {
   const [mainImg, setMainImg] = useState("");

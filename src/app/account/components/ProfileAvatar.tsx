@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import useSWR from "swr";
+import Image from "next/image";
 
 const ProfileAvatar = ({
   thumbnail,
-  setThumbnail,
 }: {
   thumbnail: string;
   setThumbnail: any;
@@ -46,8 +46,10 @@ const ProfileAvatar = ({
     <div>
       <div className="flex justify-center items-center">
         {currAvatar ? (
-          <img
+          <Image
             src={currAvatar}
+            height={60}
+            width={60}
             alt="avatar"
             className="rounded-full h-28 w-28 object-cover border-4 border-white"
           />

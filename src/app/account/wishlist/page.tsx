@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { LuHeartOff } from "react-icons/lu";
 import { fetcher } from "@/utils/fetcherSwr";
 import { useSession } from "next-auth/react";
-var _ = require("lodash");
+import _ from "lodash";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -21,11 +21,7 @@ const Wishlist = () => {
 
   const { data, isLoading, mutate } = useSWR(`/api/wishlist`, fetcher);
 
-  const {
-    data: user,
-    isLoading: loading,
-    error,
-  } = useSWR(
+  const { isLoading: loading, error } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );
@@ -42,7 +38,7 @@ const Wishlist = () => {
     return (
       <div className="flex justify-center items-center gap-4 mt-36 flex-col">
         <LuHeartOff size={100} />
-        <h1 className="md:text-2xl texl-xl">Wishlist is empty</h1>
+        <h1 className="md:text-2xl text-xl">Wishlist is empty</h1>
       </div>
     );
   }

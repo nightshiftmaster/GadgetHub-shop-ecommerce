@@ -1,12 +1,13 @@
 "use client";
-import React, {useState} from "react";
-import {useSession} from "next-auth/react";
-import {useRouter} from "next/navigation";
+import React, { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {VscAccount} from "react-icons/vsc";
+import { VscAccount } from "react-icons/vsc";
 import useSWR from "swr";
 import DropdownMenu from "./DropdownMenu";
-import {fetcher} from "@/utils/fetcherSwr";
+import { fetcher } from "@/utils/fetcherSwr";
+import Image from "next/image";
 
 const AccountIcon = () => {
   const session = useSession();
@@ -82,14 +83,16 @@ const AccountIcon = () => {
           {session.status === "authenticated" ? (
             <div className="flex justify-center relative items-center ">
               {session?.data?.user?.image || data[0]?.img ? (
-                <img
+                <Image
                   src={
                     session?.data?.user?.image
                       ? session?.data?.user?.image
                       : data[0].img
                   }
                   alt="avatar"
-                  className="rounded-full md:h-9 md:w-9 h-7 w-7 md:min-w-9 md:min-h-9 object-cover border"
+                  width={35}
+                  height={35}
+                  className="rounded-full  object-cover border"
                 />
               ) : (
                 <VscAccount size={25} />

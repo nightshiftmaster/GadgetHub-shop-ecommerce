@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
+import Image from "next/image";
 
 const categories = [
   {
@@ -103,10 +104,13 @@ const ShopByCategory = () => {
                   }}
                 >
                   <div className="w-[60px] h-[60px] p-2 hover:scale-125 transition-all duration-700 relative ring-slate-300 ring-1 flex justify-center items-center rounded-full">
-                    <img
+                    <Image
                       src={cat.image}
                       className="relative grayscale rounded-[20%]"
-                    ></img>
+                      width={50}
+                      height={50}
+                      alt="swiper slide image"
+                    />
                   </div>
                   <span className="text-xs text-slate-500 whitespace-nowrap">
                     {cat.name}
@@ -129,10 +133,13 @@ const ShopByCategory = () => {
               }}
             >
               <div className="w-[70px] h-[70px] p-1 hover:scale-125 transition-all duration-700 relative ring-slate-200 ring-1 flex justify-center items-center rounded-full">
-                <img
+                <Image
+                  alt="category image"
                   src={cat.image}
+                  width={60}
+                  height={60}
                   className="relative grayscale rounded-full"
-                ></img>
+                />
               </div>
               <span className="text-xs text-slate-500">{cat.name}</span>
             </div>
