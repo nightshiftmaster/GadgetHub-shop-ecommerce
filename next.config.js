@@ -52,6 +52,9 @@ const nextConfig = {
     //   },
     // ],
     domains: [
+      "m.media-amazon.com",
+      "mir-s3-cdn-cf.behance.net",
+      "www.vision-works.co.za",
       "www.bajajallianz.com",
       "schrammek.co.il",
       "www.optistore-eilat.net",
