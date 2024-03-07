@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useDispatch } from "react-redux";
-import { addProduct } from "@/redux/features/productsSlice";
+import { addProduct } from "@/redux/cartSlice";
 import { toast } from "react-toastify";
 import useSWR from "swr";
 import { fetcher } from "@/utils/fetcherSwr";

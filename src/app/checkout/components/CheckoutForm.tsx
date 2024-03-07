@@ -6,7 +6,7 @@ import {
   PaymentElement,
 } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
-import { RootState } from "@/redux/store";
+import { RootState } from "@/redux";
 import { useSelector } from "react-redux";
 import { BASE_API_URL } from "@/utils/constants";
 import { OrderType } from "@/types/types";

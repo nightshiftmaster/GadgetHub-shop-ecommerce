@@ -9,9 +9,9 @@ import { BASE_API_URL } from "@/utils/constants";
 import Loading from "@/components/Loader";
 import { fetcher } from "@/utils/fetcherSwr";
 import { useDispatch } from "react-redux";
-import { addDeliveryAddress } from "@/redux/features/productsSlice";
+import { addDeliveryAddress } from "@/redux/cartSlice";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState } from "@/redux";
 import CountrySelect from "@/components/CountrySelect";
 
 const PersonalDataSchema = Yup.object().shape({

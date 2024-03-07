@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import NavBar from "../components/NavBar";
-import { ReduxProvider } from "@/redux/provider";
+import { ReduxProvider } from "@/providers/ReduxProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";

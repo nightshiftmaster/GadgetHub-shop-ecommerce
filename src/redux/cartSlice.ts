@@ -35,10 +35,9 @@ const productsSlice = createSlice({
         (product) => product._id === action.payload
       );
       state.total -= product?.price ? product?.price * product?.quantity : 0;
-      const newProducts = state.cart.filter(
+      state.cart = state.cart.filter(
         (product) => product._id !== action.payload
       );
-      state.cart = newProducts;
       state.quantity -= product?.quantity || 0;
     },
     removeAllProducts: (state) => {

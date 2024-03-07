@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { InitialState } from "@/redux/features/productsSlice";
+import { RootState } from "@/redux";
+import { InitialState } from "@/redux/cartSlice";
 import Terms from "./Terms";
 import PayComponent from "./PayComponent";
 

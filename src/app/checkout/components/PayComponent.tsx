@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { InitialState } from "@/redux/features/productsSlice";
+import { RootState } from "@/redux";
+import { InitialState } from "@/redux/cartSlice";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/app/checkout/components/CheckoutForm";

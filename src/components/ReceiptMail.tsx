@@ -14,7 +14,7 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import { MyFormValues } from "@/types/types";
-import { InitialState } from "@/redux/features/productsSlice";
+import { InitialState } from "@/redux/cartSlice";
 import { BASE_API_URL } from "@/utils/constants";
 
 export const AppleReceiptEmail = ({

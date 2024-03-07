@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { InitialState } from "@/redux/features/productsSlice";
+import { RootState } from "@/redux";
+import { InitialState } from "@/redux/cartSlice";
 import { BASE_API_URL } from "@/utils/constants";
 import { Formik, Form, Field } from "formik";
 import { FaRegEye } from "react-icons/fa";
@@ -24,7 +24,7 @@ const LoginPage = () => {
     (state: RootState) => state.productsReducer
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (status === "authenticated") {
       if (productsSlice.cart.length !== 0) {
         router.push("/checkout");

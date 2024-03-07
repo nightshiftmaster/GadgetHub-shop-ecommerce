@@ -7,7 +7,7 @@ import Image from "next/image";
 import { SingleProductType } from "@/types/types";
 import Loading from "@/components/Loader";
 import { useDispatch } from "react-redux";
-import { addProduct } from "@/redux/features/productsSlice";
+import { addProduct } from "@/redux/cartSlice";
 import { useRouter } from "next/navigation";
 import { LuHeartOff } from "react-icons/lu";
 import { fetcher } from "@/utils/fetcherSwr";

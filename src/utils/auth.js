@@ -38,7 +38,7 @@ export const authOptions = {
           if (isPasswordCorrect) {
             return fakeUser;
           } else {
-            throw new Error("Wrong password");
+            throw Error("Wrong password");
           }
         }
 

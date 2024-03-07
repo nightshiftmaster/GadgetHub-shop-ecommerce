@@ -6,7 +6,7 @@ import CartItem from "../app/cart/components/CartItem";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { removeAllProducts } from "@/redux/features/productsSlice";
+import { removeAllProducts } from "@/redux/cartSlice";
 import { BASE_API_URL } from "@/utils/constants";
 import { FiMenu } from "react-icons/fi";
 import { IoIosClose } from "react-icons/io";

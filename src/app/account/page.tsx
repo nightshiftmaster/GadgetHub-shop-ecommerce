@@ -10,7 +10,7 @@ import { BASE_API_URL } from "@/utils/constants";
 import useSWR from "swr";
 import { signOut, useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { removeAllProducts } from "@/redux/features/productsSlice";
+import { removeAllProducts } from "@/redux/cartSlice";
 import WishIcon from "./wishlist/components/WishIcon";
 
 const navs = [

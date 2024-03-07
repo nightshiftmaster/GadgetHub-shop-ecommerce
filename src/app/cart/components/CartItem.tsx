@@ -1,8 +1,8 @@
 "use client";
 import { CiShoppingCart } from "react-icons/ci";
 import React from "react";
-import { InitialState } from "@/redux/features/productsSlice";
-import { RootState } from "@/redux/store";
+import { InitialState } from "@/redux/cartSlice";
+import { RootState } from "@/redux";
 import { useSelector } from "react-redux";
 
 const CartItem = () => {

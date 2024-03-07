@@ -7,7 +7,7 @@ import { BASE_API_URL } from "@/utils/constants";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { removeAllProducts } from "@/redux/features/productsSlice";
+import { removeAllProducts } from "@/redux/cartSlice";
 
 const navs = [
   {

@@ -4,7 +4,7 @@ import { TbChecklist } from "react-icons/tb";
 import { MdOutlineFeedback } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import Link from "next/link";
-import { removeAllProducts } from "@/redux/features/productsSlice";
+import { removeAllProducts } from "@/redux/cartSlice";
 import { BASE_API_URL } from "@/utils/constants";
 import { VscAccount } from "react-icons/vsc";
 import { signOut } from "next-auth/react";

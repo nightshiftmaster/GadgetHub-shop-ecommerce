@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { InitialState } from "@/redux/features/productsSlice";
+import { RootState } from "@/redux";
+import { InitialState } from "@/redux/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import { removeProduct } from "@/redux/features/productsSlice";
+import { removeProduct } from "@/redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { BASE_API_URL } from "@/utils/constants";
 
