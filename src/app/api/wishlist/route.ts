@@ -7,8 +7,8 @@ export const GET = async () => {
   const session = await getAuthSession();
   const email: any = session?.user?.email;
 
-  await connect();
   try {
+    await connect();
     const wishlist: any = await User.find({ email }, "wishlist");
 
     return new NextResponse(JSON.stringify(wishlist), { status: 200 });
