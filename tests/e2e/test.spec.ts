@@ -341,7 +341,6 @@ test.describe("testing application", () => {
     // in case of created user inputs are filled with registr values
     await Promise.all(
       Object.entries(fakeUserAdress).map(async ([field, value]) => {
-        console.log(`filed-${field}, value-${value}`);
         const input = await page.inputValue(`[data-testid="input-${field}"]`);
         expect(input).toBe(value);
       })

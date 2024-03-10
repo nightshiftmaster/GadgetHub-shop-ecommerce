@@ -10,8 +10,8 @@ export const GET = async (
 ): Promise<NextResponse<UserType>> => {
   if (process.env.NODE_ENV !== "production") {
     const file = path.join(process.cwd(), "public");
-    const user = fs.readFileSync(`${file}/user.txt`, "utf8");
-    return new NextResponse(JSON.stringify(user), { status: 200 });
+    const user = JSON.parse(fs.readFileSync(`${file}/user.txt`, "utf8"));
+    return new NextResponse(JSON.stringify([user]), { status: 200 });
   }
 
   try {
