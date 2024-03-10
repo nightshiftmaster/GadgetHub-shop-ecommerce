@@ -6,6 +6,10 @@ import { getAuthSession } from "@/utils/auth";
 export const GET = async () => {
   const session = await getAuthSession();
   const email: any = session?.user?.email;
+  if (process.env.NODE_ENV !== "production") {
+    const wishlist: object = [];
+    return new NextResponse(JSON.stringify(wishlist), { status: 200 });
+  }
 
   try {
     await connect();

@@ -79,10 +79,10 @@ const Product = (props: SingleProductType) => {
   };
 
   if (isLoading) {
-    return;
+    return <div>...loading</div>;
   }
   if (error) {
-    return;
+    return <div>...Error</div>;
   }
 
   let isAccountCreated = data?.length === 0;
@@ -136,7 +136,7 @@ const Product = (props: SingleProductType) => {
                   <Image
                     priority
                     src={props.thumbnail}
-                    alt="image"
+                    alt="product image"
                     fill
                     className="object-cover hover:scale-105 transition-all duration-500 z-10"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

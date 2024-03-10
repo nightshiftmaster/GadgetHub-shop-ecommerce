@@ -40,6 +40,8 @@ const PayComponent = ({ props }: { props: any }) => {
     appearance: { theme: "stripe" },
   };
 
+  console.log(clientSecret);
+
   return (
     <div data-testid="pay-component">
       {clientSecret && (

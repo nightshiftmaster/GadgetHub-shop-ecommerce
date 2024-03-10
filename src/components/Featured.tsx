@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductsType } from "@/types/types";
 import Product from "./Product";
-import styles from './components.module.scss';
+import styles from "./components.module.scss";
 
 const Featured = ({ data }: { data: ProductsType }) => {
   return (
@@ -18,7 +18,9 @@ const Featured = ({ data }: { data: ProductsType }) => {
           <hr className="w-full md:inline hidden h-px bg-gray-300 border-0 rounded "></hr>
         </div>
 
-        <div className={`flex w-full overflow-auto justify-center gap-2 items-center ${styles.withVerticalCustomScroll}`}>
+        <div
+          className={`flex w-full overflow-auto justify-center gap-2 items-center ${styles.withVerticalCustomScroll}`}
+        >
           {data?.slice(0, 30).map((item) => {
             return <Product key={item._id} {...item} />;
           })}
