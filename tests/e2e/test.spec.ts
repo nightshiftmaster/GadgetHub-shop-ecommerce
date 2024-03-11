@@ -3,19 +3,34 @@ const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
 import { Page } from "@playwright/test";
 import path = require("path");
+const fs = require("fs");
 
 const dotenv = require("dotenv");
 dotenv.config();
 
+const file = path.join(process.cwd(), "public");
+const { firstName, lastName, email, mobileNumber, country, city, address } =
+  JSON.parse(fs.readFileSync(`${file}/user.txt`, "utf8"));
+
 const fakeUserAdress = {
-  firstName: "vlad",
-  lastName: "medevedev",
-  email: "test@gmail.com",
-  mobileNumber: "0547355910",
-  country: "israel",
-  city: "eilat",
-  address: "knaanim",
+  firstName,
+  lastName,
+  email,
+  mobileNumber,
+  country,
+  city,
+  address,
 };
+
+// const fakeUserAdress = {
+//   firstName: "vlad",
+//   lastName: "medevedev",
+//   email: "test@gmail.com",
+//   mobileNumber: "0547355910",
+//   country: "israel",
+//   city: "eilat",
+//   address: "knaanim",
+// };
 
 const pathToImageSnapshots = path.join(
   process.cwd(),
@@ -415,7 +430,7 @@ test.describe("testing application", () => {
 
     await page.fill('[name="firstName"]', "vladislav");
     await page.fill('[name="lastName"]', "medvedev");
-    await page.fill('[name="email"]', "test25@gmail.com");
+    await page.fill('[name="email"]', "test2@gmail.com");
     await page.fill('[name="mobileNumber"]', "0547355910");
     await element.fill("01101998");
     await page.fill('[name="dateOfBirth"]', "01101998");
@@ -427,10 +442,10 @@ test.describe("testing application", () => {
       .getByTestId("avatar-upload")
       .setInputFiles(path.join(process.cwd(), "public", "facebook.png"));
     await page.getByRole("button", { name: "SUBMIT" }).click();
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
+    await page.waitForURL(`/login?succes=Account has been created`);
     await expect(
       page.getByText("Congratulations! User created successfully!")
     ).toBeVisible();
-    await page.waitForURL(`/login?succes=Account has been created`);
   });
 });
