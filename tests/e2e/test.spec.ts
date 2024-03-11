@@ -22,16 +22,6 @@ const fakeUserAdress = {
   address,
 };
 
-// const fakeUserAdress = {
-//   firstName: "vlad",
-//   lastName: "medevedev",
-//   email: "test@gmail.com",
-//   mobileNumber: "0547355910",
-//   country: "israel",
-//   city: "eilat",
-//   address: "knaanim",
-// };
-
 const pathToImageSnapshots = path.join(
   process.cwd(),
   "tests",
@@ -426,11 +416,11 @@ test.describe("testing application", () => {
 
     await page.waitForSelector('[data-testid="register"]');
     const element = await page.$('input[name="dateOfBirth"]');
-    await element.evaluate((element) => element.removeAttribute("readonly"));
+    // await element.evaluate((element) => element.removeAttribute("readonly"));
 
     await page.fill('[name="firstName"]', "vladislav");
     await page.fill('[name="lastName"]', "medvedev");
-    await page.fill('[name="email"]', "test2@gmail.com");
+    await page.fill('[name="email"]', "test@gmail.com");
     await page.fill('[name="mobileNumber"]', "0547355910");
     await element.fill("01101998");
     await page.fill('[name="dateOfBirth"]', "01101998");
@@ -442,8 +432,8 @@ test.describe("testing application", () => {
       .getByTestId("avatar-upload")
       .setInputFiles(path.join(process.cwd(), "public", "facebook.png"));
     await page.getByRole("button", { name: "SUBMIT" }).click();
-    await page.waitForTimeout(5000);
-    await page.waitForURL(`/login?succes=Account has been created`);
+    await page.waitForTimeout(3000);
+    await page.waitForURL(`/login?success=Account%20has%20been%20created`);
     await expect(
       page.getByText("Congratulations! User created successfully!")
     ).toBeVisible();

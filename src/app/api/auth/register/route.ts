@@ -13,17 +13,9 @@ export const POST = async (
 
   if (process.env.NODE_ENV === "development") {
     const file = path.join(process.cwd(), "public");
-
-    fs.writeFile(`${file}/user.txt`, JSON.stringify(user), (err: any) => {
-      if (err) {
-        return new NextResponse("Error,", {
-          status: 500,
-        });
-      }
-    });
+    fs.writeFileSync(`${file}/user.txt`, JSON.stringify(user));
     return new NextResponse("User has been created", { status: 201 });
   }
-
   try {
     await connect();
     const alreadyCreatedUser = await User.find(email && { email });
@@ -37,7 +29,6 @@ export const POST = async (
       await newUser.save();
       return new NextResponse("User has been created", { status: 201 });
     } else {
-      console.log("User with this email already exists");
       return new NextResponse("User with this email already exists,", {
         status: 500,
       });

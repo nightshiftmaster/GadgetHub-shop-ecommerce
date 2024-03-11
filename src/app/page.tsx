@@ -34,7 +34,7 @@ const Home = () => {
     );
   }
 
-  let isGuest = user ? user?.length === 0 : true;
+  let isGuest = user?.length === 0;
 
   return (
     <div
