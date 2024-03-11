@@ -416,7 +416,7 @@ test.describe("testing application", () => {
 
     await page.waitForSelector('[data-testid="register"]');
     const element = await page.$('input[name="dateOfBirth"]');
-    // await element.evaluate((element) => element.removeAttribute("readonly"));
+    await element.evaluate((element) => element.removeAttribute("readonly"));
 
     await page.fill('[name="firstName"]', "vladislav");
     await page.fill('[name="lastName"]', "medvedev");
