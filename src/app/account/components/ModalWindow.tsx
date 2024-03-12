@@ -31,7 +31,7 @@ const ModalWindow = () => {
           <button
             className="bg-gray-400  md:px-5 md:py-3 px-2 py-2 md:text-base text-xs text-white rounded-md"
             onClick={() => {
-              router.back();
+              router.push("/");
             }}
           >
             Continue as guest
