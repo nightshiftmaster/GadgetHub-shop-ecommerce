@@ -306,6 +306,45 @@ test.describe("testing application", () => {
     await expect(page.getByText("Cart is empty")).toBeVisible();
   });
 
+  test("testing creating profile", async ({ page }: { page: Page }) => {
+    await page.goto(`/login`, {
+      waitUntil: "networkidle",
+    });
+    await page.waitForSelector('[data-testid="login"]');
+    await page.getByRole("link", { name: "Create new account" }).click();
+    await page.waitForSelector('[data-testid="register"]');
+
+    // if (process.env.NODE_ENV === "development") {
+    //   expect(await page.screenshot()).toMatchSnapshot(
+    //     `${pathToImageSnapshots}/registration-page.png`
+    //   );
+    // }
+
+    await page.waitForSelector('[data-testid="register"]');
+    const element = await page.$('input[name="dateOfBirth"]');
+    await element.evaluate((element) => element.removeAttribute("readonly"));
+
+    await page.fill('[name="firstName"]', "vladislav");
+    await page.fill('[name="lastName"]', "medvedev");
+    await page.fill('[name="email"]', "test@gmail.com");
+    await page.fill('[name="mobileNumber"]', "0547355910");
+    await element.fill("01101998");
+    await page.fill('[name="dateOfBirth"]', "01101998");
+    await page.getByTestId("input-country").selectOption("Israel");
+    await page.fill('[name="city"]', "eilat");
+    await page.fill('[name="address"]', "address");
+    await page.fill('[name="password"]', "Vlad19820708");
+    await page
+      .getByTestId("avatar-upload")
+      .setInputFiles(path.join(process.cwd(), "public", "facebook.png"));
+    await page.getByRole("button", { name: "SUBMIT" }).click();
+    await page.waitForTimeout(3000);
+    await page.waitForURL(`/login?success=Account%20has%20been%20created`);
+    await expect(
+      page.getByText("Congratulations! User created successfully!")
+    ).toBeVisible();
+  });
+
   test("testing checkout", async ({ page }: { page: Page }) => {
     await page.goto(`/products`, {
       waitUntil: "networkidle",
@@ -398,44 +437,5 @@ test.describe("testing application", () => {
     // });
     // const currentUrl = page.url();
     // expect(currentUrl).toContain("success");
-  });
-
-  test("testing creating profile", async ({ page }: { page: Page }) => {
-    await page.goto(`/login`, {
-      waitUntil: "networkidle",
-    });
-    await page.waitForSelector('[data-testid="login"]');
-    await page.getByRole("link", { name: "Create new account" }).click();
-    await page.waitForSelector('[data-testid="register"]');
-
-    // if (process.env.NODE_ENV === "development") {
-    //   expect(await page.screenshot()).toMatchSnapshot(
-    //     `${pathToImageSnapshots}/registration-page.png`
-    //   );
-    // }
-
-    await page.waitForSelector('[data-testid="register"]');
-    const element = await page.$('input[name="dateOfBirth"]');
-    await element.evaluate((element) => element.removeAttribute("readonly"));
-
-    await page.fill('[name="firstName"]', "vladislav");
-    await page.fill('[name="lastName"]', "medvedev");
-    await page.fill('[name="email"]', "test@gmail.com");
-    await page.fill('[name="mobileNumber"]', "0547355910");
-    await element.fill("01101998");
-    await page.fill('[name="dateOfBirth"]', "01101998");
-    await page.getByTestId("input-country").selectOption("Israel");
-    await page.fill('[name="city"]', "eilat");
-    await page.fill('[name="address"]', "address");
-    await page.fill('[name="password"]', "Vlad19820708");
-    await page
-      .getByTestId("avatar-upload")
-      .setInputFiles(path.join(process.cwd(), "public", "facebook.png"));
-    await page.getByRole("button", { name: "SUBMIT" }).click();
-    await page.waitForTimeout(3000);
-    await page.waitForURL(`/login?success=Account%20has%20been%20created`);
-    await expect(
-      page.getByText("Congratulations! User created successfully!")
-    ).toBeVisible();
   });
 });
