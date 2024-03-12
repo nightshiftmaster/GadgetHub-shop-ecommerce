@@ -4,7 +4,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import DatePickerValue from "./DatePicker";
 import { useSession } from "next-auth/react";
 import { MdOutlineAddAPhoto } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { BASE_API_URL } from "@/utils/constants";
 import useSWR from "swr";
 import { toast } from "react-toastify";
@@ -39,12 +39,13 @@ const PersonalInfoForm = () => {
   const [passwordShown, setPasswordShown] = useState(false);
   const router = useRouter();
   const session = useSession();
+  const pathname = usePathname();
 
   useEffect(() => {
     setThumbnail(thumbnail);
   }, [thumbnail]);
 
-  const { data, isLoading } = useSWR(
+  const { data, isLoading, mutate } = useSWR(
     `${BASE_API_URL}/api/user?email=${session?.data?.user?.email}`,
     fetcher
   );
@@ -68,11 +69,11 @@ const PersonalInfoForm = () => {
           country: user?.country,
           city: user?.city,
           address: user?.address,
-          password: "",
+          password: user?.password,
         }}
         validationSchema={PersonalDataSchema}
         onSubmit={async (values) => {
-          {
+          if (pathname.includes("register")) {
             try {
               const res = await fetch(`/api/auth/register`, {
                 method: "POST",
@@ -89,6 +90,30 @@ const PersonalInfoForm = () => {
                 });
               }
               throw new Error("User already exists !");
+            } catch (err: any) {
+              console.log(err.message);
+              setErr(err.message);
+            }
+          }
+
+          if (pathname.includes("account")) {
+            try {
+              const res = await fetch(`/api/auth/register`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+              });
+
+              if (res.status === 201) {
+                router.push("/login?success=Account has been updated");
+                toast.success("Congratulations! User updated successfully!", {
+                  theme: "light",
+                });
+                void mutate();
+              }
+              throw new Error("Error");
             } catch (err: any) {
               console.log(err.message);
               setErr(err.message);
@@ -265,7 +290,9 @@ const PersonalInfoForm = () => {
                       </div>
                     )}
                   </div>
-                  <div className="flex w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]">
+                  <div
+                    className={` w-full md:px-0 px-8 flex-col gap-4 font-light md:w-[70%]`}
+                  >
                     <label htmlFor="country">Password</label>
                     <div className="w-full relative ">
                       <Field
@@ -273,7 +300,7 @@ const PersonalInfoForm = () => {
                         disabled={isSubmitting}
                         type={passwordShown ? "text" : "password"}
                         key="password"
-                        className={`flex md:gap-4 gap-3  p-3 items-center justify-center ${
+                        className={`flex md:gap-4  gap-3  p-3 items-center justify-center ${
                           errors.password && touched.password
                             ? "ring-1 ring-red-500"
                             : "ring-1"
@@ -290,12 +317,13 @@ const PersonalInfoForm = () => {
                         )}
                       </div>
                     </div>
-                    {errors.password && touched.password && (
-                      <div className="text-red-500 font-normal">
-                        <span className="mr-2">↑</span>
-                        {errors.password}
-                      </div>
-                    )}
+                    {typeof errors.password === "string" &&
+                      touched.password && (
+                        <div className="text-red-500 font-normal">
+                          <span className="mr-2">↑</span>
+                          {errors.password}
+                        </div>
+                      )}
                   </div>
                 </div>
                 <button
@@ -318,6 +346,8 @@ const PersonalInfoForm = () => {
                       />
                       Please wait...
                     </div>
+                  ) : pathname.includes("account") ? (
+                    "UPDATE"
                   ) : (
                     "SUBMIT"
                   )}

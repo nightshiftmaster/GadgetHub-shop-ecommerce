@@ -11,11 +11,11 @@ export const POST = async (
   const user = await request.json();
   const email = user.email;
 
-  if (process.env.NODE_ENV === "development") {
-    const file = path.join(process.cwd(), "public");
-    fs.writeFileSync(`${file}/user.txt`, JSON.stringify(user));
-    return new NextResponse("User has been created", { status: 201 });
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   const file = path.join(process.cwd(), "public");
+  //   fs.writeFileSync(`${file}/user.txt`, JSON.stringify(user));
+  //   return new NextResponse("User has been created", { status: 201 });
+  // }
   try {
     await connect();
     const alreadyCreatedUser = await User.find(email && { email });
@@ -30,6 +30,35 @@ export const POST = async (
       return new NextResponse("User has been created", { status: 201 });
     } else {
       return new NextResponse("User with this email already exists,", {
+        status: 500,
+      });
+    }
+  } catch (error) {
+    return new NextResponse("Something went wrong", { status: 500 });
+  }
+};
+
+export const PATCH = async (
+  request: NextRequest
+): Promise<NextResponse<String>> => {
+  const user = await request.json();
+  const email = user.email;
+
+  if (process.env.NODE_ENV !== "production") {
+    const file = path.join(process.cwd(), "public");
+    fs.writeFileSync(`${file}/user.txt`, JSON.stringify(user));
+    return new NextResponse("User has been created", { status: 201 });
+  }
+  try {
+    await connect();
+    const existingUser = await User.findOneAndUpdate({ email }, user, {
+      new: true,
+    });
+
+    if (existingUser) {
+      return new NextResponse("User has been updated", { status: 201 });
+    } else {
+      return new NextResponse("User not found,", {
         status: 500,
       });
     }

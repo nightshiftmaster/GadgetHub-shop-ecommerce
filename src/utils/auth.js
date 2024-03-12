@@ -4,20 +4,11 @@ import User from "@/models/User";
 import { connect } from "@/utils/db";
 import bcrypt from "bcryptjs";
 import { getServerSession } from "next-auth";
+import fs from "fs";
+import path from "path";
 
-const fakeUser = {
-  firstName: "vlad",
-  lastName: "medevedev",
-  dateOfBirth: "2024-01-12",
-  email: "test@gmail.com",
-  mobileNumber: "0547355910",
-  country: "israel",
-  city: "eilat",
-  address: "knaanim",
-  password: "$2a$05$2nggFZFBAYkFaP0iBp0Aq.x13tX5ut8sJzgKLarQfiBr1H2uOKqvS",
-  orders: [],
-  wishlist: [],
-};
+const file = path.join(process.cwd(), "public");
+const fakeUser = JSON.parse(fs.readFileSync(`${file}/user.txt`, "utf8"));
 
 export const authOptions = {
   providers: [
@@ -30,11 +21,9 @@ export const authOptions = {
       name: "Credentials",
       async authorize(credentials) {
         // autorization for tests
-        if (process.env.NODE_ENV === "development") {
-          const isPasswordCorrect = await bcrypt.compare(
-            credentials.password,
-            fakeUser.password
-          );
+        if (process.env.NODE_ENV !== "production") {
+          const isPasswordCorrect = credentials.password === fakeUser.password;
+
           if (isPasswordCorrect) {
             return fakeUser;
           } else {
