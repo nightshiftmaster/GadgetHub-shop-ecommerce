@@ -13,6 +13,7 @@ import { BsBookmarkHeart } from "react-icons/bs";
 import { SingleProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
+import QuantityCounter from "@/components/QuantityCounter";
 import _ from "lodash";
 
 const Product = ({ params }: { params: { id: string } }) => {
@@ -132,40 +133,8 @@ const Product = ({ params }: { params: { id: string } }) => {
             </p>
             <div className="flex justify-center items-center  flex-col lg:flex-row  gap-6 lg:gap-20 ">
               {/* quantity counter */}
-              <div
-                className="flex justify-around items-center md:gap-6 gap-5 "
-                data-testid="quantity-counter"
-              >
-                <div className="w-[15vh]  lg:w-[13vh] md:h-10 h-8 flex  justify-between text-gray-500 text-sm rounded-md border cursor-pointer ">
-                  <span
-                    className="border-r p-1 px-3 flex justify-center items-center hover:bg-sky-400 hover:text-white hover:rounded-l-md transition-all duration-500"
-                    onClick={() =>
-                      setCount((prev: number) => (prev > 1 ? prev - 1 : prev))
-                    }
-                  >
-                    -
-                  </span>
-                  <span className="p-2 flex justify-center items-center">
-                    {count}
-                  </span>
-                  <span
-                    className="border-l p-1 px-3 flex justify-center items-center  hover:bg-sky-400 hover:text-white hover:rounded-r-md transition-all duration-500"
-                    onClick={() =>
-                      setCount((prev: number) => (prev < 9 ? prev + 1 : prev))
-                    }
-                  >
-                    +
-                  </span>
-                </div>
-                <div className="w-[50px] flex justify-start ">
-                  <h2
-                    className="md:text-xl text-blue-500 text-base font-medium"
-                    data-testid="price"
-                  >
-                    ${data?.price * count}
-                  </h2>
-                </div>
-              </div>
+              <QuantityCounter data={data} setCount={setCount} count={count} />
+
               {/* with list icon */}
               {isItemInWishlist ||
                 (isUserCreated && (
@@ -182,10 +151,8 @@ const Product = ({ params }: { params: { id: string } }) => {
             <div className="text-xs whitespace-nowrap md:sm flex md:flex-row flex-col md:gap-10 gap-4 justify-center items-center ">
               <button
                 onClick={() => {
-                  const id = { _id: _.uniqueId() };
                   const quantity = { quantity: count };
-                  const newProduct = { ...data, ...id, ...quantity };
-
+                  const newProduct = { ...data, ...quantity };
                   dispatch(addProduct(newProduct));
                   toast.success("The product added to the cart !");
                 }}
@@ -199,9 +166,8 @@ const Product = ({ params }: { params: { id: string } }) => {
                 className="uppercase  md:w-[45%] w-[50%] py-3  rounded-lg bg-sky-400 text-white hover:scale-110 transition-all duration-500"
                 data-testid="buy-now-button"
                 onClick={() => {
-                  const id = { _id: _.uniqueId() };
                   const quantity = { quantity: count };
-                  const newProduct = { ...data, ...id, ...quantity };
+                  const newProduct = { ...data, ...quantity };
                   dispatch(addProduct(newProduct));
                   router.push("/cart");
                 }}

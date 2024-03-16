@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, current } from "@reduxjs/toolkit";
 import { SingleProductType } from "@/types/types";
 
 export type InitialState = {
@@ -21,10 +21,53 @@ const productsSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       const product = action.payload;
-      state.cart.push(product);
+      const productInCart = state.cart.some((item) => item._id === product._id);
 
-      state.total += product.price * product.quantity;
-      state.quantity += product?.quantity;
+      if (productInCart) {
+        state.cart.map((item) => {
+          return item._id === product._id
+            ? {
+                ...product,
+                ...(item.quantity += product.quantity),
+                ...{ price: item.price },
+              }
+            : product;
+        });
+
+        state.total += product.price * product.quantity;
+        state.quantity += product.quantity;
+      } else {
+        state.cart.push(product);
+        state.total += product.price * product.quantity;
+        state.quantity += product?.quantity;
+      }
+    },
+    changeProductCount: (state, action) => {
+      const { _id, count } = action.payload;
+
+      state.cart.map((item) => {
+        if (item._id === _id) {
+          switch (count) {
+            case 1:
+              state.total += item.price;
+              state.quantity += 1;
+              break;
+            case -1:
+              state.total -= item.price;
+              state.quantity -= 1;
+              break;
+            default:
+              state.total += 0;
+              state.quantity += 0;
+              break;
+          }
+          return {
+            ...item,
+            ...(item.quantity += count),
+            ...{ price: item.price * count },
+          };
+        }
+      });
     },
 
     addDeliveryAddress: (state, action) => {
@@ -51,6 +94,7 @@ const productsSlice = createSlice({
 
 export const {
   addProduct,
+  changeProductCount,
   addDeliveryAddress,
   removeProduct,
   removeAllProducts,

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
 import { InitialState } from "@/redux/cartSlice";
@@ -9,9 +9,11 @@ import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { removeProduct } from "@/redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { BASE_API_URL } from "@/utils/constants";
+import QuantityCounter from "@/components/QuantityCounter";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const [count, setCount] = useState(0);
   const productsSlice: InitialState = useSelector(
     (state: RootState) => state.productsReducer
   );
@@ -31,7 +33,7 @@ const Cart = () => {
         </div>
       ) : (
         <div
-          className="md:w-[120vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg"
+          className="md:w-[140vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg"
           data-testid="cart-container"
         >
           <div className="flex flex-col mb-5  md:w-1/2 w-full h-full p-5 gap-2 md:gap-10 justify-center items-center">
@@ -41,19 +43,19 @@ const Cart = () => {
             </div>
 
             <div
-              className={` md:h-[50vh] w-full h-[30vh] flex justify-center ${
+              className={` md:h-[50vh] w-full h-[35vh] flex justify-center ${
                 products.length > 3 ? "items-start" : "items-center"
               }  overflow-scroll`}
             >
-              <div className="flex xl:gap-16 md:gap-14 gap-10 w-full flex-col md:mt-1 mt-10 items-center justify-center">
+              <div className="flex xl:gap-16 md:gap-14 gap-8 w-full flex-col md:mt-1 mt-10 items-center justify-center">
                 {products?.map((item, i) => {
                   return (
                     <div
-                      className="flex-1 flex justify-between gap-32 w-full md:gap-40 border-b-2"
+                      className="flex-1 flex justify-between gap-32 w-full md:gap-35 border-b-2"
                       data-testid="cart-item"
                       key={item._id}
                     >
-                      <div className="flex justify-between items-center md:gap-10 w-[17vh] md:w-[20vh] gap-5 ">
+                      <div className="flex justify-between items-center w-[17vh] md:w-[20vh] gap-5 ">
                         <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">
                           <div className="relative xl:h-16 xl:w-16 md:h-14 md:w-14 h-10 w-10">
                             {item.thumbnail && (
@@ -83,11 +85,12 @@ const Cart = () => {
 
                       <div className=" flex justify-between w-fit  gap-2 items-center">
                         <span className="text-gray-400 text-xs md:text-sm whitespace-nowrap">
-                          {item.quantity > 1 ? `${item.quantity} x` : ""}
+                          <QuantityCounter
+                            data={item}
+                            setCount={setCount}
+                            count={item.quantity}
+                          />
                         </span>
-                        <h1 className=" text-blue-500  font-semibold md:text-sm text-xs">
-                          ${item.price}
-                        </h1>
                       </div>
                     </div>
                   );
