@@ -33,7 +33,7 @@ const Cart = () => {
         </div>
       ) : (
         <div
-          className="md:w-[140vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg"
+          className="md:w-[120vh] w-[70vh] shadow-lg bg-white h-fit  flex md:flex-row flex-col border-2 border-slate-200 rounded-lg"
           data-testid="cart-container"
         >
           <div className="flex flex-col mb-5  md:w-1/2 w-full h-full p-5 gap-2 md:gap-10 justify-center items-center">
@@ -51,11 +51,11 @@ const Cart = () => {
                 {products?.map((item, i) => {
                   return (
                     <div
-                      className="flex-1 flex justify-between gap-32 w-full md:gap-35 border-b-2"
+                      className="flex-1 flex justify-between gap-12 md:gap-24 w-full md:gap-35 border-b-2"
                       data-testid="cart-item"
                       key={item._id}
                     >
-                      <div className="flex justify-between items-center w-[17vh] md:w-[20vh] gap-5 ">
+                      <div className="flex justify-between items-center w-[17vh] md:w-[20vh] gap-1 md:gap-3 ">
                         <div className="flex justify-between items-center gap-5 md:gap-15 md:text-base text-xs">
                           <div className="relative xl:h-16 xl:w-16 md:h-14 md:w-14 h-10 w-10">
                             {item.thumbnail && (
@@ -75,7 +75,7 @@ const Cart = () => {
                         <div className="flex text-red-500 justify-center items-center">
                           <span
                             onClick={() => dispatch(removeProduct(item._id))}
-                            className="cursor-pointer"
+                            className="cursor-pointer text-xs md:text-sm lg:text-base"
                             data-testid={`delete-item-${i}`}
                           >
                             x

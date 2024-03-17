@@ -14,10 +14,10 @@ const QuantityCounter = ({ data, count, setCount }: CunterProps) => {
   const _id = data._id;
   return (
     <div
-      className="flex justify-around items-center md:gap-6 gap-5 "
+      className="flex justify-around text-xs md:test-sm items-center md:gap-6 gap-5 "
       data-testid="quantity-counter"
     >
-      <div className="w-[15vh]  lg:w-[13vh] md:h-10 h-8 flex  justify-between text-gray-500 text-sm rounded-md border cursor-pointer ">
+      <div className="w-[14vh]  lg:w-[13vh] md:h-10 h-7 flex  justify-between text-gray-500  rounded-md border cursor-pointer ">
         <span
           className="border-r p-1 px-3 flex justify-center items-center hover:bg-sky-400 hover:text-white hover:rounded-l-md transition-all duration-500"
           onClick={() => {
