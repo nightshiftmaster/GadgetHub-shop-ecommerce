@@ -91,7 +91,7 @@ const Product = ({ params }: { params: { id: string } }) => {
                 }
                 alt="thumbnail"
                 fill
-                className="transition-opacity duration-1000 opacity-100 rounded-t-md"
+                className="transition-opacity object-contain duration-1000 opacity-100 rounded-t-md"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
