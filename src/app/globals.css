@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Anton+SC&family=Archivo+Black&family=Bebas+Neue&family=DM+Serif+Text:ital@0;1&family=Jersey+10&family=Lilita+One&family=Open+Sans:ital@0;1&family=Orbitron:wght@400..900&family=Six+Caps&display=swap");
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: medium;
+}
+p,
+span {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+h1 {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.logo-font {
+  font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
