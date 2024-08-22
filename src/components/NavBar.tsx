@@ -111,7 +111,9 @@ const NavBar = () => {
       <div className="text-white py-4 md:px-14 sm:px-[5vh] md:gap-5 gap-5 bg-gradient-to-r from-purple-400 to-fuchsia-300 flex flex-col xl:flex-row items-center justify-between mb-5  ">
         <div className="flex md:gap-6 md:w-fit w-screen md:justify-center items-center justify-around">
           <Link href="/">
-            <h1 className="md:text-4xl  text-2xl font-bold">GadgetHub</h1>
+            <h1 className="md:text-4xl logo-font text-2xl font-bold">
+              GadgetHub
+            </h1>
           </Link>
           <div className="flex md:hidden justify-center items-center gap-4">
             <Link href="/cart">
@@ -137,7 +139,7 @@ const NavBar = () => {
                   key={i}
                   className="uppercase hover:text-sky-500 duration-500 "
                 >
-                  {item.name}
+                  <h2>{item.name}</h2>
                 </Link>
               );
             })}
@@ -147,7 +149,7 @@ const NavBar = () => {
                 key={3}
                 className="uppercase hover:text-sky-500 duration-500 "
               >
-                contact
+                <h2>contact</h2>
               </Link>
             </div>
 

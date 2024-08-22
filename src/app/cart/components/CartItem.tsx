@@ -13,7 +13,7 @@ const CartItem = () => {
   return (
     <div className="flex justify-center items-center relative  ">
       <div className="md:hover:text-sky-500 duration-500 flex justify-center items-center">
-        <h1 className="hidden md:block uppercase">Cart</h1>
+        <h2 className="hidden md:block uppercase">Cart</h2>
         <CiShoppingCart size={25} />
       </div>
 

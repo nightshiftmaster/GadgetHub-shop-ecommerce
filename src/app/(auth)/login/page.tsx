@@ -147,10 +147,10 @@ const LoginPage = () => {
 
                   <span className="">- OR -</span>
                   <Link
-                    className="text-white uppercase w-full whitespace-nowrap p-3 text-xs lg:p-3 lg:px-10 text-center lg:text-base rounded-md bg-fuchsia-400 hover:scale-110 transition-all duration-500"
+                    className="text-white uppercase w-full whitespace-nowrap p-3 text-xs lg:p-3 lg:px-10 text-center lg:text-base rounded-xl bg-fuchsia-400 hover:scale-110 transition-all duration-500"
                     href="/register"
                   >
-                    Create new account
+                    <p>Create new account</p>
                   </Link>
                   <Link
                     href={`${BASE_API_URL}/products`}

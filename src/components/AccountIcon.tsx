@@ -73,10 +73,10 @@ const AccountIcon = () => {
                   ? data[0]?.firstName
                   : session.data.user?.name}
               </span>
-              <span className="font-bold">Account</span>
+              <h2 className="font-bold">Account</h2>
             </div>
           ) : (
-            <span className="uppercase">Login</span>
+            <h2 className="uppercase">Login</h2>
           )}
         </Link>
         <Link href="/login" key={5} className="uppercase ">

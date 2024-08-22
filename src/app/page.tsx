@@ -9,6 +9,9 @@ import { useSession } from "next-auth/react";
 import { fetcher } from "@/utils/fetcherSwr";
 import Loading from "@/components/Loader";
 import { PiSmileyXEyes } from "react-icons/pi";
+import data from "@/utils/fakeDB";
+
+//
 
 const Home = () => {
   const session = useSession();

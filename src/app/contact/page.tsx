@@ -123,9 +123,9 @@ const Contacts = () => {
           <button
             disabled={disable}
             type="submit"
-            className="text-white uppercase whitespace-nowrap p-3 text-xs lg:p-3 lg:px-10 text-center lg:text-base rounded-md bg-fuchsia-400 hover:scale-110 transition-all duration-500"
+            className="text-white uppercase whitespace-nowrap p-3 text-xs lg:p-3 lg:px-10 text-center lg:text-base rounded-xl bg-fuchsia-400 hover:scale-110 transition-all duration-500"
           >
-            Send Message
+            <p>Send Message</p>
           </button>
         </form>
         <Link

@@ -156,14 +156,14 @@ const Product = ({ params }: { params: { id: string } }) => {
                   dispatch(addProduct(newProduct));
                   toast.success("The product added to the cart !");
                 }}
-                className="uppercase  md:w-[45%] w-[50%] py-3  rounded-lg bg-fuchsia-400 text-white hover:scale-110 transition-all duration-500"
+                className="uppercase  md:w-[45%] w-[50%] py-3  rounded-2xl bg-fuchsia-400 text-white hover:scale-110 transition-all duration-500"
                 data-testid="add-to-cart-button"
               >
-                Add To Cart
+                <span>Add To Cart</span>
               </button>
               {/* <Button text="Add To Cart" /> */}
               <button
-                className="uppercase  md:w-[45%] w-[50%] py-3  rounded-lg bg-sky-400 text-white hover:scale-110 transition-all duration-500"
+                className="uppercase  md:w-[45%] w-[50%] py-3  rounded-2xl bg-sky-400 text-white hover:scale-110 transition-all duration-500"
                 data-testid="buy-now-button"
                 onClick={() => {
                   const quantity = { quantity: count };
@@ -172,7 +172,7 @@ const Product = ({ params }: { params: { id: string } }) => {
                   router.push("/cart");
                 }}
               >
-                Buy now
+                <span>Buy now</span>
               </button>
             </div>
 

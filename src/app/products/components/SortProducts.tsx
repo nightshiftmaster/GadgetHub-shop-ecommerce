@@ -12,7 +12,7 @@ const SortProducts = ({ setFilter }: { setFilter: any }) => {
     <div className="flex flex-col justify-center md:items-start items-center gap-5  w-full">
       <Select
         options={options}
-        className="capitalize md:text-base text-sm  w-full"
+        className="capitalize md:text-sm text-xs  w-full"
         defaultValue={{ value: "Sort by rating", label: "Sort by rating" }}
         onChange={(e) => {
           e && setFilter(e.value);

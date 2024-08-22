@@ -30,7 +30,7 @@ const FilterByPrice = ({
 
   return (
     <div className="flex flex-col gap-4 ">
-      Sort by Price
+      <h2>Sort by Price</h2>
       <Box sx={{ width: 200 }}>
         <Slider
           getAriaLabel={() => "Temperature range"}
