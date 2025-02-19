@@ -9,14 +9,13 @@ const categories = [
   {
     name: "Smartphones",
     image:
-      "https://www.lenovo.com/medias/lenovo-smartphone-vibe-b-hero.png?context=bWFzdGVyfGltYWdlc3wzNzU2OHxpbWFnZS9wbmd8aW1hZ2VzL2g4Ni9oNDcvOTQyMjcyODU5MzQzOC5wbmd8ZmUwNTBjZjE5MDE0Yjg2NWUyNzljMzA5NzMxM2Y3ZDE2ZjQwOWZiMTMzYzE2NDYwOWQwZWNmY2E5MWFiNmI5ZA",
+      "https://motorolain.vtexassets.com/arquivos/ids/156448-800-auto?width=800&height=auto&aspect=true",
     id: 1,
     href: `/products?generalCategory=${"smartphones"}`,
   },
   {
     name: "Laptops",
-    image:
-      "https://www.lenovo.com/medias/lenovo-laptops-thinkbook-16-gen-4-intel-hero.png?context=bWFzdGVyfHJvb3R8MzQ1OTM2fGltYWdlL3BuZ3xoMjEvaGZkLzEzMjU1MTI1OTkxNDU0LnBuZ3xlMGJjMDAyZjIzYzczYmY0YTY3NTlmODcwMDJjZTBhMzg5M2VlMjFlNTNlZWJkZDMyNDA3MTdlNjc3NjhhZWY5",
+    image: "https://images.anandtech.com/doci/10113/XPS17.jpg",
     id: 2,
     href: `/products?generalCategory=${"laptops"}`,
   },
