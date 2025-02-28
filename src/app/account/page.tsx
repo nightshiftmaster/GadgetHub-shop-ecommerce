@@ -12,7 +12,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { removeAllProducts } from "@/redux/cartSlice";
 import WishIcon from "./wishlist/components/WishIcon";
-
+//
 const navs = [
   {
     name: "Personal information",
