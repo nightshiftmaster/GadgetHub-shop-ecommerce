@@ -30,7 +30,7 @@ const categories = [
   {
     name: "Sunglasses",
     image:
-      "https://www.optistore-eilat.net/media/com_product/product/RB/RB_0840S_90158_1.jpg",
+      "https://contents.mediadecathlon.com/p2579219/k$4c9b279bf885e5216350f43efdd0dec2/adult-hiking-sunglasses-mh100-category-3-quechua-8738921.jpg",
     id: 4,
     href: `/products?generalCategory=${"sunglasses"}&banner=${"https://www.vision-works.co.za/wp-content/uploads/2021/07/24125-PROMO-PAGE-BANNERS-STG-1-JC-06.png"}`,
   },
